@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #fcf9f8;
+  --foreground: #1c1b1b;
+  --surface: #fcf9f8;
+  --on-surface: #1c1b1b;
+  --on-surface-variant: #584238;
+  --primary: #9c3f00;
+  --primary-container: #c45100;
+  --on-primary: #ffffff;
+  --primary-fixed: #ffdbcc;
+  --on-primary-fixed-variant: #7a3000;
+  --secondary: #3b6934;
+  --on-secondary: #ffffff;
+  --secondary-container: #b9eeab;
+  --on-secondary-fixed-variant: #23501e;
+  --tertiary: #765700;
+  --tertiary-fixed: #ffdf9f;
+  --on-tertiary-fixed-variant: #5b4300;
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  --outline: #8c7166;
+  --outline-variant: #e0c0b2;
+  --surface-container: #f0eded;
+  --surface-container-low: #f6f3f2;
+  --surface-container-high: #eae7e7;
+  --surface-container-highest: #e5e2e1;
+  --surface-container-lowest: #ffffff;
+  --savanna-sand: #f9f4e8;
+  --earth-clay: #8b4513;
+  --lush-leaf: #1e3f1b;
+  --chili-red: #9e2a2b;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-on-surface antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 10% -10%, rgba(196, 81, 0, 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 0%, rgba(59, 105, 52, 0.07), transparent),
+      linear-gradient(180deg, #f9f4e8 0%, #fcf9f8 40%, #fcf9f8 100%);
+    background-attachment: fixed;
+    min-height: 100dvh;
+  }
+
+  ::selection {
+    background: #ffb693;
+    color: #351000;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s ease-out both;
+}
