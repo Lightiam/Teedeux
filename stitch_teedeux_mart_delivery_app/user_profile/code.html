@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile - Teedeux Mart</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#ffb693",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "background": "#fcf9f8",
+                    "earth-clay": "#8B4513",
+                    "on-secondary-fixed": "#002201",
+                    "chili-red": "#9E2A2B",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-variant": "#e5e2e1",
+                    "outline-variant": "#e0c0b2",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-surface": "#1c1b1b",
+                    "on-background": "#1c1b1b",
+                    "on-primary-fixed": "#351000",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary-fixed": "#bcf0ae",
+                    "surface-tint": "#a04100",
+                    "surface-container-high": "#eae7e7",
+                    "primary-fixed-dim": "#ffb693",
+                    "primary-container": "#c45100",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8c7166",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-dim": "#dcd9d9",
+                    "secondary-fixed-dim": "#a1d494",
+                    "lush-leaf": "#1E3F1B",
+                    "secondary": "#3b6934",
+                    "surface-container": "#f0eded",
+                    "tertiary-container": "#956e00",
+                    "primary": "#9c3f00",
+                    "secondary-container": "#b9eeab",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#ffdbcc",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "savanna-sand": "#F9F4E8",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#584238",
+                    "tertiary": "#765700",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-fixed": "#261a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-xl": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .profile-mesh {
+            background-color: #fcf9f8;
+            background-image: radial-gradient(at 0% 0%, rgba(156, 63, 0, 0.05) 0px, transparent 50%),
+                              radial-gradient(at 100% 0%, rgba(30, 63, 27, 0.05) 0px, transparent 50%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-32 profile-mesh">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Teedeux Mart</span>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-stack-lg">
+<!-- Profile Hero Section -->
+<section class="flex flex-col md:flex-row gap-gutter items-center md:items-start mb-stack-lg animate-fade-in">
+<div class="relative group">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-surface-container-lowest shadow-lg overflow-hidden ring-4 ring-primary/10">
+<img class="w-full h-full object-cover" data-alt="A high-quality, professional headshot of a charismatic West African man named Kofi Mensah, featuring warm, glowing natural sunlight in a modern home office setting. The aesthetic is clean and vibrant, with a focus on earthy tones of burnt orange and lush green in the background. The lighting is soft and flattering, emphasizing a friendly and reliable demeanor for a grocery delivery service app user profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4U5sYY0u0arYG3yMBEO-LtFpLxHAEWEoNK-S4xcTelcDu_qOnng3g8ZyYwVEwjymU2tISav158k27Tkv0ex3bla-WjCqC-oODQe85FP7i6DyQJ8Ej5hi7cJjTLv2N1nqwEQgyPRk47Vm95T9ihQkrZ1aYUHTq4d8LUobntxD4llOOcX-shQASdhmrxlrkIpLb_uUzTyH7i4DESRfqr74YpMDBN-jgtLeegFCBcw4hDOT3iuDMEBBL-w"/>
+</div>
+<button class="absolute bottom-1 right-1 bg-primary text-on-primary p-2 rounded-full shadow-md hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex flex-col text-center md:text-left pt-base">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Kofi Mensah</h1>
+<p class="text-on-surface-variant font-label-md">kofi.mensah@example.com</p>
+<div class="mt-stack-md flex flex-wrap justify-center md:justify-start gap-stack-sm">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        Verified
+                    </span>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full font-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                        Gold Member
+                    </span>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layout for Account Details -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-stack-lg">
+<!-- Teedeux Plus Card -->
+<div class="md:col-span-2 bg-gradient-to-br from-primary-container to-primary p-gutter rounded-xl text-on-primary-container shadow-xl relative overflow-hidden group">
+<div class="relative z-10">
+<h2 class="font-headline-md text-headline-md mb-stack-sm">Teedeux Plus</h2>
+<p class="font-body-md opacity-90 max-w-md">Unlimited free delivery and 5% back on all fresh organic produce. Your membership is active.</p>
+<button class="mt-gutter bg-surface-container-lowest text-primary font-bold px-6 py-2 rounded-lg hover:shadow-lg active:scale-95 transition-all">
+                        Manage Plan
+                    </button>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-[160px] opacity-10 rotate-12 group-hover:rotate-0 transition-transform duration-700" data-icon="workspace_premium">workspace_premium</span>
+</div>
+<!-- Stats Card -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border border-outline-variant flex flex-col justify-between">
+<div>
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-wider mb-stack-md">Order History</h3>
+<div class="flex items-baseline gap-2">
+<span class="font-headline-lg text-headline-lg text-primary">24</span>
+<span class="font-body-md text-on-surface-variant">delivered</span>
+</div>
+</div>
+<div class="pt-stack-md border-t border-outline-variant/30 flex justify-between items-center">
+<span class="text-secondary font-bold font-label-md">Last: 2 days ago</span>
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Menu Options List -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant overflow-hidden mb-stack-lg">
+<div class="grid grid-cols-1 divide-y divide-outline-variant/50">
+<!-- Personal Information -->
+<button class="flex items-center justify-between p-gutter hover:bg-savanna-sand transition-colors group">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</div>
+<div class="text-left">
+<h4 class="font-headline-md text-body-lg text-on-surface">Personal Information</h4>
+<p class="text-on-surface-variant text-label-sm">Manage your profile and security</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Address Book -->
+<button class="flex items-center justify-between p-gutter hover:bg-savanna-sand transition-colors group">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</div>
+<div class="text-left">
+<h4 class="font-headline-md text-body-lg text-on-surface">Address Book</h4>
+<p class="text-on-surface-variant text-label-sm">Set your home and office delivery zones</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Order History -->
+<button class="flex items-center justify-between p-gutter hover:bg-savanna-sand transition-colors group">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+</div>
+<div class="text-left">
+<h4 class="font-headline-md text-body-lg text-on-surface">Order History</h4>
+<p class="text-on-surface-variant text-label-sm">Review previous orders and tracking</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Refer a Friend -->
+<button class="flex items-center justify-between p-gutter hover:bg-savanna-sand transition-colors group">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="redeem">redeem</span>
+</div>
+<div class="text-left">
+<h4 class="font-headline-md text-body-lg text-on-surface">Refer a Friend</h4>
+<p class="text-on-surface-variant text-label-sm">Get $10 for every friend you refer</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Help & Support -->
+<button class="flex items-center justify-between p-gutter hover:bg-savanna-sand transition-colors group">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-secondary-container/30 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</div>
+<div class="text-left">
+<h4 class="font-headline-md text-body-lg text-on-surface">Help &amp; Support</h4>
+<p class="text-on-surface-variant text-label-sm">FAQs, live chat, and support tickets</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<!-- Sign Out -->
+<button class="flex items-center justify-between p-gutter hover:bg-error/5 transition-colors group">
+<div class="flex items-center gap-gutter">
+<div class="w-12 h-12 rounded-full bg-error-container/30 flex items-center justify-center text-error">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</div>
+<div class="text-left">
+<h4 class="font-headline-md text-body-lg text-error">Sign Out</h4>
+<p class="text-on-surface-variant text-label-sm">Log out of your session securely</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-error group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest shadow-[0_-4px_12px_rgba(156,63,0,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<!-- Active Tab: Profile -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200 shadow-md" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction for list items
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                // Potential for subtle sound or vibration API here
+            });
+        });
+
+        // Simple Fade In Animation for content
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.animate-fade-in');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(10px)';
+                el.style.transition = 'all 0.5s ease-out';
+                setTimeout(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+    </script>
+</body></html>

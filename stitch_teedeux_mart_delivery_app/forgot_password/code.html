@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset Password - Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed-dim": "#ffb693",
+                    "surface-container": "#f0eded",
+                    "earth-clay": "#8B4513",
+                    "inverse-primary": "#ffb693",
+                    "secondary-container": "#b9eeab",
+                    "on-secondary-fixed": "#002201",
+                    "on-surface-variant": "#584238",
+                    "tertiary-fixed": "#ffdf9f",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-dim": "#dcd9d9",
+                    "on-primary": "#ffffff",
+                    "primary": "#9c3f00",
+                    "on-tertiary-container": "#fffbff",
+                    "tertiary-container": "#956e00",
+                    "secondary-fixed-dim": "#a1d494",
+                    "secondary-fixed": "#bcf0ae",
+                    "savanna-sand": "#F9F4E8",
+                    "primary-fixed": "#ffdbcc",
+                    "inverse-surface": "#313030",
+                    "secondary": "#3b6934",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "on-secondary": "#ffffff",
+                    "chili-red": "#9E2A2B",
+                    "outline-variant": "#e0c0b2",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "background": "#fcf9f8",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-surface": "#1c1b1b",
+                    "primary-container": "#c45100",
+                    "error": "#ba1a1a",
+                    "on-secondary-container": "#3f6d38",
+                    "lush-leaf": "#1E3F1B",
+                    "on-error-container": "#93000a",
+                    "outline": "#8c7166",
+                    "on-tertiary-fixed": "#261a00",
+                    "surface-bright": "#fcf9f8",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface": "#fcf9f8",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "tertiary": "#765700",
+                    "surface-variant": "#e5e2e1",
+                    "on-primary-fixed": "#351000",
+                    "surface-tint": "#a04100",
+                    "on-primary-container": "#fffbff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-container-high": "#eae7e7",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "container-max": "1280px",
+                    "stack-lg": "24px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "stack-sm": "4px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .transition-soft {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .input-focus-line {
+            position: relative;
+        }
+        .input-focus-line::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #9c3f00; /* Primary */
+            transition: width 0.3s ease;
+        }
+        .input-focus-line:focus-within::after {
+            width: 100%;
+        }
+
+        /* Ambient subtle background pulse */
+        @keyframes subtlePulse {
+            0% { background-color: #fcf9f8; }
+            50% { background-color: #F9F4E8; } /* Savanna Sand */
+            100% { background-color: #fcf9f8; }
+        }
+        .animate-bg-pulse {
+            animation: subtlePulse 8s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col animate-bg-pulse">
+<!-- Top AppBar (Back Action focused) -->
+<header class="w-full top-0 sticky z-30 bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base w-full max-w-container-max mx-auto">
+<button aria-label="Go back" class="flex items-center gap-base text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform" onclick="window.history.back()">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="font-label-md text-label-md uppercase tracking-wider hidden sm:inline">Back</span>
+</button>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">
+                Teedeux Mart
+            </div>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center px-margin-mobile py-stack-lg">
+<div class="w-full max-w-[440px] flex flex-col gap-stack-lg">
+<!-- Graphic Element / Icon -->
+<div class="flex justify-center mb-base">
+<div class="w-20 h-20 rounded-full bg-primary-fixed flex items-center justify-center text-primary-container shadow-sm border border-outline-variant">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'opsz' 48;">lock_reset</span>
+</div>
+</div>
+<!-- Content -->
+<div class="text-center flex flex-col gap-stack-sm">
+<h1 class="font-headline-lg text-headline-lg md:text-headline-xl md:font-headline-xl text-on-background">
+                    Reset Password
+                </h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[320px] mx-auto">
+                    Enter your email address and we'll send you a link to reset your password.
+                </p>
+</div>
+<!-- Form -->
+<form class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-[0_4px_24px_rgba(156,63,0,0.06)] border border-outline-variant/30 flex flex-col gap-stack-lg" id="recovery-form">
+<div class="flex flex-col gap-base">
+<label class="font-label-md text-label-md text-on-surface-variant px-1" for="email">Email Address</label>
+<div class="input-focus-line relative bg-savanna-sand/50 rounded-t-lg transition-soft">
+<div class="flex items-center px-4 py-3 border-b-2 border-outline/20">
+<span class="material-symbols-outlined text-on-surface-variant mr-3">mail</span>
+<input class="bg-transparent border-none focus:ring-0 w-full font-body-md text-on-surface placeholder:text-outline" id="email" placeholder="name@example.com" required="" type="email"/>
+</div>
+</div>
+</div>
+<button class="w-full bg-primary py-4 px-stack-lg rounded-lg text-on-primary font-bold transition-soft hover:shadow-lg hover:bg-primary-container active:scale-[0.98] flex items-center justify-center gap-base" type="submit">
+<span>Send Reset Link</span>
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+<div class="text-center pt-base">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Remember your password? 
+                        <a class="text-primary font-bold hover:underline" href="#">Sign In</a>
+</p>
+</div>
+</form>
+<!-- Support Link -->
+<div class="flex flex-col items-center gap-base mt-stack-md">
+<div class="h-px w-12 bg-outline/20"></div>
+<a class="flex items-center gap-base text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">help_center</span>
+<span class="font-label-sm text-label-sm">Contact Support</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Visual Background Element (Subtle Blobs) -->
+<div class="fixed top-[-10%] right-[-5%] w-96 h-96 bg-primary-fixed/20 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
+<div class="fixed bottom-[-10%] left-[-5%] w-80 h-80 bg-secondary-fixed/20 rounded-full blur-[100px] -z-10 pointer-events-none"></div>
+<script>
+        document.getElementById('recovery-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalContent = btn.innerHTML;
+            
+            // Visual feedback
+            btn.disabled = true;
+            btn.innerHTML = `
+                <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Sending...</span>
+            `;
+
+            // Mock success state after 1.5s
+            setTimeout(() => {
+                btn.classList.replace('bg-primary', 'bg-lush-leaf');
+                btn.innerHTML = `
+                    <span class="material-symbols-outlined">check_circle</span>
+                    <span>Link Sent!</span>
+                `;
+                
+                // Clear input
+                document.getElementById('email').value = '';
+                
+                // Reset after 3 seconds
+                setTimeout(() => {
+                    btn.classList.replace('bg-lush-leaf', 'bg-primary');
+                    btn.innerHTML = originalContent;
+                    btn.disabled = false;
+                }, 3000);
+            }, 1500);
+        });
+    </script>
+</body></html>

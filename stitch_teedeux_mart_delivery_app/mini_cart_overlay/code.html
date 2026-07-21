@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teedeux Mart - Shopping Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "secondary-fixed-dim": "#a1d494",
+                    "secondary-fixed": "#bcf0ae",
+                    "primary-fixed-dim": "#ffb693",
+                    "chili-red": "#9E2A2B",
+                    "on-secondary-fixed": "#002201",
+                    "tertiary-fixed": "#ffdf9f",
+                    "primary": "#9c3f00",
+                    "surface-container-high": "#eae7e7",
+                    "secondary": "#3b6934",
+                    "surface-bright": "#fcf9f8",
+                    "on-surface": "#1c1b1b",
+                    "earth-clay": "#8B4513",
+                    "primary-container": "#c45100",
+                    "primary-fixed": "#ffdbcc",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "savanna-sand": "#F9F4E8",
+                    "on-tertiary-container": "#fffbff",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "tertiary-container": "#956e00",
+                    "inverse-primary": "#ffb693",
+                    "surface": "#fcf9f8",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "outline-variant": "#e0c0b2",
+                    "inverse-on-surface": "#f3f0ef",
+                    "tertiary": "#765700",
+                    "on-surface-variant": "#584238",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#313030",
+                    "lush-leaf": "#1E3F1B",
+                    "surface-container": "#f0eded",
+                    "error-container": "#ffdad6",
+                    "on-primary-container": "#fffbff",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-dim": "#dcd9d9",
+                    "surface-container-low": "#f6f3f2",
+                    "outline": "#8c7166",
+                    "on-secondary-container": "#3f6d38",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "background": "#fcf9f8",
+                    "on-primary-fixed": "#351000",
+                    "surface-tint": "#a04100",
+                    "error": "#ba1a1a",
+                    "surface-variant": "#e5e2e1",
+                    "on-background": "#1c1b1b",
+                    "secondary-container": "#b9eeab"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "24px",
+                    "margin-mobile": "16px",
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "stack-md": "12px",
+                    "margin-desktop": "40px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-xl": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .blur-overlay {
+            backdrop-filter: blur(8px);
+        }
+        .cart-slide-up {
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-savanna-sand text-on-surface font-body-md overflow-hidden h-screen flex flex-col">
+<!-- Background Content (Blurred Shopping List) -->
+<header class="bg-background w-full top-0 sticky flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto z-10 opacity-40 blur-sm pointer-events-none">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Teedeux Mart</h1>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span class="material-symbols-outlined text-primary">notifications</span>
+</div>
+</header>
+<main class="flex-1 px-margin-mobile py-stack-lg opacity-30 blur-md pointer-events-none overflow-hidden">
+<div class="flex flex-col gap-stack-lg max-w-container-max mx-auto">
+<div class="h-40 bg-surface-container rounded-xl w-full"></div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+<div class="h-64 bg-surface-container rounded-xl"></div>
+</div>
+</div>
+</main>
+<!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-on-surface/40 blur-overlay z-40 transition-opacity duration-300"></div>
+<!-- Slide-out Mini Cart Container -->
+<div class="fixed inset-0 z-50 flex items-end justify-center pointer-events-none">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-t-[32px] cart-slide-up shadow-2xl pointer-events-auto border-t border-outline-variant">
+<!-- Handle for visual cue -->
+<div class="flex justify-center pt-3 pb-1">
+<div class="w-12 h-1.5 bg-surface-container-highest rounded-full"></div>
+</div>
+<!-- Header -->
+<div class="px-gutter py-stack-md flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">Cart (3 items)</h2>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-low hover:bg-surface-container-high transition-colors active:scale-90">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</div>
+<!-- Quick List -->
+<div class="px-gutter flex flex-col gap-stack-md mt-base max-h-[353px] overflow-y-auto">
+<!-- Item 1 -->
+<div class="flex items-center gap-stack-md p-stack-sm bg-surface-bright rounded-xl border border-surface-container shadow-sm">
+<div class="w-20 h-20 flex-shrink-0 bg-white rounded-lg overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="High-quality close-up studio photograph of a bundle of fresh, bright green spinach leaves with water droplets, isolated on a clean white background. Soft professional lighting highlights the texture and organic quality, reflecting the premium African grocery aesthetic of Teedeux Mart." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdwK_cT4QJo6hSWXDZwTFO0AIwOayrHxnUnfwmKf86gdFODRk4Ou7p_Ey0_H3T9HiStvF5qld0zJd1Ni2WTYm2TMstd4YxClFw6Rl_wCNVBJBS860PRuWF6_1oSjrU_wfcZAZx_1JKlx30rjExXwLLLRpvTS8s60d69RZL0mZYy1rdm0kJrKHiX7t6AeL4adLAEoHk56A83aG9xJpmvZ8hYOx3BEKVYZkjCUkR8kbG5HncFTxr06leYA"/>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<span class="font-body-md font-bold text-on-surface">Fresh Water Leaf</span>
+<span class="font-label-sm text-label-sm text-primary">₦1,200</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">500g Bundle</span>
+<div class="flex items-center gap-3 mt-1">
+<div class="flex items-center bg-surface-container rounded-full px-2 py-0.5">
+<button class="text-primary hover:opacity-70"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="mx-3 font-label-md text-label-md">1</span>
+<button class="text-primary hover:opacity-70"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center gap-stack-md p-stack-sm bg-surface-bright rounded-xl border border-surface-container shadow-sm">
+<div class="w-20 h-20 flex-shrink-0 bg-white rounded-lg overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="Vibrant studio shot of whole ripe scotch bonnet peppers in deep red and bright orange colors, arranged neatly on a pristine white background. The lighting is crisp and modern, emphasizing the glossy skin and fiery appeal of authentic African spices for a contemporary marketplace UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYKwbF68jpT7AGuPNs6ry4YBLU5NuFeYH3Fsn9u0NZ5qP-bXErjzmRPqGkx30wgrLfmIvNs6AmnsahN8v-jRzQo8zgpQVmPImEcMJ7gWx4OAYeKkA4F-bMjkeVJexxBb3aHRhUDxPKd3U2ykfd5yr5qecJld8rmX7hnRd8_EgYKEU8Yq2lVYZ-ur9VrguN3b67lTWxOcHEf_ncd4Ck05KjddBEvmSjl7Q-IzUjUBEMRyDNAMkIz9UTxA"/>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<span class="font-body-md font-bold text-on-surface">Ata Rodo (Small)</span>
+<span class="font-label-sm text-label-sm text-primary">₦850</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Paint Bucket</span>
+<div class="flex items-center gap-3 mt-1">
+<div class="flex items-center bg-surface-container rounded-full px-2 py-0.5">
+<button class="text-primary hover:opacity-70"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="mx-3 font-label-md text-label-md">2</span>
+<button class="text-primary hover:opacity-70"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="flex items-center gap-stack-md p-stack-sm bg-surface-bright rounded-xl border border-surface-container shadow-sm">
+<div class="w-20 h-20 flex-shrink-0 bg-white rounded-lg overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="Detailed macro photograph of high-quality long-grain parboiled rice, showing individual grains with clarity and warmth. The rice is presented in a modern, clean ceramic bowl under soft daylight, suggesting high-end reliability and freshness for an urban grocery delivery service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnkDA2Q4elMqB2LDVFWoe4MJmQyZZEg-2m6KD2CTjChWZ77EHbgRULL83FytBe4H3z-YjZnnSElsD3oc9EV-sjm3Wdjc67e4gv899AGfH_SlVuryDCk-nRGN0yt3A63obp-Fz7tGmLT8liMrYMnjyLECjy2-rOUV6yPnEnkuqfAYRC7MXXfJbvLICCzp2LcOtdSyUITCXcxTGrLlX3gdXetIXD_gkWw1znUw1ryqP0X2GQf53K2E8EHg"/>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<div class="flex justify-between items-start">
+<span class="font-body-md font-bold text-on-surface">Premium Rice</span>
+<span class="font-label-sm text-label-sm text-primary">₦5,400</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">5kg Bag</span>
+<div class="flex items-center gap-3 mt-1">
+<div class="flex items-center bg-surface-container rounded-full px-2 py-0.5">
+<button class="text-primary hover:opacity-70"><span class="material-symbols-outlined text-[18px]">remove</span></button>
+<span class="mx-3 font-label-md text-label-md">1</span>
+<button class="text-primary hover:opacity-70"><span class="material-symbols-outlined text-[18px]">add</span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary & CTAs -->
+<div class="p-gutter pt-stack-lg flex flex-col gap-stack-md bg-surface-container-low rounded-t-[24px] mt-gutter">
+<div class="flex justify-between items-center px-base">
+<span class="font-body-lg text-body-lg text-on-surface-variant">Subtotal</span>
+<span class="font-headline-md text-headline-md text-on-surface font-extrabold tracking-tight">₦7,450</span>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary hover:bg-primary-container text-white py-4 rounded-xl font-bold text-body-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
+                        Checkout
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full bg-transparent hover:bg-surface-container-high text-on-surface-variant py-3 rounded-xl font-semibold text-body-md transition-colors">
+                        View Full Cart
+                    </button>
+</div>
+<div class="flex items-center justify-center gap-2 text-lush-leaf font-label-sm text-label-sm pb-gutter">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    Free delivery on orders over ₦15,000
+                </div>
+</div>
+</div>
+</div>
+<!-- Shared Bottom Nav (For Shell Consistency, Inactive state) -->
+<nav class="fixed bottom-0 left-0 w-full z-[60] flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest shadow-lg rounded-t-xl opacity-20 blur-sm pointer-events-none">
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for quantity buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if(btn.querySelector('.material-symbols-outlined')) {
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    if(icon.innerText === 'add' || icon.innerText === 'remove') {
+                        // Logic for increment/decrement would go here
+                        const counter = btn.parentElement.querySelector('span');
+                        let val = parseInt(counter.innerText);
+                        if(icon.innerText === 'add') counter.innerText = val + 1;
+                        if(icon.innerText === 'remove' && val > 0) counter.innerText = val - 1;
+                    }
+                }
+            });
+        });
+
+        // Close interaction (visual only for this prototype)
+        const closeBtn = document.querySelector('button .material-symbols-outlined[innerText="close"]')?.parentElement;
+        if(closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                document.querySelector('.cart-slide-up').style.transform = 'translateY(100%)';
+                document.querySelector('.blur-overlay').style.opacity = '0';
+                setTimeout(() => {
+                    window.location.reload(); // Simple reset for demo
+                }, 400);
+            });
+        }
+    </script>
+</body></html>

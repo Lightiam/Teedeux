@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Location Access - Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .map-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(252, 249, 248, 0.4) 0%, rgba(252, 249, 248, 0.95) 70%, #fcf9f8 100%);
+        }
+        .pulse-animation {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); opacity: 1; }
+            80%, 100% { opacity: 0; }
+        }
+    </style>
+<!-- Include the provided Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eded",
+                    "secondary": "#3b6934",
+                    "inverse-primary": "#ffb693",
+                    "outline": "#8c7166",
+                    "chili-red": "#9E2A2B",
+                    "primary": "#9c3f00",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "tertiary-container": "#956e00",
+                    "savanna-sand": "#F9F4E8",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-tertiary-fixed": "#261a00",
+                    "tertiary": "#765700",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-primary-fixed": "#351000",
+                    "error": "#ba1a1a",
+                    "background": "#fcf9f8",
+                    "secondary-container": "#b9eeab",
+                    "surface-container-high": "#eae7e7",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#002201",
+                    "on-background": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "secondary-fixed-dim": "#a1d494",
+                    "secondary-fixed": "#bcf0ae",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#c45100",
+                    "on-primary-container": "#fffbff",
+                    "lush-leaf": "#1E3F1B",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a04100",
+                    "earth-clay": "#8B4513",
+                    "on-surface-variant": "#584238",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e0c0b2",
+                    "surface-dim": "#dcd9d9",
+                    "on-surface": "#1c1b1b",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-variant": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col overflow-x-hidden">
+<!-- Hero Content & Map Background Section -->
+<main class="relative flex-grow flex flex-col items-center justify-center pt-gutter px-margin-mobile md:px-margin-desktop">
+<!-- Animated Stylized Map Background -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute inset-0 opacity-40 scale-110 md:scale-100 transition-transform duration-1000 ease-out" data-alt="A stylized, high-contrast aerial map of a vibrant urban African city like Lagos, Nigeria, rendered in a minimalist graphic style. The map features elegant earthy tones of Savanna Sand and Earth Clay for land masses, with clean, thin white lines for arterial roads. A soft sun-drenched lighting effect washes over the scene, creating a professional and modern look consistent with a high-end food delivery service. The visual is slightly blurred to prioritize the UI elements in the foreground." data-location="Lagos, Nigeria" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCuTl7nxBMbTAZCqr84C_j8-GriBKTKEavwJmaIwEJH9fGDe7nFDKbruTq4UBpXRD5oDNmyHCvMXh1zw2T_aAOKKGdV0ChXeuu7suxRYBp1y52MaSkUao7QdHcEavCFzHpD7zLUHRvPDPXCSVmHFxoABDqhNyHWRfjQ9gubzNe7JHng-O-tUSmKpO9q83wd9aVowiAP_QBVaCXSmpXuUdzApn97PCk9xuXx8UtpRCWVKSBX0RKQyXMGKA')">
+</div>
+<div class="absolute inset-0 map-gradient-overlay"></div>
+<!-- Animated Ping/Pulse for Interactive Feel -->
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2">
+<div class="relative flex items-center justify-center">
+<div class="absolute w-32 h-32 bg-primary/20 rounded-full pulse-animation"></div>
+<div class="absolute w-16 h-16 bg-primary/30 rounded-full pulse-animation" style="animation-delay: 0.5s"></div>
+<div class="w-6 h-6 bg-primary rounded-full shadow-[0_0_15px_rgba(156,63,0,0.5)] border-2 border-surface-container-lowest z-10"></div>
+</div>
+</div>
+</div>
+<!-- Foreground Content -->
+<div class="relative z-10 w-full max-w-lg flex flex-col items-center text-center space-y-stack-lg">
+<!-- Branding / Logo Area -->
+<div class="mb-stack-md flex flex-col items-center">
+<div class="w-16 h-16 bg-primary-container rounded-2xl flex items-center justify-center mb-stack-md shadow-lg transform rotate-3">
+<span class="material-symbols-outlined text-on-primary-container text-[40px]" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary tracking-tight">
+                    Where should we deliver?
+                </h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[280px] mt-stack-sm">
+                    Enter your address to see fresh groceries available in your area.
+                </p>
+</div>
+<!-- Interaction Container -->
+<div class="w-full space-y-stack-md">
+<!-- Search Bar -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors" data-icon="search">search</span>
+</div>
+<input class="w-full pl-12 pr-4 py-4 bg-surface-container-lowest border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-all font-body-md text-body-md rounded-xl shadow-sm placeholder:text-outline/60" placeholder="Enter delivery address" type="text"/>
+</div>
+<!-- Current Location Button -->
+<button class="w-full flex items-center justify-center gap-base py-4 px-base bg-primary text-on-primary font-headline-md text-headline-md rounded-xl shadow-lg hover:bg-primary-container hover:scale-[1.02] active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+<span>Use current location</span>
+</button>
+<!-- Saved Locations (Quick Select) -->
+<div class="grid grid-cols-2 gap-stack-md mt-gutter">
+<button class="flex flex-col items-start p-stack-lg bg-surface-container-low border border-outline-variant/30 rounded-xl hover:bg-surface-container-high transition-colors text-left group">
+<span class="material-symbols-outlined text-primary mb-stack-sm group-hover:scale-110 transition-transform" data-icon="home">home</span>
+<span class="font-headline-md text-body-md text-on-surface font-semibold">Home</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate w-full">24 Savannah Dr...</span>
+</button>
+<button class="flex flex-col items-start p-stack-lg bg-surface-container-low border border-outline-variant/30 rounded-xl hover:bg-surface-container-high transition-colors text-left group">
+<span class="material-symbols-outlined text-secondary mb-stack-sm group-hover:scale-110 transition-transform" data-icon="work">work</span>
+<span class="font-headline-md text-body-md text-on-surface font-semibold">Work</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate w-full">Tech Plaza, VI</span>
+</button>
+</div>
+</div>
+<!-- Manual Selection / Assistance -->
+<button class="mt-gutter text-on-surface-variant font-label-md text-label-md flex items-center gap-stack-sm hover:text-primary transition-colors">
+<span>Browse areas instead</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</main>
+<!-- Footer Security Message -->
+<footer class="p-gutter flex flex-col items-center gap-stack-sm bg-background/80 backdrop-blur-sm z-20">
+<div class="flex items-center gap-base text-on-surface-variant/60">
+<span class="material-symbols-outlined text-[16px]" data-icon="lock">lock</span>
+<span class="font-label-sm text-label-sm">Your location is encrypted and secure</span>
+</div>
+<div class="h-1 w-12 bg-outline-variant rounded-full mt-stack-md opacity-20"></div>
+</footer>
+<!-- Interactive Layer: Simple Map Interaction Simulation -->
+<script>
+        document.addEventListener('mousemove', (e) => {
+            const map = document.querySelector('[data-location]');
+            if (!map) return;
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            map.style.transform = `scale(1.1) translate(${x}px, ${y}px)`;
+        });
+
+        // Simple button active state simulation
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.classList.add('scale-95');
+                setTimeout(() => this.classList.remove('scale-95'), 150);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Confirmation - Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&family=JetBrains+Mono:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .success-check-draw {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: dash 1s ease-in-out forwards;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#313030",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-error": "#ffffff",
+                        "on-surface-variant": "#584238",
+                        "tertiary": "#765700",
+                        "on-primary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#f0eded",
+                        "lush-leaf": "#1E3F1B",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "on-secondary-container": "#3f6d38",
+                        "surface-container-low": "#f6f3f2",
+                        "outline": "#8c7166",
+                        "surface-dim": "#dcd9d9",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-primary": "#ffffff",
+                        "secondary-container": "#b9eeab",
+                        "on-background": "#1c1b1b",
+                        "surface-variant": "#e5e2e1",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#a04100",
+                        "on-primary-fixed": "#351000",
+                        "background": "#fcf9f8",
+                        "secondary-fixed": "#bcf0ae",
+                        "primary-fixed-dim": "#ffb693",
+                        "chili-red": "#9E2A2B",
+                        "secondary-fixed-dim": "#a1d494",
+                        "tertiary-fixed-dim": "#fbbd07",
+                        "on-surface": "#1c1b1b",
+                        "surface-bright": "#fcf9f8",
+                        "surface-container-high": "#eae7e7",
+                        "secondary": "#3b6934",
+                        "primary": "#9c3f00",
+                        "tertiary-fixed": "#ffdf9f",
+                        "on-secondary-fixed": "#002201",
+                        "on-tertiary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "savanna-sand": "#F9F4E8",
+                        "on-secondary-fixed-variant": "#23501e",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#ffdbcc",
+                        "primary-container": "#c45100",
+                        "earth-clay": "#8B4513",
+                        "inverse-on-surface": "#f3f0ef",
+                        "outline-variant": "#e0c0b2",
+                        "on-primary-fixed-variant": "#7a3000",
+                        "surface": "#fcf9f8",
+                        "tertiary-container": "#956e00",
+                        "inverse-primary": "#ffb693"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "stack-sm": "4px",
+                        "margin-mobile": "16px",
+                        "stack-lg": "24px",
+                        "stack-md": "12px",
+                        "margin-desktop": "40px",
+                        "base": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "headline-xl": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-x-hidden">
+<!-- TopAppBar - Suppressed Shell logic says No Nav for Task-Focused Confirmation screens, 
+         but brand identity needs a small presence -->
+<header class="w-full top-0 sticky bg-background flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto z-40">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Teedeux Mart</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="active:scale-95 transition-transform hover:opacity-80">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile py-stack-lg w-full max-w-container-max mx-auto relative">
+<!-- Background Atmospheric Element (Asymmetric Bento-ish decoration) -->
+<div class="absolute inset-0 -z-10 opacity-5 pointer-events-none">
+<div class="absolute top-20 left-10 w-64 h-64 bg-primary-container rounded-full blur-3xl"></div>
+<div class="absolute bottom-20 right-10 w-96 h-96 bg-secondary-container rounded-full blur-3xl"></div>
+</div>
+<div class="w-full max-w-lg flex flex-col items-center text-center">
+<!-- Hero Success Illustration -->
+<div class="relative mb-stack-lg">
+<div class="w-48 h-48 md:w-64 md:h-64 bg-secondary-container/20 rounded-full flex items-center justify-center animate-float overflow-hidden relative border border-secondary-container/30">
+<!-- Custom SVG Success Illustration -->
+<svg class="w-32 h-32 md:w-40 md:h-40 text-secondary z-10" viewbox="0 0 100 100">
+<circle class="opacity-20" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="4"></circle>
+<path class="success-check-draw" d="M25 50 L45 70 L75 35" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"></path>
+</svg>
+<!-- Floating Leaf Accents -->
+<span class="material-symbols-outlined absolute top-8 right-12 text-lush-leaf opacity-40 text-xl" data-icon="eco">eco</span>
+<span class="material-symbols-outlined absolute bottom-12 left-10 text-primary opacity-30 text-2xl" data-icon="bakery_dining">bakery_dining</span>
+</div>
+<!-- Delivery Bag Icon Overlay -->
+<div class="absolute -bottom-4 -right-4 bg-primary text-white p-4 rounded-xl shadow-[0_8px_16px_rgba(156,63,0,0.2)]">
+<span class="material-symbols-outlined text-3xl" data-icon="shopping_basket">shopping_basket</span>
+</div>
+</div>
+<!-- Content Header -->
+<div class="space-y-stack-sm mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary">Order Placed Successfully!</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-sm mx-auto">
+                    Your fresh groceries are being prepared with care and will be dispatched shortly.
+                </p>
+</div>
+<!-- Details Bento Card -->
+<div class="w-full bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl shadow-[0_4px_12px_rgba(156,63,0,0.08)] grid grid-cols-2 gap-stack-lg mb-stack-lg">
+<div class="flex flex-col items-start gap-stack-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Order ID</span>
+<span class="font-label-md text-label-md text-primary bg-primary-fixed px-3 py-1 rounded-lg">#TDX-98234</span>
+</div>
+<div class="flex flex-col items-end gap-stack-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Est. Delivery</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-lush-leaf text-sm" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md text-lush-leaf">45 mins</span>
+</div>
+</div>
+<div class="col-span-2 pt-stack-md border-t border-outline-variant flex justify-between items-center">
+<div class="flex -space-x-3">
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-cover bg-center" data-alt="Close-up shot of vibrant, fresh organic avocados with a soft, natural morning light highlighting their bumpy texture. The background is a clean, modern kitchen with warm wooden accents and a white marble countertop." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGP5CEg9Ee3M39VAz5TDf9FRBbZSIN36GMI4-gunZFA3zpHWgDdaY7h9buq9DbN37xCcPPvQUa98F8UT7KMX8NPL_AGmlpBMMqfAu8zjWKi9Hh_sJAFl5RdFaKjGha-x2PZJ9DYvBBRSDyOAlBxmnWyZd1YtRBK0CTQCzFuQNh4VjUc3G4w58loXjAprdz9bMrwMmmigmLKiohEOu8UifQaTbC-2meKGbYDS8tfuZufgQ3UU2GoVLN3w')"></div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-cover bg-center" data-alt="A bunch of bright yellow sun-ripened bananas sitting on a rustic wooden tray. The lighting is warm and golden, evoking a high-energy African marketplace feel with modern minimalist composition and generous depth of field." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAxPHk8su7aLS2-Cn9sRQDsXhb-QqcCWi7ulfXJMs1n8ddsYfqvpRJjUi8qm0dInO6oZh0wkW6gNYiQKWSpj6SaPqwTQOQsPS67G5nrGGe6oaiCN6A7q9KJbjqK3AGtcvdjlaPoMK8ky5WyUYDNZYaxmV5Bs5s6u1yylA3CdhNbp8dCkRbdHpllXfxtM9wT0Y1mu9U9-VoMPceJvu433BHDZ_-OqnNw-SQ5W5KCIp0Qxv8eBNPieM1U1g')"></div>
+<div class="w-10 h-10 rounded-full border-2 border-surface bg-cover bg-center flex items-center justify-center bg-surface-container-high text-on-surface-variant font-label-sm">
+                            +4
+                        </div>
+</div>
+<span class="font-label-md text-label-md text-on-surface">View Summary</span>
+</div>
+</div>
+<!-- Delivery Tracker Visual (Teedeux Signature) -->
+<div class="w-full mb-stack-lg px-base">
+<div class="flex items-center justify-between relative">
+<!-- Progress Line -->
+<div class="absolute h-0.5 w-full bg-outline-variant top-1/2 -translate-y-1/2 -z-0"></div>
+<div class="absolute h-0.5 w-1/3 bg-lush-leaf top-1/2 -translate-y-1/2 -z-0 transition-all duration-1000 ease-out"></div>
+<!-- Steps -->
+<div class="flex flex-col items-center gap-stack-sm relative z-10">
+<div class="w-8 h-8 rounded-full bg-lush-leaf text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-lg" data-icon="check" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-lush-leaf">Confirmed</span>
+</div>
+<div class="flex flex-col items-center gap-stack-sm relative z-10">
+<div class="w-8 h-8 rounded-full bg-background border-2 border-lush-leaf text-lush-leaf flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-lush-leaf animate-pulse"></div>
+</div>
+<span class="font-label-sm text-label-sm text-lush-leaf">Preparing</span>
+</div>
+<div class="flex flex-col items-center gap-stack-sm relative z-10 opacity-40">
+<div class="w-8 h-8 rounded-full bg-background border-2 border-outline-variant flex items-center justify-center"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">On Way</span>
+</div>
+<div class="flex flex-col items-center gap-stack-sm relative z-10 opacity-40">
+<div class="w-8 h-8 rounded-full bg-background border-2 border-outline-variant flex items-center justify-center"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Arrived</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full flex flex-col gap-stack-md">
+<button class="w-full bg-primary text-white font-headline-md py-4 rounded-xl shadow-[0_4px_12px_rgba(156,63,0,0.2)] hover:opacity-90 active:scale-95 transition-all">
+                    Track My Order
+                </button>
+<button class="w-full border-2 border-outline text-on-surface font-headline-md py-4 rounded-xl hover:bg-savanna-sand active:scale-95 transition-all">
+                    Back to Home
+                </button>
+</div>
+</div>
+</main>
+<!-- Contextual Information Section (Bento Bottom) -->
+<section class="w-full bg-savanna-sand py-stack-lg mt-stack-lg border-t border-outline-variant/30">
+<div class="max-w-container-max mx-auto px-margin-mobile grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="flex items-start gap-stack-md p-stack-lg bg-surface-container-lowest rounded-xl border border-outline-variant">
+<div class="w-12 h-12 rounded-lg bg-secondary-container/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold mb-1">Live Tracking</h3>
+<p class="font-body-md text-on-surface-variant">Follow your delivery agent on the map in real-time once they depart.</p>
+</div>
+</div>
+<div class="flex items-start gap-stack-md p-stack-lg bg-surface-container-lowest rounded-xl border border-outline-variant">
+<div class="w-12 h-12 rounded-lg bg-primary-fixed/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold mb-1">Need Help?</h3>
+<p class="font-body-md text-on-surface-variant">Our support team is available 24/7 for any questions regarding your order.</p>
+</div>
+</div>
+<div class="flex items-start gap-stack-md p-stack-lg bg-surface-container-lowest rounded-xl border border-outline-variant">
+<div class="w-12 h-12 rounded-lg bg-tertiary-fixed/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="redeem">redeem</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold mb-1">Earn Points</h3>
+<p class="font-body-md text-on-surface-variant">You've earned 45 Teedeux Points with this purchase. Keep it up!</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Space -->
+<footer class="py-stack-lg text-center opacity-40">
+<p class="font-label-sm text-label-sm">© 2024 Teedeux Mart. Delivered with Freshness.</p>
+</footer>
+<script>
+        // Micro-interaction for the Track button
+        document.querySelector('button:first-of-type').addEventListener('mouseenter', function() {
+            this.classList.add('shadow-xl');
+        });
+        document.querySelector('button:first-of-type').addEventListener('mouseleave', function() {
+            this.classList.remove('shadow-xl');
+        });
+
+        // Trigger confetti-like effect (simplified JS)
+        window.addEventListener('load', () => {
+            console.log("Order Confirmation View Loaded");
+            // Here you would typically trigger any post-load confetti or sound effects
+        });
+    </script>
+</body></html>

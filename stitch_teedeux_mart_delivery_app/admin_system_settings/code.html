@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Settings | Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "secondary-fixed-dim": "#a1d494",
+                "on-surface": "#1c1b1b",
+                "surface-tint": "#a04100",
+                "chili-red": "#9E2A2B",
+                "primary-container": "#c45100",
+                "surface-container-highest": "#e5e2e1",
+                "surface-container": "#f0eded",
+                "outline": "#8c7166",
+                "tertiary-container": "#956e00",
+                "primary": "#9c3f00",
+                "on-background": "#1c1b1b",
+                "on-error-container": "#93000a",
+                "lush-leaf": "#1E3F1B",
+                "on-tertiary-fixed": "#261a00",
+                "on-tertiary-fixed-variant": "#5b4300",
+                "on-primary-fixed-variant": "#7a3000",
+                "inverse-on-surface": "#f3f0ef",
+                "surface-container-lowest": "#ffffff",
+                "surface-bright": "#fcf9f8",
+                "on-primary-fixed": "#351000",
+                "tertiary-fixed": "#ffdf9f",
+                "surface-container-low": "#f6f3f2",
+                "surface": "#fcf9f8",
+                "on-surface-variant": "#584238",
+                "inverse-primary": "#ffb693",
+                "error-container": "#ffdad6",
+                "background": "#fcf9f8",
+                "on-primary": "#ffffff",
+                "outline-variant": "#e0c0b2",
+                "surface-variant": "#e5e2e1",
+                "on-primary-container": "#fffbff",
+                "on-secondary-fixed": "#002201",
+                "tertiary-fixed-dim": "#fbbd07",
+                "on-secondary": "#ffffff",
+                "error": "#ba1a1a",
+                "earth-clay": "#8B4513",
+                "tertiary": "#765700",
+                "secondary-container": "#b9eeab",
+                "inverse-surface": "#313030",
+                "on-tertiary-container": "#fffbff",
+                "on-error": "#ffffff",
+                "primary-fixed-dim": "#ffb693",
+                "surface-container-high": "#eae7e7",
+                "primary-fixed": "#ffdbcc",
+                "on-secondary-container": "#3f6d38",
+                "secondary": "#3b6934",
+                "surface-dim": "#dcd9d9",
+                "savanna-sand": "#F9F4E8",
+                "secondary-fixed": "#bcf0ae",
+                "on-secondary-fixed-variant": "#23501e",
+                "on-tertiary": "#ffffff"
+            },
+            "spacing": {
+                "stack-md": "12px",
+                "gutter": "24px",
+                "container-max": "1280px",
+                "base": "8px",
+                "stack-sm": "4px",
+                "margin-desktop": "40px",
+                "stack-lg": "24px",
+                "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["Hanken Grotesk"],
+                "body-md": ["Hanken Grotesk"],
+                "body-lg": ["Hanken Grotesk"],
+                "headline-md": ["Hanken Grotesk"],
+                "label-sm": ["JetBrains Mono"],
+                "label-md": ["JetBrains Mono"],
+                "headline-xl": ["Hanken Grotesk"],
+                "headline-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f8; /* Savanna Sand / Background */
+            color: #1c1b1b;
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #e0c0b2;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f6f3f2;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e0c0b2;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 md:pb-0 md:pl-80">
+<!-- Navigation Drawer (Shared Component) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-full w-80 bg-surface shadow-xl z-40 flex-col gap-stack-md p-gutter">
+<div class="flex flex-col items-start gap-stack-sm mb-base">
+<h1 class="font-headline-md text-headline-md text-primary font-bold">Teedeux Mart</h1>
+<div class="flex items-center gap-3 mt-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a modern African tech administrator, wearing a crisp linen shirt against a soft, sun-drenched savanna background. The lighting is warm and natural, evoking trust and leadership in a contemporary logistics ecosystem. The image is clean, high-resolution, and styled with high-key professional photography standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdMps_iDX6gyuGqEUnm_aPp2gwkKOXBd7D5j9bQsKQhy57D_JeiCjpqpl81tqqhPTyeW-S_Njjz0roY4rWB75XNfvjI-pllQTQSU-e6WoPCoQLZIRBwzGMuNQiZbt1oSc_VZG9Iq0BCmCEwV6SIXg-ErBxmdotkt7LCBWz272mpnPzsQEw1OSKnoVcaPedQAmKuaSmFM8bK3FpcNCWSOYDBlPx6ZwBM8L6B8S0FCOsOLxXevnnfoMAyQ"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Welcome to Teedeux</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Admin Console</p>
+</div>
+</div>
+</div>
+<nav class="flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Users</span>
+</a>
+<div class="h-px bg-outline-variant my-2"></div>
+<p class="px-4 text-label-sm text-primary font-bold uppercase tracking-wider mb-2">Management</p>
+<a class="flex items-center gap-3 px-4 py-3 text-primary font-bold bg-primary-fixed-dim rounded-lg shadow-sm" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">System Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-body-md text-body-md">Delivery Zones</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-highest transition-colors rounded-lg group" href="#">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-body-md text-body-md">Financials</span>
+</a>
+</nav>
+<div class="mt-auto bg-surface-container-low p-4 rounded-xl">
+<p class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 bg-secondary rounded-full animate-pulse"></span>
+                System Status: Optimal
+            </p>
+</div>
+</aside>
+<!-- Top App Bar (Shared Component) -->
+<header class="w-full top-0 sticky z-30 bg-background flex justify-between items-center px-margin-mobile md:px-margin-desktop py-base max-w-container-max mx-auto">
+<div class="flex items-center gap-4">
+<button class="md:hidden p-2 text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg font-bold text-primary">System Control</h1>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex bg-surface-container rounded-full px-4 py-2 items-center gap-2 border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md" placeholder="Search settings..." type="text"/>
+</div>
+<button class="p-2 text-on-surface-variant hover:opacity-80 active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="bento-grid">
+<!-- Delivery Zone Management (Bento Large) -->
+<section class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl p-gutter shadow-lg border border-outline-variant/30 flex flex-col gap-6">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-primary-fixed rounded-lg">
+<span class="material-symbols-outlined text-primary">distance</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Delivery Zone Management</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Configure active logistics boundaries and pricing tiers.</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        New Zone
+                    </button>
+</div>
+<div class="w-full h-80 rounded-xl overflow-hidden relative border border-outline-variant">
+<div class="absolute inset-0 z-0" data-alt="A stylized digital map of a vibrant African metropolitan area, featuring highlighted polygonal delivery zones in translucent shades of burnt orange and lush green. The map style is minimalist and modern, with thin white street lines and subtle topographical textures, reflecting a high-tech logistics control center aesthetic. Soft ambient lighting glows from the center, emphasizing urban density and efficiency." data-location="Lagos, Nigeria" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBNbWgjNdOetcHFt13YaqF4mAHhN56AUtTGuGsNY3v3OtSgzGB5wwcZ2idyGZqNi2oKEh1gy461kBN82jveiL-CldC2wQ7pBOgcTtyT-J4vhtbWEBHieGzt3cPYgYKMGG-1sBS0lExnu9cWRUfySRXYHVpcBMI-BBgNtWdq6vLAIA-ZUvj8buXjA6FvSfyt7l8WaOBJGeccCmfs-L8iSTU_uZPiUgWva9xFuE6MZPW0qnFiRyjr-T18Q')"></div>
+<div class="absolute top-4 left-4 z-10 glass-card p-4 rounded-lg flex flex-col gap-2">
+<p class="font-label-md text-label-md text-primary uppercase font-bold">Map Controls</p>
+<div class="flex flex-col gap-1">
+<button class="p-2 hover:bg-surface rounded border border-outline-variant/30"><span class="material-symbols-outlined">zoom_in</span></button>
+<button class="p-2 hover:bg-surface rounded border border-outline-variant/30"><span class="material-symbols-outlined">zoom_out</span></button>
+<button class="p-2 hover:bg-surface rounded border border-outline-variant/30"><span class="material-symbols-outlined">layers</span></button>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 bg-savanna-sand/50 rounded-xl border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lush-leaf">check_circle</span>
+<div>
+<p class="font-body-md text-body-md font-bold">Lagos Central Hub</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Active • 24 Riders</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+</div>
+<div class="p-4 bg-savanna-sand/50 rounded-xl border border-outline-variant flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-lush-leaf">check_circle</span>
+<div>
+<p class="font-body-md text-body-md font-bold">Ikeja District</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Active • 18 Riders</p>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+</div>
+</div>
+</section>
+<!-- Platform Fees (Bento Small) -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-stack-lg">
+<div class="bg-surface-container-lowest rounded-xl p-gutter shadow-lg border border-outline-variant/30 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-container rounded-lg">
+<span class="material-symbols-outlined text-secondary">payments</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Platform Fees</h2>
+</div>
+<div class="flex flex-col gap-4">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Delivery Base Fee</label>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-primary font-bold">₦</span>
+<input class="w-full bg-savanna-sand border-b-2 border-transparent focus:border-primary border-t-0 border-l-0 border-r-0 font-headline-md text-headline-md px-2 focus:ring-0" type="number" value="1200"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Processing Percentage</label>
+<div class="flex items-center gap-2">
+<input class="w-full bg-savanna-sand border-b-2 border-transparent focus:border-primary border-t-0 border-l-0 border-r-0 font-headline-md text-headline-md px-2 focus:ring-0" type="number" value="2.5"/>
+<span class="font-headline-md text-headline-md text-primary font-bold">%</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant uppercase">Surge Multiplier</label>
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md text-primary font-bold">x</span>
+<input class="w-full bg-savanna-sand border-b-2 border-transparent focus:border-primary border-t-0 border-l-0 border-r-0 font-headline-md text-headline-md px-2 focus:ring-0" step="0.1" type="number" value="1.2"/>
+</div>
+</div>
+<button class="w-full mt-4 bg-lush-leaf text-on-primary py-3 rounded-xl font-bold hover:opacity-90 active:scale-95 transition-all">Update Financials</button>
+</div>
+</div>
+<!-- Small Info Card -->
+<div class="bg-primary text-on-primary rounded-xl p-gutter shadow-lg relative overflow-hidden group">
+
+<div class="relative z-10">
+<p class="font-label-sm text-label-sm uppercase opacity-80">Total Fees Collected (24h)</p>
+<h3 class="font-headline-xl text-headline-xl font-bold mt-1">₦428,500</h3>
+<p class="font-label-sm text-label-sm mt-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                            +12% vs yesterday
+                        </p>
+</div>
+</div>
+</section>
+<!-- System Notifications (Full Width) -->
+<section class="col-span-12 bg-surface-container-lowest rounded-xl p-gutter shadow-lg border border-outline-variant/30">
+<div class="flex flex-col md:flex-row gap-8">
+<div class="md:w-1/3 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-tertiary-fixed rounded-lg">
+<span class="material-symbols-outlined text-tertiary">campaign</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Global Broadcast</h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Send critical updates or promotional alerts to all registered app users instantly.</p>
+<div class="mt-4 p-4 bg-tertiary-container/10 border border-tertiary-container/30 rounded-xl">
+<p class="font-label-md text-label-md text-tertiary font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">info</span>
+                                Pro-Tip
+                            </p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 italic">Short, punchy notifications have a 40% higher open rate.</p>
+</div>
+</div>
+<div class="md:w-2/3 flex flex-col gap-6 bg-savanna-sand/30 p-6 rounded-2xl border border-outline-variant/50">
+<div class="space-y-4">
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant uppercase mb-2 block">Notification Title</label>
+<input class="w-full bg-white border-2 border-outline-variant focus:border-primary rounded-xl px-4 py-3 focus:ring-0 transition-all font-body-md" placeholder="e.g. Rainy Day Delivery Discount!" type="text"/>
+</div>
+<div>
+<label class="font-label-md text-label-md text-on-surface-variant uppercase mb-2 block">Message Body</label>
+<textarea class="w-full bg-white border-2 border-outline-variant focus:border-primary rounded-xl px-4 py-3 focus:ring-0 transition-all font-body-md" placeholder="Write your announcement here..." rows="3"></textarea>
+</div>
+</div>
+<div class="flex flex-wrap gap-4 items-center">
+<div class="flex items-center gap-4">
+<span class="font-label-md text-label-md text-on-surface-variant">Target Audience:</span>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary-container text-on-primary-container rounded-full text-label-sm font-bold border border-primary">Customers</span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full text-label-sm font-bold">Riders</span>
+<span class="px-3 py-1 bg-surface-container border border-outline-variant text-on-surface-variant rounded-full text-label-sm font-bold">Vendors</span>
+</div>
+</div>
+<button class="ml-auto bg-chili-red text-on-primary px-8 py-3 rounded-full font-bold shadow-lg shadow-chili-red/20 flex items-center gap-2 hover:translate-y-[-2px] active:translate-y-[0px] transition-all">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                                Broadcast Alert
+                            </button>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- System Activity Log (Footer Section) -->
+<section class="mt-stack-lg bg-surface-container rounded-xl p-gutter border border-outline-variant/30">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-4">System Event Log</h3>
+<div class="custom-scrollbar overflow-y-auto max-h-60 space-y-3 pr-2">
+<div class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-16">14:22:10</span>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-[10px] font-bold uppercase">Financial</span>
+<p class="font-body-md text-body-md text-on-surface">Platform base fee updated to ₦1200 by Admin: Tunde</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">open_in_new</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-outline-variant/20">
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-16">12:05:45</span>
+<span class="px-2 py-0.5 bg-primary-fixed-dim text-on-primary-fixed-variant rounded text-[10px] font-bold uppercase">Logistics</span>
+<p class="font-body-md text-body-md text-on-surface">New delivery zone 'Yaba Tech District' added</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">open_in_new</span>
+</div>
+<div class="flex items-center justify-between p-3 bg-white/50 rounded-lg border border-outline-variant/20 opacity-60">
+<div class="flex items-center gap-3">
+<span class="font-label-sm text-label-sm text-on-surface-variant w-16">09:12:30</span>
+<span class="px-2 py-0.5 bg-surface-variant text-on-surface-variant rounded text-[10px] font-bold uppercase">System</span>
+<p class="font-body-md text-body-md text-on-surface">Server maintenance completed successfully</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">open_in_new</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Shared Component - Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface-container-lowest flex justify-around items-center px-base pb-4 pt-2 shadow-[0_-4px_12px_rgba(156,63,0,0.08)]">
+<a class="flex flex-col items-center justify-center text-on-surface-variant group" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant group" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant group" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 group" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant group" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Interaction logic for demo
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const originalText = btn.innerHTML;
+                if(btn.innerText.includes('Update') || btn.innerText.includes('Broadcast')) {
+                    btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Saving...';
+                    setTimeout(() => {
+                        btn.innerHTML = '<span class="material-symbols-outlined">check</span> Success';
+                        setTimeout(() => {
+                            btn.innerHTML = originalText;
+                        }, 2000);
+                    }, 1500);
+                }
+            });
+        });
+    </script>
+</body></html>

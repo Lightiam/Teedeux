@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teedeux Mart | Welcome</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eded",
+                    "secondary": "#3b6934",
+                    "inverse-primary": "#ffb693",
+                    "outline": "#8c7166",
+                    "chili-red": "#9E2A2B",
+                    "primary": "#9c3f00",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "tertiary-container": "#956e00",
+                    "savanna-sand": "#F9F4E8",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-tertiary-fixed": "#261a00",
+                    "tertiary": "#765700",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-primary-fixed": "#351000",
+                    "error": "#ba1a1a",
+                    "background": "#fcf9f8",
+                    "secondary-container": "#b9eeab",
+                    "surface-container-high": "#eae7e7",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#002201",
+                    "on-background": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "secondary-fixed-dim": "#a1d494",
+                    "secondary-fixed": "#bcf0ae",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#c45100",
+                    "on-primary-container": "#fffbff",
+                    "lush-leaf": "#1E3F1B",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a04100",
+                    "earth-clay": "#8B4513",
+                    "on-surface-variant": "#584238",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e0c0b2",
+                    "surface-dim": "#dcd9d9",
+                    "on-surface": "#1c1b1b",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-variant": "#e5e2e1",
+                    "brand-orange": "#e36414"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes reveal {
+            0% { opacity: 0; transform: scale(0.9) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+        .animate-reveal {
+            animation: reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .animate-pulse-slow {
+            animation: pulse-subtle 3s ease-in-out infinite;
+        }
+        .grain-overlay {
+            background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+            opacity: 0.05;
+        }
+    </style>
+</head>
+<body class="bg-brand-orange overflow-hidden h-screen w-screen flex flex-items-center justify-center relative">
+<!-- Background Atmospheric Layer -->
+<div class="absolute inset-0 z-0">
+<!-- Subtle radial glow behind the logo -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(255,255,255,0.15)_0%,_transparent_70%)]"></div>
+<div class="absolute inset-0 grain-overlay pointer-events-none"></div>
+</div>
+<!-- Main Content Container -->
+<main class="relative z-10 flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop text-center">
+<!-- Logo Reveal -->
+<div class="animate-reveal flex flex-col items-center gap-stack-lg">
+<!-- Abstract Iconography / Brand Mark -->
+<div class="mb-stack-md">
+<div class="w-24 h-24 bg-white rounded-full flex items-center justify-center shadow-lg shadow-black/10">
+<span class="material-symbols-outlined text-[48px] text-brand-orange" style="font-variation-settings: 'FILL' 1;">
+                        shopping_basket
+                    </span>
+</div>
+</div>
+<!-- Brand Wordmark -->
+<h1 class="font-headline-xl text-headline-xl text-white tracking-tight drop-shadow-sm">
+                Teedeux Mart
+            </h1>
+<!-- Tagline -->
+<p class="font-body-lg text-body-lg text-white/90 max-w-xs animate-pulse-slow">
+                Freshness delivered daily. Authentically African.
+            </p>
+</div>
+<!-- Footer Loading / Status Indicator -->
+<div class="absolute bottom-16 left-0 w-full flex flex-col items-center gap-stack-sm opacity-60">
+<div class="w-12 h-1 bg-white/20 rounded-full overflow-hidden">
+<div class="h-full bg-white w-0 transition-all duration-[2000ms] ease-out" id="progress-bar"></div>
+</div>
+<span class="font-label-sm text-label-sm text-white uppercase tracking-widest">
+                Initializing
+            </span>
+</div>
+</main>
+<!-- Decorative Illustration elements (Asymmetric) -->
+<div class="absolute -top-12 -right-12 w-64 h-64 opacity-10 rotate-12">
+<div class="w-full h-full bg-white rounded-full blur-3xl"></div>
+</div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 opacity-10">
+<div class="w-full h-full bg-lush-leaf rounded-full blur-[100px]"></div>
+</div>
+<!-- Background Images for Context (Subtle Blending) -->
+<div class="absolute bottom-0 right-0 w-1/3 h-1/2 opacity-20 pointer-events-none">
+<div class="w-full h-full bg-cover bg-bottom" data-alt="A cinematic, high-resolution close-up of vibrant, sun-ripened tropical fruits like mangoes, plantains, and peppers arranged artistically. The lighting is warm and golden, evoking a rich African marketplace at sunset. The image uses a shallow depth of field to keep the focus sharp on the textures of the produce, blending softly into the brand orange background of the UI." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB3xqet144XxHqrbon4pB04pdlf4syFALQkX52f9vZum0Cd82TvgTq0pLJBA7MN70YDQ_kEZG2lv_xhl338XQPMZpSL2crAX6ADXRFNg06VhG_7_q2KLRYaZtuC3X4iIXjyParFrpAywjxQ2Hbz12u7AGufIq_lIm2QIGzbxk3BJUiWUUnsaZnPFbCNbWfLCsrfF3dnmYMYoSM936OfQlqueTNq1EPUaXMBLLMVbR3LnmhC5UXGE06JmA')">
+</div>
+</div>
+<script>
+        // Progress bar simulation for the splash screen feel
+        window.addEventListener('DOMContentLoaded', () => {
+            const bar = document.getElementById('progress-bar');
+            setTimeout(() => {
+                bar.style.width = '100%';
+            }, 100);
+
+            // Logic to simulate redirection or app entry
+            setTimeout(() => {
+                console.log('Teedeux Mart Loaded. Navigating to Dashboard...');
+                // In a real app, window.location.href = '/home' would go here
+            }, 2500);
+        });
+
+        // Simple parallax micro-interaction on mouse move
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) / 50;
+            const moveY = (e.clientY - window.innerHeight / 2) / 50;
+            const logo = document.querySelector('.animate-reveal');
+            if(logo) {
+                logo.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+    </script>
+</body></html>

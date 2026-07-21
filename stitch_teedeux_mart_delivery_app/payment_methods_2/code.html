@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Methods - Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#313030",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#584238",
+                    "tertiary": "#765700",
+                    "on-primary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#f0eded",
+                    "lush-leaf": "#1E3F1B",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-container-low": "#f6f3f2",
+                    "outline": "#8c7166",
+                    "surface-dim": "#dcd9d9",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#b9eeab",
+                    "on-background": "#1c1b1b",
+                    "surface-variant": "#e5e2e1",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#a04100",
+                    "on-primary-fixed": "#351000",
+                    "background": "#fcf9f8",
+                    "secondary-fixed": "#bcf0ae",
+                    "primary-fixed-dim": "#ffb693",
+                    "chili-red": "#9E2A2B",
+                    "secondary-fixed-dim": "#a1d494",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "on-surface": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "surface-container-high": "#eae7e7",
+                    "secondary": "#3b6934",
+                    "primary": "#9c3f00",
+                    "tertiary-fixed": "#ffdf9f",
+                    "on-secondary-fixed": "#002201",
+                    "on-tertiary-container": "#fffbff",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "savanna-sand": "#F9F4E8",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#c45100",
+                    "earth-clay": "#8B4513",
+                    "inverse-on-surface": "#f3f0ef",
+                    "outline-variant": "#e0c0b2",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "surface": "#fcf9f8",
+                    "tertiary-container": "#956e00",
+                    "inverse-primary": "#ffb693"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "stack-sm": "4px",
+                    "margin-mobile": "16px",
+                    "stack-lg": "24px",
+                    "stack-md": "12px",
+                    "margin-desktop": "40px",
+                    "base": "8px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-xl": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Hanken Grotesk', sans-serif;
+            background-color: #fcf9f8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .savanna-gradient {
+            background: linear-gradient(135deg, #9c3f00 0%, #c45100 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background">
+<div class="flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-base">
+<button class="active:scale-95 transition-transform hover:opacity-80 transition-opacity p-2">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Teedeux Mart</h1>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">location_on</button>
+<button class="material-symbols-outlined text-primary hover:opacity-80 transition-opacity active:scale-95 transition-transform">notifications</button>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col gap-stack-lg pb-32">
+<!-- Teedeux Credit Balance Section -->
+<section class="w-full">
+<div class="savanna-gradient rounded-xl p-gutter text-on-primary shadow-lg relative overflow-hidden">
+<!-- Decorative background elements -->
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-stack-lg">
+<div>
+<p class="font-label-md text-label-md opacity-90 uppercase tracking-wider mb-base">Teedeux Credit Balance</p>
+<h2 class="font-headline-xl text-headline-xl">₵ 1,240.50</h2>
+</div>
+<div class="flex gap-stack-md">
+<button class="flex-1 md:flex-none bg-surface-container-lowest text-primary px-8 py-3 rounded-full font-bold active:scale-95 transition-transform hover:bg-opacity-90 shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+                            Top Up
+                        </button>
+<button class="flex-1 md:flex-none bg-white/20 text-on-primary border border-white/30 px-8 py-3 rounded-full font-bold active:scale-95 transition-transform hover:bg-white/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                            Transfer
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Layer: Loyalty & Quick Info -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-stack-lg">
+<!-- Loyalty Rewards Card -->
+<div class="md:col-span-8 bg-surface-container-lowest rounded-xl p-gutter shadow-[0_4px_20px_rgba(156,63,0,0.05)] border border-outline-variant/30 flex flex-col md:flex-row items-center gap-gutter">
+<div class="w-20 h-20 bg-secondary-container text-on-secondary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[40px]" style="font-variation-settings: 'FILL' 1;">stars</span>
+</div>
+<div class="flex-1 text-center md:text-left">
+<h3 class="font-headline-md text-headline-md text-on-surface">Loyalty Rewards</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Your passion for freshness earns you more.</p>
+</div>
+<div class="bg-savanna-sand px-gutter py-stack-md rounded-xl border border-primary-fixed">
+<span class="font-label-md text-label-md text-primary block mb-1">Total Points</span>
+<span class="font-headline-md text-headline-md text-primary">5,200 pts</span>
+</div>
+</div>
+<!-- Savings Insight (Extra UI Context) -->
+<div class="md:col-span-4 bg-lush-leaf rounded-xl p-gutter text-white flex flex-col justify-between overflow-hidden relative">
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[120px] opacity-10">eco</span>
+<p class="font-label-sm text-label-sm opacity-80 uppercase">Monthly Savings</p>
+<div>
+<h4 class="font-headline-md text-headline-md">₵ 45.00</h4>
+<p class="font-body-md text-body-md text-secondary-fixed text-sm">Saved from promotions</p>
+</div>
+</div>
+</div>
+<!-- Payment Methods Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-stack-lg items-start">
+<!-- Debit & Credit Cards Section -->
+<section class="flex flex-col gap-stack-md">
+<div class="flex justify-between items-center px-base">
+<h3 class="font-headline-md text-headline-md">Debit &amp; Credit Cards</h3>
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+</div>
+<div class="flex flex-col gap-stack-md">
+<!-- Primary Visa Card -->
+<div class="group cursor-pointer bg-white rounded-xl p-gutter shadow-sm hover:shadow-md transition-shadow border border-outline-variant/50 relative overflow-hidden">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-8 bg-surface-container rounded flex items-center justify-center p-1">
+<img class="h-full object-contain" data-alt="A professional, high-fidelity logo of the Visa payment network in its signature blue and gold colors, presented on a clean white background with subtle depth and modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDka4WuuqJBwqji8gQ-MahPsjhFysLe2pDm2WDj56aCqsyylmKuU10NL1RO3ngaGNr26qQ-G8XPIuLHOnaf284A8I_OZ7-lFvh0bfYVrDVvIg3Xr4HM2gbggn5ACkh7g0R__UeE-RdRQIAA61TPrskSjAixInTYUd0vOxlA4QpQ_ju7iI777SSmY1s9rTlf-3Kl-frgeDuJOJiwf0tlA83NteSeY5LQHbOqI3zbJibnEYxtsUg8Spfx3w"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold">Visa Classic</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-tighter">**** **** **** 4242</p>
+</div>
+</div>
+<span class="bg-lush-leaf/10 text-lush-leaf px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Primary</span>
+</div>
+<div class="mt-stack-lg flex justify-between items-end">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Exp: 12/26</p>
+<button class="text-primary font-bold text-sm hover:underline">Edit</button>
+</div>
+</div>
+<!-- Add New Card Button -->
+<button class="w-full h-24 border-2 border-dashed border-outline-variant rounded-xl flex flex-col items-center justify-center gap-stack-sm text-on-surface-variant hover:border-primary hover:text-primary transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined">add</span>
+<span class="font-label-md text-label-md">Add New Card</span>
+</button>
+</div>
+</section>
+<!-- Mobile Money Section -->
+<section class="flex flex-col gap-stack-md">
+<div class="flex justify-between items-center px-base">
+<h3 class="font-headline-md text-headline-md">Mobile Money</h3>
+<span class="material-symbols-outlined text-on-surface-variant">security</span>
+</div>
+<div class="flex flex-col gap-stack-md">
+<!-- Active MTN MoMo -->
+<div class="bg-white rounded-xl p-gutter shadow-sm border border-outline-variant/50 flex items-center justify-between">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 bg-[#FFCC00] rounded-lg flex items-center justify-center">
+<img class="w-8 h-8 object-contain" data-alt="The MTN Mobile Money logo, a bright yellow circle with a stylized blue 'M' in the center, rendered in a crisp vector style that conveys accessibility and reliability for mobile financial services in Africa." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLsqIG6RywR-dXiy9eERRZFNkIIyCAIVct4Smdcif7WqNLY1vc9wqu7htReAuG-Kl3oQRPoHfV5d-hJKkj2Y57JwUjSdZMw3xNaffuk8hvKEGzlSscanxgRiJLqjcV537DBMu7gp75qdvYNhTUXJxbheS-UvpF0gkrxrL9Wdb9HnbQgf6zbdbOzh_y5yNTaFV2iBTX-VKmcvQJRhJx1HFdZohIlqiDuprm2cMfIz8frla_rj8zuchxXw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold">MTN Mobile Money</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">024 • • • • 551</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-lush-leaf" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Link Vodafone Cash -->
+<button class="bg-white rounded-xl p-gutter shadow-sm border border-outline-variant/50 flex items-center justify-between hover:bg-surface-container-lowest transition-colors group">
+<div class="flex items-center gap-stack-md">
+<div class="w-12 h-12 bg-[#E60000] rounded-lg flex items-center justify-center">
+<img class="w-8 h-8 object-contain" data-alt="A clean, minimalist representation of the Vodafone Cash logo, featuring the iconic red speech mark on a circular background, designed for high-end UI systems with a focus on digital transaction safety." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpwxAXGTadjoLgpi5y45Fe9nU_vkHG1lLiUDs4llvzdoX15zj9utbhBBPwsD4WtXgOGKT3AmbcFGfqfO18WqbOoloXv6BQRPfcH1Zbt8tDv7EHy9g_DernR_-7HdDofriQqtNVURjm0oV1K9F7_Cz7NRsM3tPEtRqx2pJTCUpkuEqsP3n_YiC-bIfNlyyYn49jV3RppdhRJgamMEa9DGWZhXlnK5aZhkXvN-CFG852RRXmCKL1U3modw"/>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">Vodafone Cash</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Account not linked</p>
+</div>
+</div>
+<span class="text-primary font-bold text-sm group-hover:underline">Link Now</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Security Footer Badge -->
+<footer class="mt-stack-lg border-t border-outline-variant/20 pt-gutter flex flex-col items-center text-center">
+<div class="flex items-center gap-2 bg-surface-container px-4 py-2 rounded-full mb-stack-md">
+<span class="material-symbols-outlined text-lush-leaf text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<p class="font-label-sm text-label-sm font-bold text-on-surface tracking-widest">SECURE ENCRYPTED PAYMENTS</p>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm max-w-md">
+                Your data is protected by bank-level encryption. We do not store your full card details on our servers.
+            </p>
+<div class="flex gap-gutter mt-stack-lg opacity-50 grayscale hover:grayscale-0 transition-all">
+<img class="h-6" data-alt="The PCI DSS compliance certification badge in a clean monochrome style, representing industry-standard security for handling payment information on a high-end web platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCeyBQce8t3JrJlh-Oylkaqe_FvJ-I11wPCI9x7EELWgAu39QmvxCt5sERL0kKwEPLPLaoOil5tzfwz_uKzW0SFr9kIyXslBH1qkVO4-gOPgDtbDicoeP1EgtXSmSjAOpDVdkh7xLrIL4Iqq8IR3M0vi5GmNr1n3kBi0TeRasjA8j1LEuVVh-6H3zqBxcgRgLuCrE2lG1c1uNGj6j_TW151nKIp-RRirrLokDatz0jd3sfQLhITBSXKw"/>
+<img class="h-6" data-alt="A stylized SSL Secure certificate icon, symbolizing the safe and encrypted connection between the user and the grocery delivery platform, rendered in a professional minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4DsSRW-5rricVbxdOMNI8kAyxQBH_1rfk0xGWjL12R05v7ZWKrL-mqCNFFMdzFPUnB7IYQQJ46vLdaJWWVW4duGSKewQ8f2STdba6X2KooAV5RxHW80YCmUKlJkrNFMRq4HF67TdH5fgeZLPqt-rWZkppiuQvY2L1EJFm3EUBETInE0zrTh5GoF-9Fp2oSQde8yXLGdPIk_hJviBMUSsXdqAg9b5IZxub5PdJsp_3u2QgYudgYcoekA"/>
+</div>
+</footer>
+</main>
+<!-- Bottom Navigation Bar (Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest shadow-[0_-4px_12px_rgba(156,63,0,0.08)] rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+</div>
+<!-- Active Tab: Orders (assuming payment is related to order history/wallet) or Profile? Let's pick Profile as Wallet is often a sub-page of Profile -->
+<div class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body></html>

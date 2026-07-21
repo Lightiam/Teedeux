@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teedeux Mart - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eded",
+                    "secondary": "#3b6934",
+                    "inverse-primary": "#ffb693",
+                    "outline": "#8c7166",
+                    "chili-red": "#9E2A2B",
+                    "primary": "#9c3f00",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "tertiary-container": "#956e00",
+                    "savanna-sand": "#F9F4E8",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-tertiary-fixed": "#261a00",
+                    "tertiary": "#765700",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-primary-fixed": "#351000",
+                    "error": "#ba1a1a",
+                    "background": "#fcf9f8",
+                    "secondary-container": "#b9eeab",
+                    "surface-container-high": "#eae7e7",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#002201",
+                    "on-background": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "secondary-fixed-dim": "#a1d494",
+                    "secondary-fixed": "#bcf0ae",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#c45100",
+                    "on-primary-container": "#fffbff",
+                    "lush-leaf": "#1E3F1B",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a04100",
+                    "earth-clay": "#8B4513",
+                    "on-surface-variant": "#584238",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e0c0b2",
+                    "surface-dim": "#dcd9d9",
+                    "on-surface": "#1c1b1b",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-variant": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        .onboarding-gradient {
+            background: linear-gradient(180deg, rgba(252, 249, 248, 0) 0%, #fcf9f8 100%);
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .shadow-soft {
+            box-shadow: 0 10px 30px -10px rgba(156, 63, 0, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top AppBar (Simplified for Onboarding - No Global Nav as per mandate) -->
+<header class="w-full top-0 sticky z-50 bg-background">
+<div class="flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-headline-lg-mobile">location_on</span>
+<span class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Teedeux Mart</span>
+</div>
+<button class="text-on-surface-variant font-label-md px-4 py-2 hover:opacity-80 transition-opacity active:scale-95">
+                Skip
+            </button>
+</div>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile py-stack-lg max-w-lg mx-auto w-full relative">
+<!-- Hero Section: Modern Asymmetric Layout -->
+<div class="w-full relative mb-12">
+<!-- Decorative Element -->
+<div class="absolute -top-10 -right-10 w-48 h-48 bg-primary-fixed opacity-30 rounded-full blur-3xl"></div>
+<!-- Hero Image Container -->
+<div class="relative z-10 w-full aspect-square md:aspect-video rounded-3xl overflow-hidden shadow-soft border border-outline-variant/30 animate-float">
+<div class="absolute inset-0 bg-savanna-sand"></div>
+<div class="w-full h-full" data-alt="A professional delivery driver in a neat uniform with a warm smile, standing next to a modern, branded electric delivery van filled with vibrant fresh African produce. The scene is set in a sun-drenched suburban neighborhood with lush greenery and clean architectural lines. The lighting is warm and golden, reflecting a premium service feel with a color palette of burnt orange and forest green. The composition is clean and focused on the reliability and friendliness of the service." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA7mktRaB2FMJErgQH0GwwHGXguXl-VTxWG20UxTPr_8e6RjRl6R0kmH-E7NwsolKcmSJxXlMIbF48CmG1zukC7sgs9xXviYF8byNRSZiDDca3ThcNGI3v53FHcIdzK7sTdbyrGDAmOLrL1vh3MdrDwf6wktU1Geng6eAPABu2T-Kwhnmti3tSS9hH1bHZg80y76Zw86vk6waE6U74hu6QjCIC0OfIEFp-YHyRA5YUFWXK2FXkDwM6SEQ')"></div>
+<!-- Overlay Card: Floating Window Info -->
+<div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-white/50 flex items-center gap-4 shadow-lg">
+<div class="w-12 h-12 bg-secondary-container rounded-full flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant uppercase tracking-wider">Earliest Slot</p>
+<p class="font-headline-md text-headline-md text-lush-leaf">Today, 2:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Content Section -->
+<div class="text-center w-full space-y-stack-md">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-background px-4">
+                Convenience on Your Schedule
+            </h1>
+<p class="text-on-surface-variant font-body-lg px-2 max-w-sm mx-auto">
+                Choose delivery windows that work for you, 7 days a week. From dawn till dusk, we're here for you.
+            </p>
+</div>
+<!-- Progress Indicator & Actions Footer -->
+<div class="mt-12 w-full space-y-stack-lg">
+<!-- Dots -->
+<div class="flex justify-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+<div class="w-6 h-2 rounded-full bg-primary"></div>
+<div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+</div>
+<!-- Main Button -->
+<div class="flex flex-col gap-4">
+<button class="w-full py-4 bg-primary text-on-primary font-headline-md text-headline-md rounded-xl shadow-lg active:scale-[0.98] transition-transform hover:bg-primary-container">
+                    Get Started
+                </button>
+<!-- Secondary Info: Micro-copy -->
+<p class="text-center font-label-sm text-on-surface-variant">
+                    Reliable delivery to <span class="text-primary font-bold">120+ Metro Zones</span>
+</p>
+</div>
+</div>
+<!-- Atmospheric Background Element -->
+<div class="fixed bottom-0 left-0 w-full h-1/3 onboarding-gradient pointer-events-none -z-10"></div>
+</main>
+<!-- Floating Atmosphere Elements -->
+<div class="fixed top-1/4 -left-12 w-24 h-24 bg-lush-leaf opacity-10 rounded-full blur-2xl"></div>
+<div class="fixed bottom-1/4 -right-12 w-32 h-32 bg-chili-red opacity-10 rounded-full blur-2xl"></div>
+<script>
+        // Simple Interaction logic
+        document.querySelector('button').addEventListener('click', function() {
+            // Add a subtle ripple or transition effect if needed
+            this.classList.add('opacity-80');
+            setTimeout(() => {
+                this.classList.remove('opacity-80');
+            }, 200);
+        });
+
+        // Animation for progress dots or hero float could be enhanced here
+    </script>
+</body></html>

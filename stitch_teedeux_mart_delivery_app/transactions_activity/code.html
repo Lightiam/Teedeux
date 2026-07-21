@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transactions &amp; Activity | Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#ffb693",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "background": "#fcf9f8",
+                    "earth-clay": "#8B4513",
+                    "on-secondary-fixed": "#002201",
+                    "chili-red": "#9E2A2B",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-variant": "#e5e2e1",
+                    "outline-variant": "#e0c0b2",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-surface": "#1c1b1b",
+                    "on-background": "#1c1b1b",
+                    "on-primary-fixed": "#351000",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary-fixed": "#bcf0ae",
+                    "surface-tint": "#a04100",
+                    "surface-container-high": "#eae7e7",
+                    "primary-fixed-dim": "#ffb693",
+                    "primary-container": "#c45100",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8c7166",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-dim": "#dcd9d9",
+                    "secondary-fixed-dim": "#a1d494",
+                    "lush-leaf": "#1E3F1B",
+                    "secondary": "#3b6934",
+                    "surface-container": "#f0eded",
+                    "tertiary-container": "#956e00",
+                    "primary": "#9c3f00",
+                    "secondary-container": "#b9eeab",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#ffdbcc",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "savanna-sand": "#F9F4E8",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#584238",
+                    "tertiary": "#765700",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-fixed": "#261a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-xl": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #fcf9f8;
+            color: #1c1b1b;
+            font-family: 'Hanken Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(224, 224, 224, 0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e0c0b2;
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col">
+<!-- Top Navigation Anchor (Shared Component: TopAppBar) -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background">
+<div class="flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed-dim" data-icon="location_on">location_on</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">Teedeux Mart</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg pb-32">
+<!-- Screen Header & Filters -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-stack-lg mb-gutter">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Transactions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Track your grocery spending and order history.</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="relative">
+<select class="appearance-none bg-surface-container-lowest border-none rounded-xl px-4 py-2 pr-10 font-label-md text-label-md text-on-surface-variant shadow-sm focus:ring-2 focus:ring-primary outline-none cursor-pointer">
+<option>Last 30 Days</option>
+<option>Last 3 Months</option>
+<option>Year 2023</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant" data-icon="expand_more">expand_more</span>
+</div>
+<button class="flex items-center gap-2 bg-surface-container-lowest p-2 rounded-xl border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="filter_list">filter_list</span>
+</button>
+</div>
+</section>
+<!-- Bento Layout Activity Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Main Transaction List (Left Column) -->
+<div class="lg:col-span-8 space-y-stack-md">
+<!-- Transaction Entry 1 -->
+<div class="glass-card p-stack-lg rounded-xl flex items-center justify-between hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex items-center gap-stack-lg">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-fixed-dim shrink-0">
+<img class="w-full h-full object-cover" data-alt="A macro photography shot of fresh green vegetables and spices in an African marketplace stall, captured with vibrant warm lighting and high-end professional camera settings to emphasize textures. The aesthetic is clean, organic, and modern, reflecting the premium grocery experience of Teedeux Mart." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrGdRsQBgloJi3GVzBnSuQgRNe4LOEYCsIsWUxTFL-2OxLonNSi0OEshJvGq_IccLRVHX2nwbi5pZWTFpkNbkvjwhoxf9hZePhQm_UFxhynU25t42QZ6x2fU3gk4aMKc3VEZxGhkeScfkdqlwXZZnJ_BtWBRjIzNxWgR5RTnBWS7KaNUaXQxpyCo2JxNgFfhg-1IJH7JVt0B12mSuMyFXj0kmWIUw-xbNgz6BcWsIoBWqjY-f9hH0PqA"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Mama Jones Market</h3>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+                                    Oct 24, 2023
+                                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">ID: #TM-88291</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">₦ 12,450.00</span>
+<span class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-secondary-container text-on-secondary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                            Completed
+                        </span>
+</div>
+</div>
+<!-- Transaction Entry 2 -->
+<div class="glass-card p-stack-lg rounded-xl flex items-center justify-between hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex items-center gap-stack-lg">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-outline-variant shrink-0">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist close-up of premium packaged organic grains and local pulses on a wooden surface with soft sunlight streaming in. The image features warm tones, high-resolution clarity, and a modern culinary vibe consistent with high-energy African grocery branding." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSbkyYkWjTcVv-6sKMqP8DTQpYBWC6NOD6yzH0y6K0NmazbbdEDmK-CxiVjiTZbXKcpuepy8rvJwY4DtfhbBnmgDpPLEqg95lc4NGrEm9bPvFB20knuyV9lRqVRWIOPvPkxuASKopT9oHXPr6e1XwaYDtNLaL0EZ-LqiyZljEvxi2vFllf6aiejI1I0CpObRsiWxxAzn62H1WgOQsenNK5EoR4fbQ6p6bU_7v455l4-2xcGr-ob_T8Qw"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Lagos Fresh Hub</h3>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+                                    Oct 22, 2023
+                                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">ID: #TM-88104</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">₦ 8,200.00</span>
+<span class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-tertiary-fixed text-on-tertiary-fixed-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="schedule" data-weight="fill">schedule</span>
+                            Pending
+                        </span>
+</div>
+</div>
+<!-- Transaction Entry 3 -->
+<div class="glass-card p-stack-lg rounded-xl flex items-center justify-between hover:shadow-lg transition-all duration-300 group cursor-pointer opacity-75 grayscale-[0.3]">
+<div class="flex items-center gap-stack-lg">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-outline-variant shrink-0">
+<img class="w-full h-full object-cover" data-alt="A vibrant still life of tropical fruits like mangoes and pineapples arranged artistically on a textured clay plate. The lighting is bright and summery, emphasizing the freshness of the produce. Professional photography style with shallow depth of field and warm earth tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGYgnlNaaiy7oy14D-MDv9EmEx22dyHWu3x7wjlyPHjgrMCF0NqzScnVKWMCbT0YHyAeL5YUhPmVkNi4qA2XC5C0m9KgcDkhRdG-YKHVAL2aM33smhjbkdl6Qn1hLz9hg26JOX80p3aqIFkGW7uDeSz04rOVNFP1YXZoyMSJ5n0w0-NQuItY6YxhMfGwEXvAL4D0Mrx6s5qo8RbmgobAc188qp8gv9IeO-EDufg1irVwf1SGPdlNF7fQ"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Yaba Organics</h3>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+                                    Oct 18, 2023
+                                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">ID: #TM-87950</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">₦ 5,100.00</span>
+<span class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="undo" data-weight="fill">undo</span>
+                            Refunded
+                        </span>
+</div>
+</div>
+<!-- Transaction Entry 4 -->
+<div class="glass-card p-stack-lg rounded-xl flex items-center justify-between hover:shadow-lg transition-all duration-300 group cursor-pointer">
+<div class="flex items-center gap-stack-lg">
+<div class="w-14 h-14 rounded-full overflow-hidden border-2 border-primary-fixed-dim shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close up of traditional African spices and condiments in artisanal glass jars, placed on a modern clean kitchen counter. High-key lighting, soft shadows, and a focus on detail and quality. The color palette includes rich reds, ochres, and deep greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfPecW-eaEvQX7kYO_cRCLd-G_6BQSlwoqZ7NUZwn6EQmhz6Yl7TwK-xW9ACc1mjADunpF5JRqSEmyDoEsvzFvZMXqh-9BtMGvXFOUdm9LptuZnkzm5Qax2W4wEhAselZdIKIEe8Hmv3WlHBhQDLcQ65taSFLsBgW721xuAP22wCYWVsUc3u_w8qCL5HdVB5ZLLO3d0Ct4MKM7G9hkfT9EBvp0IzFilp49aW3YVSsWoU8NMrTdhuaL6A"/>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Obanikoro Butchers</h3>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1">
+<span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span>
+                                    Oct 12, 2023
+                                </span>
+<span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2 py-0.5 rounded">ID: #TM-87612</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="font-headline-md text-headline-md text-on-surface">₦ 18,700.00</span>
+<span class="px-3 py-1 rounded-full font-label-sm text-label-sm bg-secondary-container text-on-secondary-container flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle" data-weight="fill">check_circle</span>
+                            Completed
+                        </span>
+</div>
+</div>
+</div>
+<!-- Insights / Summary Side Panel (Right Column) -->
+<div class="lg:col-span-4 space-y-gutter">
+<!-- Spending Summary Card -->
+<div class="bg-primary text-white p-gutter rounded-xl shadow-xl relative overflow-hidden">
+<div class="relative z-10">
+<p class="font-label-md text-label-md opacity-80 uppercase tracking-widest">Monthly Spending</p>
+<h4 class="font-headline-xl text-headline-xl mt-2">₦ 43,950</h4>
+<div class="mt-stack-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="trending_up">trending_up</span>
+<span class="font-body-md text-body-md">12% more than last month</span>
+</div>
+</div>
+<!-- Subtle Abstract Pattern -->
+<div class="absolute -right-10 -bottom-10 opacity-10">
+<span class="material-symbols-outlined text-[200px]" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</div>
+<!-- Category Breakdown -->
+<div class="glass-card p-gutter rounded-xl">
+<h5 class="font-headline-md text-headline-md text-on-surface mb-stack-lg">Top Categories</h5>
+<div class="space-y-stack-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-body-md text-body-md text-on-surface">Fresh Produce</span>
+</div>
+<span class="font-label-md text-label-md font-bold">₦ 22k</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-primary h-2 rounded-full" style="width: 65%"></div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-lush-leaf"></span>
+<span class="font-body-md text-body-md text-on-surface">Protein &amp; Meat</span>
+</div>
+<span class="font-label-md text-label-md font-bold">₦ 15k</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-lush-leaf h-2 rounded-full" style="width: 45%"></div>
+</div>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-chili-red"></span>
+<span class="font-body-md text-body-md text-on-surface">Pantry Staples</span>
+</div>
+<span class="font-label-md text-label-md font-bold">₦ 6k</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-2">
+<div class="bg-chili-red h-2 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<button class="w-full mt-gutter py-2 border border-outline rounded-xl font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high transition-colors">
+                        View Detailed Report
+                    </button>
+</div>
+<!-- Recent Map Tracking Placeholder -->
+<div class="glass-card rounded-xl overflow-hidden h-48 relative group">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, stylized map visualization of a city grid with a glowing path connecting two points. The map uses a minimalist aesthetic with soft cream and burnt orange accents, reflecting a delivery route tracker in a premium app interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCXkGRGRbuPXgN68MUS5An3M3CYFur5YwrlYNQkbuJKkioYVoBxMogyZykCaypg69QXmNMn9nMnablVPWExR-3wFgEc6l95CoJ0oXakd7RD2CR04P0BYYabVIrFcASuh9RTptm5Z7-Z78I65BPdPtQIU1DEbKLQZ5MkGxSoBoU-FarEbJ-knElyj_WlaSrFCmsNgN5AYLONsJU94i3OV0zhTmo2Xpj7C0ZZ0mHa8wgbehdTYfeMg2lB8Q')"></div>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+<div class="bg-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+<span class="font-label-sm text-label-sm text-on-surface">Active Delivery: 12 mins away</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Shell (Shared Component: BottomNavBar) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest dark:bg-surface-container-lowest shadow-lg rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple Micro-interaction: Scale down on press for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Search highlight effect logic (visual only)
+        const filterSelect = document.querySelector('select');
+        filterSelect.addEventListener('change', (e) => {
+            console.log('Filtering records for:', e.target.value);
+            // In a real app, this would trigger a data re-fetch or filter
+        });
+    </script>
+</body></html>

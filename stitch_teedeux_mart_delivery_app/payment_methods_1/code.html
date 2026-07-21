@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Methods | Teedeux Mart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#ffb693",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "background": "#fcf9f8",
+                    "earth-clay": "#8B4513",
+                    "on-secondary-fixed": "#002201",
+                    "chili-red": "#9E2A2B",
+                    "on-primary-container": "#fffbff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-variant": "#e5e2e1",
+                    "outline-variant": "#e0c0b2",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-surface": "#1c1b1b",
+                    "on-background": "#1c1b1b",
+                    "on-primary-fixed": "#351000",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary-fixed": "#bcf0ae",
+                    "surface-tint": "#a04100",
+                    "surface-container-high": "#eae7e7",
+                    "primary-fixed-dim": "#ffb693",
+                    "primary-container": "#c45100",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#8c7166",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-dim": "#dcd9d9",
+                    "secondary-fixed-dim": "#a1d494",
+                    "lush-leaf": "#1E3F1B",
+                    "secondary": "#3b6934",
+                    "surface-container": "#f0eded",
+                    "tertiary-container": "#956e00",
+                    "primary": "#9c3f00",
+                    "secondary-container": "#b9eeab",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#ffdbcc",
+                    "on-error": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "savanna-sand": "#F9F4E8",
+                    "on-primary": "#ffffff",
+                    "on-surface-variant": "#584238",
+                    "tertiary": "#765700",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-fixed": "#261a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "base": "8px",
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px"
+            },
+            "fontFamily": {
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "headline-xl": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 12px rgba(156, 63, 0, 0.05);
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen pb-24">
+<!-- Top AppBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background">
+<div class="flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-stack-md">
+<button class="active:scale-95 transition-transform hover:opacity-80">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary">Payment Methods</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-stack-lg space-y-gutter">
+<!-- Teedeux Credit Section (Asymmetric Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-stack-lg">
+<div class="md:col-span-2 relative overflow-hidden rounded-xl bg-lush-leaf p-gutter text-white card-shadow h-48 flex flex-col justify-between group">
+<div class="absolute -right-8 -top-8 w-48 h-48 bg-secondary opacity-20 rounded-full blur-3xl transition-transform group-hover:scale-110"></div>
+<div class="z-10">
+<p class="font-label-md text-label-md uppercase tracking-wider opacity-80">Teedeux Credit Balance</p>
+<h2 class="font-headline-xl text-headline-xl mt-2 font-bold">₵ 1,240.50</h2>
+</div>
+<div class="z-10 flex gap-stack-md">
+<button class="bg-primary hover:opacity-90 text-white font-bold px-6 py-2 rounded-full transition-all active:scale-95 text-body-md">Top Up</button>
+<button class="border border-white/30 hover:bg-white/10 text-white font-bold px-6 py-2 rounded-full transition-all text-body-md">Transfer</button>
+</div>
+</div>
+<div class="bg-primary-container rounded-xl p-gutter text-on-primary-container flex flex-col justify-center items-center text-center card-shadow h-48">
+<span class="material-symbols-outlined text-[48px] mb-stack-md" style="font-variation-settings: 'FILL' 1;">stars</span>
+<p class="font-headline-md text-headline-md font-bold">5,200 pts</p>
+<p class="font-label-sm text-label-sm opacity-90 mt-1">Loyalty Rewards Available</p>
+</div>
+</section>
+<!-- Saved Cards Section -->
+<section>
+<div class="flex justify-between items-end mb-stack-md">
+<h3 class="font-headline-md text-headline-md text-earth-clay">Debit &amp; Credit Cards</h3>
+<span class="text-primary font-bold cursor-pointer hover:underline text-body-md">Manage</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-stack-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl card-shadow flex flex-col gap-gutter relative overflow-hidden group hover:border-primary transition-colors">
+<div class="flex justify-between items-start">
+<div class="w-12 h-8 rounded bg-surface-container flex items-center justify-center">
+<span class="font-bold text-on-surface-variant">VISA</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">more_vert</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Primary Method</p>
+<p class="font-headline-md text-headline-md mt-1 tracking-[0.2em] font-bold">•••• •••• •••• 4242</p>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Expiry</p>
+<p class="font-body-md text-body-md font-bold">12 / 26</p>
+</div>
+<div class="h-8 w-8 rounded-full bg-lush-leaf flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+</div>
+</div>
+<!-- Add New Card Slot -->
+<button class="border-2 border-dashed border-outline-variant rounded-xl p-stack-lg flex flex-col items-center justify-center gap-stack-md hover:border-primary hover:bg-primary/5 transition-all group">
+<div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="font-bold text-on-surface-variant group-hover:text-primary">Add New Card</span>
+</button>
+</div>
+</section>
+<!-- Mobile Money Options -->
+<section>
+<h3 class="font-headline-md text-headline-md text-earth-clay mb-stack-md">Mobile Money</h3>
+<div class="space-y-stack-md">
+<!-- MTN -->
+<div class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl flex items-center justify-between card-shadow hover:border-primary transition-all cursor-pointer">
+<div class="flex items-center gap-gutter">
+<div class="w-14 h-14 rounded-xl bg-[#FFCC00] flex items-center justify-center overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="The vibrant yellow and blue logo of MTN Mobile Money, rendered as a clean vector graphic on a high-energy warm background. The lighting is crisp and modern, fitting a high-end fintech application aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoCAjU224JD2nvK3Alqlie0H0dy2AiIyE4rKYtfF5G3NediWfHB1fPPjfWg_t3wI4N1R6KnA7ghhPCiAPzO63pUbNt0BhYLqpqEnjcpZlfgasEroBp31NznUXYPypFpzHNG08DMufdmgmi_Di-RhWbYcvBbau0Gr00NLc-aRcdSFDTxtcxL4ZMMxwJaYSs3h4iT-KukauI0VrSuCpnb_cyVivO6vf5gOx0__Dqu38v-4S7LVNF8sY_mw"/>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md font-bold">MTN Mobile Money</h4>
+<p class="text-on-surface-variant font-label-md text-label-md">+233 ••• ••• 8921</p>
+</div>
+</div>
+<div class="flex items-center gap-stack-md">
+<span class="text-secondary font-bold text-label-sm bg-secondary-container px-3 py-1 rounded-full">ACTIVE</span>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+</div>
+<!-- Vodafone -->
+<div class="bg-surface-container-lowest border border-outline-variant p-gutter rounded-xl flex items-center justify-between card-shadow hover:border-primary transition-all cursor-pointer opacity-80 hover:opacity-100">
+<div class="flex items-center gap-gutter">
+<div class="w-14 h-14 rounded-xl bg-[#E60000] flex items-center justify-center overflow-hidden">
+<img class="w-10 h-10 object-contain" data-alt="The iconic red and white Vodafone logo represented as a high-quality graphic for a modern mobile payment interface. The background is a soft savanna sand color, maintaining a professional and secure atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_-GeCUV4dF4hlXOM8LENj_Iov6nv95XDbrR6494ctvCyUABJFMqLUUnmPfk2JQ3dQFiUujr_uo4uvyEmJgtra-9xPcFFMzW4F40pw-g32FiNw5IRMcMW-ev7qekYHvbPOtdWykg2GcCkIuAmIXwMf-yNnoKm8AOQA00for6keukrcp8n1KXDe7_MelTz1Qnq2IRAgnqRtPKVe3iXyLDCElOoRvIodZ1uLuY0P_hCzzWRTxX0ffhfquA"/>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md font-bold">Vodafone Cash</h4>
+<p class="text-on-surface-variant font-label-md text-label-md">Link your account</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">add_circle</span>
+</div>
+</div>
+</section>
+<!-- Security Badge -->
+<div class="flex flex-col items-center justify-center gap-stack-sm py-gutter opacity-60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lush-leaf" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest font-bold">Secure Encrypted Payments</span>
+</div>
+<p class="text-label-sm text-center">Teedeux Mart uses bank-level security to protect your sensitive information.</p>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mandatory Shell) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest shadow-[0_-4px_12px_rgba(156,63,0,0.08)] rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-lg relative" href="#">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+<span class="absolute top-0 right-0 bg-chili-red text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button - Action specific to profile/payment context: Contact Support -->
+<button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-earth-clay text-white rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined">support_agent</span>
+</button>
+<script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.card-shadow').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-2px)';
+                card.style.transition = 'transform 0.2s ease-out';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Simple ripple effect or feedback for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const x = e.clientX - e.target.offsetLeft;
+                const y = e.clientY - e.target.offsetTop;
+                // Interaction feedback logic would go here
+            });
+        });
+    </script>
+</body></html>

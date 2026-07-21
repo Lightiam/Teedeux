@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teedeux Mart | Store Selection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-container": "#f0eded",
+                    "secondary": "#3b6934",
+                    "inverse-primary": "#ffb693",
+                    "outline": "#8c7166",
+                    "chili-red": "#9E2A2B",
+                    "primary": "#9c3f00",
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary-fixed-variant": "#23501e",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "tertiary-container": "#956e00",
+                    "savanna-sand": "#F9F4E8",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-tertiary-fixed": "#261a00",
+                    "tertiary": "#765700",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-primary-fixed": "#351000",
+                    "error": "#ba1a1a",
+                    "background": "#fcf9f8",
+                    "secondary-container": "#b9eeab",
+                    "surface-container-high": "#eae7e7",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed": "#002201",
+                    "on-background": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#5b4300",
+                    "surface-container-lowest": "#ffffff",
+                    "surface": "#fcf9f8",
+                    "secondary-fixed-dim": "#a1d494",
+                    "secondary-fixed": "#bcf0ae",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "primary-fixed": "#ffdbcc",
+                    "primary-container": "#c45100",
+                    "on-primary-container": "#fffbff",
+                    "lush-leaf": "#1E3F1B",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdf9f",
+                    "tertiary-fixed-dim": "#fbbd07",
+                    "on-tertiary-container": "#fffbff",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#a04100",
+                    "earth-clay": "#8B4513",
+                    "on-surface-variant": "#584238",
+                    "on-primary": "#ffffff",
+                    "outline-variant": "#e0c0b2",
+                    "surface-dim": "#dcd9d9",
+                    "on-surface": "#1c1b1b",
+                    "on-secondary-container": "#3f6d38",
+                    "surface-variant": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "4px",
+                    "gutter": "24px",
+                    "stack-md": "12px",
+                    "stack-lg": "24px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Hanken Grotesk"],
+                    "headline-lg-mobile": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "headline-xl": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                    "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                    "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                    "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                    "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                    "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                    "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                    "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "500" }]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Hanken Grotesk', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .store-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(156,63,0,0.08);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-background dark:bg-background">
+<div class="flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Delivering to</span>
+<span class="font-bold text-primary font-body-md text-body-md">Home • 123 Savanna Way</span>
+</div>
+</div>
+<div class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">
+                Teedeux Mart
+            </div>
+<button class="hover:opacity-80 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary" data-icon="notifications">notifications</span>
+</button>
+</div>
+</header>
+<main class="px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<!-- Hero Section / Search -->
+<section class="mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-stack-md">Explore Local Markets</h1>
+<div class="relative group">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full pl-12 pr-4 py-4 rounded-xl bg-surface-container-low border-none focus:ring-2 focus:ring-primary transition-all outline-none text-body-md font-body-md" placeholder="Search for stores or ingredients..." type="text"/>
+</div>
+</section>
+<!-- Categories (Chips) -->
+<div class="flex gap-stack-md overflow-x-auto pb-4 no-scrollbar mb-stack-lg">
+<span class="px-6 py-2 rounded-full bg-primary text-on-primary font-bold whitespace-nowrap cursor-pointer hover:opacity-90 transition-opacity">All Stores</span>
+<span class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-medium whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">African Roots</span>
+<span class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-medium whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">Fresh Produce</span>
+<span class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-medium whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">Spices &amp; Grains</span>
+<span class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant font-medium whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">Halal Meats</span>
+</div>
+<!-- Store Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Store Card 1 (Featured) -->
+<div class="store-card group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant, sunlit storefront of a modern African grocery store called Mama Jones. The storefront is decorated with traditional patterns in burnt orange and forest green. Through the large glass windows, shelves are stocked with colorful fresh produce like plantains and yams. The lighting is warm and inviting, emphasizing a high-end, clean, and professional boutique market aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB1_WsAv2-vE35Hv_dTA2BDN2NpWXX1-htYuQ-Vupo3ukmHOdtxBC0FwbTNg-zJKNOtJF9B7ajix-_swxCXt1dxpGxe1O9vTttbf5k-XVfDVi_7iGWYl8LeO8D8DPqFjoKJdI34ltoDPBW78Qmp4Uy7stlEh2u-FgXSc127PQ2likfKGIt4JrLA8RJSPjmgLa8wg2m24ebQxh2OHk0PyCWhXy-7vzDCWeGQLMGg4c9YCzAoh5jEz8Es6Q')"></div>
+<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 rounded-full text-label-sm font-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+                        Featured
+                    </div>
+<div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-primary font-bold text-label-sm shadow-sm">
+                        45-60 min
+                    </div>
+</div>
+<div class="p-stack-lg">
+<div class="flex justify-between items-start mb-base">
+<h3 class="font-headline-md text-headline-md text-on-surface">Mama Jones Market</h3>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-md">4.9</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-stack-md line-clamp-1">Authentic Nigerian staples, fresh yams, and homemade spices.</p>
+<div class="flex items-center gap-stack-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="delivery_dining">delivery_dining</span>
+<span class="text-label-sm font-label-sm">Free Delivery</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="text-label-sm font-label-sm">Min. $20</span>
+</div>
+</div>
+</div>
+<!-- Store Card 2 -->
+<div class="store-card group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A clean, organized interior of a local spice and grain market specializing in Ethiopian ingredients. Large open sacks of colorful teff flour and vibrant red berbere spices are arranged neatly on wooden platforms. The scene is lit with professional soft-box studio lighting, creating deep textures and high-contrast shadows that highlight the richness of the grains. The color palette is earthy with deep oranges and browns." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAKeaG0NjfRSTHGHLnEX4zC5WlaZ46qkSmKIwXclQV-SnM4l0MoVOdAaNJgP9MrYgCKDcnBy5uFtSGx7ix1lgGzFCb5SEhvgaD6xnmgpDbyz-I0q3_LY7sdQ42KY1TAWIqcbbSA4iLFQyGHLfS8GP0yoAhPCmTsSMUftB884UCGNpyWVpHGK9AaqrwxeEsW2c-wAj7JYrIryLzb0HgcDH8vieDWvBm4wI79jmLLKMeo74M3kb_4vqzjiw')"></div>
+<div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-primary font-bold text-label-sm shadow-sm">
+                        30-45 min
+                    </div>
+</div>
+<div class="p-stack-lg">
+<div class="flex justify-between items-start mb-base">
+<h3 class="font-headline-md text-headline-md text-on-surface">Abyssinia Grains</h3>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-md">4.7</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-stack-md line-clamp-1">Premium Teff, Berbere, and specialty Ethiopian coffee beans.</p>
+<div class="flex items-center gap-stack-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="delivery_dining">delivery_dining</span>
+<span class="text-label-sm font-label-sm">$2.99 Delivery</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="text-label-sm font-label-sm">Min. $15</span>
+</div>
+</div>
+</div>
+<!-- Store Card 3 -->
+<div class="store-card group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A high-end butchery counter displaying premium cuts of halal goat meat and beef. The meat is presented on clean white marble surfaces under bright, clinical yet warm lighting. The background features minimalist white tiles and dark wood accents. The overall atmosphere is one of surgical cleanliness, reliability, and high quality, matching a premium modern grocery delivery app's aesthetic." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAV1rIT0j1_wrmm-xy3wWoiDBOC8erXLfESBCvSQMCcKv9jDPSHSsB6dv_bxvUBNe6vTYdBcfE1Y07w1FvP0rh1OBkis_JM74epeLpxXZALJmxpBSLbFI-wLjqpktBXPgTUocOTTNmksG2Ma1eEpJBslvLl4PV3DUzgpCVirfZJIeQHC9JFhWiEm5x9GD37UEc3TLCAdNnqL4hUO62K8YItTkK0EAhzenAfYBMRUa9na9gvIU4KAnfRDw')"></div>
+<div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-primary font-bold text-label-sm shadow-sm">
+                        50-70 min
+                    </div>
+</div>
+<div class="p-stack-lg">
+<div class="flex justify-between items-start mb-base">
+<h3 class="font-headline-md text-headline-md text-on-surface">Sahara Halal Meats</h3>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-md">4.8</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-stack-md line-clamp-1">Grass-fed halal goat, lamb, and specialty north African cuts.</p>
+<div class="flex items-center gap-stack-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="delivery_dining">delivery_dining</span>
+<span class="text-label-sm font-label-sm">$3.50 Delivery</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="text-label-sm font-label-sm">Min. $30</span>
+</div>
+</div>
+</div>
+<!-- Store Card 4 -->
+<div class="store-card group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden transition-all duration-300 cursor-pointer">
+<div class="relative h-48 overflow-hidden">
+<div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" data-alt="A vibrant display of fresh tropical fruits including mangoes, papayas, and avocados in a modern, well-lit produce market. The lighting is crisp and highlights the natural gloss and saturated colors of the fruits. The arrangement is artistic and neat, avoiding clutter. The setting is bright and cheerful, suggesting high-energy warmth and absolute freshness." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB6T8CAXLCZ5Sl8Y2VN50WYXrALaiFRmS0td59hjzMSpRiwO2zE9HfTHagniBkbWJMtQ8IDqi5y4Nv4VehgooJ7N-FhDUDXSRqP-xX_ufXBBQeyk6RQZfTZzR8rf0SHNEBJwBwtYHSSBQRNIpg8ZHCsecrQJ7JDCXiL7GHAupgarVmYffgZOfUODeZp0Lh3oEjzIxIC6KdcD4OnyMy61GADTcG_oMF_Fgu04I5OzFN0LPUJUjc631yQDA')"></div>
+<div class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-lg text-primary font-bold text-label-sm shadow-sm">
+                        20-35 min
+                    </div>
+</div>
+<div class="p-stack-lg">
+<div class="flex justify-between items-start mb-base">
+<h3 class="font-headline-md text-headline-md text-on-surface">Tropical Harvest</h3>
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-bold text-body-md">4.5</span>
+</div>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-stack-md line-clamp-1">Fresh tropical fruit imports and seasonal vegetables.</p>
+<div class="flex items-center gap-stack-md text-on-surface-variant">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]" data-icon="delivery_dining">delivery_dining</span>
+<span class="text-label-sm font-label-sm">Free Delivery</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="text-label-sm font-label-sm">Min. $10</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[0_-4px_12px_rgba(156,63,0,0.08)] rounded-t-xl">
+<!-- Home -->
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</a>
+<!-- Browse -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</a>
+<!-- Cart -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+</a>
+<!-- Orders -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('.store-card').forEach(card => {
+            card.addEventListener('mousedown', () => {
+                card.style.transform = 'scale(0.98) translateY(-2px)';
+            });
+            card.addEventListener('mouseup', () => {
+                card.style.transform = 'scale(1) translateY(-4px)';
+            });
+        });
+
+        // Category chip selection logic
+        const chips = document.querySelectorAll('.flex.gap-stack-md span');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => {
+                    c.classList.remove('bg-primary', 'text-on-primary');
+                    c.classList.add('bg-surface-container-high', 'text-on-surface-variant');
+                });
+                chip.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
+                chip.classList.add('bg-primary', 'text-on-primary');
+            });
+        });
+    </script>
+</body></html>

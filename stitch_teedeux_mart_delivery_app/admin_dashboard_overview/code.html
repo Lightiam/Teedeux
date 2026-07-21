@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Teedeux Mart | Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Hanken+Grotesk', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(224, 220, 220, 0.5);
+        }
+        .savanna-gradient {
+            background: linear-gradient(135deg, #fcf9f8 0%, #F9F4E8 100%);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#a1d494",
+                      "on-surface": "#1c1b1b",
+                      "surface-tint": "#a04100",
+                      "chili-red": "#9E2A2B",
+                      "primary-container": "#c45100",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-container": "#f0eded",
+                      "outline": "#8c7166",
+                      "tertiary-container": "#956e00",
+                      "primary": "#9c3f00",
+                      "on-background": "#1c1b1b",
+                      "on-error-container": "#93000a",
+                      "lush-leaf": "#1E3F1B",
+                      "on-tertiary-fixed": "#261a00",
+                      "on-tertiary-fixed-variant": "#5b4300",
+                      "on-primary-fixed-variant": "#7a3000",
+                      "inverse-on-surface": "#f3f0ef",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-bright": "#fcf9f8",
+                      "on-primary-fixed": "#351000",
+                      "tertiary-fixed": "#ffdf9f",
+                      "surface-container-low": "#f6f3f2",
+                      "surface": "#fcf9f8",
+                      "on-surface-variant": "#584238",
+                      "inverse-primary": "#ffb693",
+                      "error-container": "#ffdad6",
+                      "background": "#fcf9f8",
+                      "on-primary": "#ffffff",
+                      "outline-variant": "#e0c0b2",
+                      "surface-variant": "#e5e2e1",
+                      "on-primary-container": "#fffbff",
+                      "on-secondary-fixed": "#002201",
+                      "tertiary-fixed-dim": "#fbbd07",
+                      "on-secondary": "#ffffff",
+                      "error": "#ba1a1a",
+                      "earth-clay": "#8B4513",
+                      "tertiary": "#765700",
+                      "secondary-container": "#b9eeab",
+                      "inverse-surface": "#313030",
+                      "on-tertiary-container": "#fffbff",
+                      "on-error": "#ffffff",
+                      "primary-fixed-dim": "#ffb693",
+                      "surface-container-high": "#eae7e7",
+                      "primary-fixed": "#ffdbcc",
+                      "on-secondary-container": "#3f6d38",
+                      "secondary": "#3b6934",
+                      "surface-dim": "#dcd9d9",
+                      "savanna-sand": "#F9F4E8",
+                      "secondary-fixed": "#bcf0ae",
+                      "on-secondary-fixed-variant": "#23501e",
+                      "on-tertiary": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "12px",
+                      "gutter": "24px",
+                      "container-max": "1280px",
+                      "base": "8px",
+                      "stack-sm": "4px",
+                      "margin-desktop": "40px",
+                      "stack-lg": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Hanken Grotesk"],
+                      "body-md": ["Hanken Grotesk"],
+                      "body-lg": ["Hanken Grotesk"],
+                      "headline-md": ["Hanken Grotesk"],
+                      "label-sm": ["JetBrains Mono"],
+                      "label-md": ["JetBrains Mono"],
+                      "headline-xl": ["Hanken Grotesk"],
+                      "headline-lg": ["Hanken Grotesk"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface savanna-gradient min-h-screen">
+<!-- Top Navigation -->
+<nav class="w-full top-0 sticky z-50 bg-background/80 backdrop-blur-md">
+<div class="flex justify-between items-center px-margin-mobile py-base w-full max-w-container-max mx-auto md:px-margin-desktop">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-primary tracking-tight">Teedeux Mart</h1>
+</div>
+<div class="flex items-center gap-stack-lg">
+<button class="material-symbols-outlined text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95">notifications</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female administrator in a modern office, soft warm lighting reflecting the Teedeux brand's burnt orange and savanna sand colors. The background is a clean, minimalist workspace with a blurred plant, suggesting a high-end SaaS environment focused on logistics and community freshness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgIzWUldNW7D6xCQ-lEz5sa34Wes0kBURm61ngSMdio-Epi2HO4GHXzJVDIAN1N_i1PnC8HMRw-lrP55__cRU4HMY0QROUq2_BBmuQm_CqPXbL7VneazFHPeGR4_Msr_eBvZYQXLrfICfZojrCzaLMOtZyVwaf7WAz_9FK6--7MUrQc62GhaOTgPT2Qnmdu6l2LedDxCssFNejabU99cEGh9kAtQKhm8zV18ztVSNoIxEesLH3gbnQWw"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-container-max mx-auto px-margin-mobile py-stack-lg md:px-margin-desktop flex flex-col md:flex-row gap-gutter">
+<!-- Sidebar Navigation (Responsive Web) -->
+<aside class="hidden md:flex flex-col gap-stack-md w-64 shrink-0">
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border border-outline-variant/30">
+<div class="flex flex-col gap-stack-sm mb-stack-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Dashboard</span>
+<a class="flex items-center gap-stack-md px-base py-stack-md rounded-lg text-primary font-bold bg-primary-fixed-dim transition-transform active:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Overview</span>
+</a>
+<a class="flex items-center gap-stack-md px-base py-stack-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md text-body-md">Users</span>
+</a>
+<a class="flex items-center gap-stack-md px-base py-stack-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-md text-body-md">Orders</span>
+</a>
+</div>
+<div class="flex flex-col gap-stack-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Reports</span>
+<a class="flex items-center gap-stack-md px-base py-stack-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="font-body-md text-body-md">Revenue</span>
+</a>
+<a class="flex items-center gap-stack-md px-base py-stack-md rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col gap-gutter">
+<!-- Quick Actions Bar -->
+<div class="flex flex-wrap items-center justify-between gap-stack-md">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-surface">Admin Insights</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Real-time pulse of your grocery ecosystem.</p>
+</div>
+<div class="flex gap-stack-md">
+<button class="bg-primary text-on-primary font-bold px-gutter py-stack-md rounded-full flex items-center gap-stack-md hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+<span class="font-label-md text-label-md">Manage Users</span>
+</button>
+<button class="bg-lush-leaf text-on-primary font-bold px-gutter py-stack-md rounded-full flex items-center gap-stack-md hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-lush-leaf/20">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+<span class="font-label-md text-label-md">Order Logs</span>
+</button>
+</div>
+</div>
+<!-- Bento Metrics Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-stack-lg">
+<!-- Total Users Card -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 bg-primary-fixed rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">+12% vs last week</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Total Users</span>
+<span class="font-headline-md text-headline-md font-bold">12,482</span>
+</div>
+<!-- Active Deliveries -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Live</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Active Deliveries</span>
+<span class="font-headline-md text-headline-md font-bold">86</span>
+</div>
+<!-- Total Orders Today -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">shopping_basket</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary">Busy</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Orders Today</span>
+<span class="font-headline-md text-headline-md font-bold">412</span>
+</div>
+<!-- Monthly Revenue -->
+<div class="bg-surface-container-lowest p-stack-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-stack-sm hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">+24%</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant uppercase">Revenue (Mo)</span>
+<span class="font-headline-md text-headline-md font-bold">$142,500</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Recent Activities Feed -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 flex flex-col">
+<div class="p-gutter border-b border-outline-variant/20 flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Activities</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">View All</button>
+</div>
+<div class="p-gutter flex flex-col gap-stack-lg">
+<!-- Activity Item 1 -->
+<div class="flex gap-stack-lg items-start border-l-2 border-primary-container pl-stack-lg pb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A close-up of a smiling customer from a diverse background receiving a fresh grocery delivery, styled in a warm, cinematic light with a color palette of burnt oranges and lush leaf greens to match the Teedeux brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANbvq2shtnPYtE9JC7K7o81l_nhjIjVT_4HVYtutk9NhbI6nH2oCDYhYCeTnSkho2xy7WjnFFhwOjMT0Qxy5bKDvIXsDpS62UvU7psn-nrA9ac1MaBNdLzDwhdmMrLwddhG3Tq2mEsmYsyi-AayBoTEn5DPGe4hWxYIf2GpNhYVYEl2YowFBM2wnliR3ucOrry8zqovRz2q0ZyYrQjChu-ELnE4ljLGSVj2r0yxkmasD_vtSz1iHrKYg"/>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-bold">New Registration: Akua Mensah</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">2 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">User joined via mobile app from Lagos, Nigeria.</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="flex gap-stack-lg items-start border-l-2 border-secondary pl-stack-lg pb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary flex-shrink-0">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-bold">Order #TRX-8921 Delivered</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">15 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Fresh yam and chili peppers delivered to Victoria Island.</p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="flex gap-stack-lg items-start border-l-2 border-tertiary pl-stack-lg pb-stack-lg">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary flex-shrink-0">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-bold">Order Dispatched #TRX-9011</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">42 mins ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Courier is en route with a 12kg organic produce box.</p>
+</div>
+</div>
+<!-- Activity Item 4 -->
+<div class="flex gap-stack-lg items-start border-l-2 border-error pl-stack-lg">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center text-error flex-shrink-0">
+<span class="material-symbols-outlined">error</span>
+</div>
+<div class="flex flex-col flex-1">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md font-bold">Refund Requested: #TRX-8854</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1 hour ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Customer cited minor damage to tomato packaging.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Deliveries Map / Visual -->
+<div class="flex flex-col gap-gutter">
+<div class="bg-lush-leaf text-on-primary p-gutter rounded-xl shadow-lg relative overflow-hidden h-[320px]">
+<div class="relative z-10">
+<h3 class="font-headline-md text-headline-md">Fleet Tracking</h3>
+<p class="font-body-md text-body-md opacity-80 mb-stack-lg">Real-time courier density</p>
+<div class="flex flex-col gap-stack-md">
+<div class="flex justify-between items-center p-stack-md bg-white/10 rounded-lg backdrop-blur-sm">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-2 bg-secondary-fixed-dim rounded-full animate-pulse"></div>
+<span class="font-label-md text-label-md">Zone A (Urban)</span>
+</div>
+<span class="font-label-md text-label-md font-bold">42 Active</span>
+</div>
+<div class="flex justify-between items-center p-stack-md bg-white/10 rounded-lg backdrop-blur-sm">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-2 bg-tertiary-fixed-dim rounded-full animate-pulse"></div>
+<span class="font-label-md text-label-md">Zone B (Suburbs)</span>
+</div>
+<span class="font-label-md text-label-md font-bold">31 Active</span>
+</div>
+<div class="flex justify-between items-center p-stack-md bg-white/10 rounded-lg backdrop-blur-sm">
+<div class="flex items-center gap-stack-md">
+<div class="w-2 h-2 bg-primary-fixed-dim rounded-full animate-pulse"></div>
+<span class="font-label-md text-label-md">Zone C (Express)</span>
+</div>
+<span class="font-label-md text-label-md font-bold">13 Active</span>
+</div>
+</div>
+</div>
+<!-- Stylized Map Placeholder -->
+<div class="absolute inset-0 opacity-20 pointer-events-none">
+<img class="w-full h-full object-cover" data-location="Lagos, Nigeria" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmLGwU0bdh4f1Wo3Ap3Sluz16tHMHka1qwciNPw5FAGCbu_MuAfiSQu2mwihD-L1rcXr-joijluhNAFnTNILvS5wHaL1AuS6d96qPGBOzbmxlkgZL4_VX6dUlL4fvQIO378UATr0TFExgAdQ7ItrYsPwMrydmLQE3a_f7lriE9OQS2Ch78LiCAPUUENl_7Qw5HwKxW2XEAl5JysLsPUYZNbT-1Pnfs4N5IQvOTnOTV_xFOQDdjM_rB1w"/>
+</div>
+</div>
+<!-- Quick Support Contact -->
+<div class="bg-savanna-sand border border-outline-variant p-gutter rounded-xl flex flex-col gap-stack-md">
+<div class="flex items-center gap-stack-md text-earth-clay">
+<span class="material-symbols-outlined">support_agent</span>
+<span class="font-headline-md text-headline-md">Admin Support</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Need help with backend tools or fleet coordination?</p>
+<button class="w-full border-2 border-primary text-primary font-bold py-stack-md rounded-lg hover:bg-primary/5 transition-colors">
+                            Contact Technical Ops
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<footer class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-base pb-4 pt-2 bg-surface-container-lowest shadow-[0_-4px_12px_rgba(156,63,0,0.08)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center bg-primary-container text-on-primary-container rounded-full px-4 py-1 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-label-sm text-label-sm">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">search</span>
+<span class="font-label-sm text-label-sm">Browse</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-label-sm text-label-sm">Cart</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="font-label-sm text-label-sm">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+</footer>
+<script>
+        // Simple Interaction logic
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.classList.add('scale-95');
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.classList.remove('scale-95');
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.classList.remove('scale-95');
+            });
+        });
+
+        // Simulating Live Counter
+        const deliveryCounter = document.querySelector('span.font-headline-md.text-headline-md.font-bold:nth-of-type(1)'); // This is a bit brittle, just for demo
+        // In a real app we'd target by ID
+    </script>
+</body></html>
