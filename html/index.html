@@ -3,69 +3,43 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#9c3f00" />
-  <meta name="color-scheme" content="light" />
-  <meta name="description" content="Teedeux — African groceries with same-day local delivery and nationwide shipping across the US." />
+  <meta name="theme-color" content="#1f1f1f" />
+  <meta name="description" content="Teedeux — African groceries, delivery and pickup." />
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="Teedeux" />
-  <meta property="og:title" content="Teedeux — African Groceries" />
-  <meta property="og:description" content="Local same-day + nationwide shipping for African specialty groceries." />
-  <meta property="og:type" content="website" />
-  <link rel="canonical" href="/" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/icons/icon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css" />
   <title>Teedeux — African Groceries</title>
 </head>
 <body>
   <a class="sr-only" href="#main">Skip to content</a>
-
   <div id="app">
-    <header class="app-header" id="app-header" hidden>
-      <div class="app-header__inner">
-        <div class="header-meta" id="header-deliver">
-          <span class="mono">Deliver to</span>
-          <strong id="header-address">Home</strong>
-        </div>
-        <a class="brand" href="#/home" aria-label="Teedeux home">
-          <span class="brand__mark" aria-hidden="true">T</span>
-          <span>Teedeux</span>
-        </a>
-        <button type="button" class="icon-btn" id="btn-profile-jump" aria-label="Profile">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-        </button>
-      </div>
-    </header>
-
     <main id="main" class="app-main" tabindex="-1"></main>
-
-    <nav class="app-nav" id="app-nav" hidden aria-label="Primary">
+    <nav class="app-nav" id="app-nav" aria-label="Primary">
       <div class="app-nav__inner">
-        <a class="nav-item" data-nav="home" href="#/home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>
-          Home
+        <a class="nav-item" data-nav="shop" href="#/shop">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 7h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8L4 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>
+          Shop
         </a>
-        <a class="nav-item" data-nav="orders" href="#/orders">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          Orders
+        <a class="nav-item" data-nav="explore" href="#/explore">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          Explore
         </a>
-        <a class="nav-item" data-nav="cart" href="#/cart">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/><path d="M3 3h2l2.4 12.3a2 2 0 0 0 2 1.7h7.8a2 2 0 0 0 2-1.6L21 8H6"/></svg>
-          Cart
+        <a class="nav-item" data-nav="coupons" href="#/coupons">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 9V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v4"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/><path d="M4 12h16"/><circle cx="8" cy="12" r="1.5"/><circle cx="16" cy="12" r="1.5"/></svg>
+          Coupons
+        </a>
+        <a class="nav-item" data-nav="items" href="#/items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          Your Items
           <span class="nav-badge" id="nav-cart-badge" hidden>0</span>
-        </a>
-        <a class="nav-item" data-nav="profile" href="#/profile">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          Profile
         </a>
       </div>
     </nav>
   </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="/js/catalog.js" defer></script>
   <script src="/js/store.js" defer></script>

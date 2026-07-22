@@ -1,5 +1,5 @@
 /* Teedeux HTML5 service worker — offline shell cache (Netlify-friendly absolute paths) */
-const CACHE = 'teedeux-html-v2';
+const CACHE = 'teedeux-html-v3';
 const ASSETS = [
   '/',
   '/index.html',
