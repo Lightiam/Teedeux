@@ -485,31 +485,34 @@
       return;
     }
 
-    // Skip any leftover onboarding flags
-    if (S.completeOnboarding) S.completeOnboarding();
-    if (S.auth && !S.auth.user && S.signInDemo) {
-      try {
-        S.signInDemo();
-      } catch (e) {}
-    }
+    try {
+      if (S.completeOnboarding) S.completeOnboarding();
+    } catch (e) {}
 
     bindMain();
     if (!location.hash || location.hash === '#' || location.hash === '#/') {
       location.replace('#/account');
     }
     window.addEventListener('hashchange', render);
-    if (S.subscribe) S.subscribe(function () {
-      // light refresh of badges without full remount when possible
-      var badge = document.getElementById('nav-cart-badge');
-      var n = qtyInCart();
-      if (badge) {
-        if (n > 0) {
-          badge.hidden = false;
-          badge.textContent = String(n);
-        } else badge.hidden = true;
-      }
-    });
-    render();
+    if (S.subscribe) {
+      S.subscribe(function () {
+        var badge = document.getElementById('nav-cart-badge');
+        var n = qtyInCart();
+        if (badge) {
+          if (n > 0) {
+            badge.hidden = false;
+            badge.textContent = String(n);
+          } else badge.hidden = true;
+        }
+      });
+    }
+    try {
+      render();
+    } catch (err) {
+      console.error(err);
+      main.innerHTML =
+        '<div id="boot-fallback"><h1>Teedeux</h1><p>Something went wrong loading the shop.</p><p><a href="/?reset=1">Reset cache &amp; reload</a></p></div>';
+    }
   }
 
   if (document.readyState === 'loading') {
