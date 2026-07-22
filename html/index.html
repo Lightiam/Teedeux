@@ -7,16 +7,37 @@
   <meta name="description" content="Teedeux — African groceries, delivery and pickup." />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Teedeux" />
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="manifest" href="/manifest.webmanifest?v=4" />
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/icons/icon.svg" />
-  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
+  <link rel="stylesheet" href="/css/styles.css?v=4" />
   <title>Teedeux — African Groceries</title>
+  <style>
+    /* Critical first paint — works even if remote CSS/fonts fail */
+    html,body{margin:0;background:#fff;color:#1c1c1c;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    #boot-fallback{padding:28px 20px;max-width:480px;margin:0 auto}
+    #boot-fallback h1{font-size:32px;margin:0 0 8px}
+    #boot-fallback p{color:#5c5c5c;margin:0 0 16px}
+    #boot-fallback a{display:inline-block;background:#00a862;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:999px}
+  </style>
 </head>
 <body>
   <a class="sr-only" href="#main">Skip to content</a>
   <div id="app">
-    <main id="main" class="app-main" tabindex="-1"></main>
+    <main id="main" class="app-main" tabindex="-1">
+      <div id="boot-fallback">
+        <h1>Teedeux</h1>
+        <p>Loading African groceries…</p>
+        <noscript>
+          <p>JavaScript is required. Enable it, then reload.</p>
+        </noscript>
+        <p style="font-size:13px;color:#8a8a8a">If this never loads, <a href="/?reset=1" style="background:transparent;color:#2f6fed;padding:0;font-weight:600">reset cache</a>.</p>
+      </div>
+    </main>
     <nav class="app-nav" id="app-nav" aria-label="Primary">
       <div class="app-nav__inner">
         <a class="nav-item" data-nav="shop" href="#/shop">
@@ -41,15 +62,46 @@
   </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="/js/catalog.js" defer></script>
-  <script src="/js/store.js" defer></script>
-  <script src="/js/app.js" defer></script>
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", function () {
-        navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(function () {});
+    // One-time cache/SW reset so stale deploys cannot blank the app
+    (function () {
+      var APP_BUILD = '4';
+      var params = new URLSearchParams(location.search);
+      var needReset = params.get('reset') === '1' || localStorage.getItem('teedeux-build') !== APP_BUILD;
+      function done() {
+        try { localStorage.setItem('teedeux-build', APP_BUILD); } catch (e) {}
+        if (params.get('reset') === '1') {
+          params.delete('reset');
+          var q = params.toString();
+          location.replace(location.pathname + (q ? '?' + q : '') + (location.hash || '#/account'));
+        }
+      }
+      if (!needReset || !('serviceWorker' in navigator)) { done(); return; }
+      Promise.resolve()
+        .then(function () { return caches.keys(); })
+        .then(function (keys) { return Promise.all(keys.map(function (k) { return caches.delete(k); })); })
+        .then(function () { return navigator.serviceWorker.getRegistrations(); })
+        .then(function (regs) { return Promise.all(regs.map(function (r) { return r.unregister(); })); })
+        .catch(function () {})
+        .then(done);
+    })();
+  </script>
+  <script src="/js/catalog.js?v=4" defer></script>
+  <script src="/js/store.js?v=4" defer></script>
+  <script src="/js/app.js?v=4" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js?v=4', { scope: '/' }).catch(function () {});
       });
     }
+    // Visible failure if app never boots
+    setTimeout(function () {
+      var main = document.getElementById('main');
+      if (main && main.querySelector('#boot-fallback')) {
+        main.innerHTML = '<div id="boot-fallback"><h1>Teedeux</h1><p>Still loading. Tap reset if the page stays blank.</p><p><a href="/?reset=1">Reset cache &amp; reload</a></p></div>';
+      }
+    }, 8000);
   </script>
 </body>
 </html>

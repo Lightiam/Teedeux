@@ -1,3 +1,2 @@
-# Netlify redirects for the Teedeux HTML5 PWA (publish dir = html/)
-# Fallback so any path serves the app shell.
+# Soft SPA fallback — existing files (css/js/img) take precedence
 /*    /index.html   200
