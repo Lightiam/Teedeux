@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="manifest" href="manifest.json">
+      <title>Search - Teedeux</title>
+      <link rel="stylesheet" href="vender/bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="vender/icofont/icofont.min.css">
+      <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="css/mobile-optimizations.css">
+   </head>
+   <body>
+      <div class="p-3 bg-primary">
+         <div class="d-flex align-items-center gap-3">
+            <button onclick="window.location.href='index.html';" class="text-white border-0 bg-transparent p-0"><i class="bi bi-arrow-left fs-5"></i></button>
+            <div>
+               <h6 class="fw-bold text-white mb-0" data-i18n="search">Search</h6>
+               <p class="text-white-50 small m-0" data-i18n="app_name">Teedeux</p>
+            </div>
+         </div>
+      </div>
+      
+      <div class="container py-4">
+         <div class="search-container mb-4">
+            <form id="search-form" class="position-relative">
+               <div class="input-group">
+                  <input type="text" id="search-input" class="form-control" placeholder="Search for Nigerian dishes, ingredients..." data-i18n-placeholder="search_placeholder">
+                  <button id="voice-search-button" class="btn btn-outline-primary">
+                     <i class="bi bi-mic"></i>
+                  </button>
+               </div>
+               <div id="voice-search-indicator" class="position-absolute top-100 start-0 w-100 bg-light p-2 rounded shadow-sm d-none">
+                  <p class="text-center mb-0"><i class="bi bi-mic-fill text-primary"></i> Listening...</p>
+               </div>
+               <div id="search-suggestions" class="position-absolute top-100 start-0 w-100 bg-white rounded shadow-sm" style="z-index: 1000; display: none;"></div>
+            </form>
+         </div>
+         
+         <div id="popular-searches" class="mb-4"></div>
+         
+         <div id="search-results" style="display: none;"></div>
+         
+         <div class="categories-section mb-4">
+            <h5 class="fw-bold mb-3" data-i18n="categories">Categories</h5>
+            <div class="row g-3">
+               <div class="col-6 col-md-4 col-lg-3">
+                  <button href="shop-grid-3-column.html?category=jollof_rice" class="text-decoration-none">
+                     <div class="card h-100">
+                        <div class="card-body text-center">
+                           <h6 class="card-title" data-i18n="jollof_rice">Jollof Rice & Rice Dishes</h6>
+                        </div>
+                     </div>
+                  </button>
+               </div>
+               <div class="col-6 col-md-4 col-lg-3">
+                  <button href="shop-grid-3-column.html?category=soups_stews" class="text-decoration-none">
+                     <div class="card h-100">
+                        <div class="card-body text-center">
+                           <h6 class="card-title" data-i18n="soups_stews">Soups & Stews</h6>
+                        </div>
+                     </div>
+                  </button>
+               </div>
+               <div class="col-6 col-md-4 col-lg-3">
+                  <button href="shop-grid-3-column.html?category=meat_dishes" class="text-decoration-none">
+                     <div class="card h-100">
+                        <div class="card-body text-center">
+                           <h6 class="card-title" data-i18n="meat_dishes">Nigerian Meat Dishes</h6>
+                        </div>
+                     </div>
+                  </button>
+               </div>
+               <div class="col-6 col-md-4 col-lg-3">
+                  <button href="shop-grid-3-column.html?category=snacks" class="text-decoration-none">
+                     <div class="card h-100">
+                        <div class="card-body text-center">
+                           <h6 class="card-title" data-i18n="snacks">Snacks & Street Food</h6>
+                        </div>
+                     </div>
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <!-- Chat Support Button -->
+      <div class="position-fixed bottom-0 end-0 m-3">
+         <button id="chat-support-button" class="btn btn-primary rounded-circle shadow">
+            <i class="bi bi-chat-dots-fill"></i>
+         </button>
+      </div>
+      
+      <!-- Chat Support Container -->
+      <div id="chat-support-container" class="position-fixed bottom-0 end-0 m-3 bg-white rounded shadow d-none" style="width: 300px; height: 400px; z-index: 1050;">
+         <div class="d-flex flex-column h-100">
+            <div class="p-3 bg-primary text-white">
+               <div class="d-flex justify-content-between align-items-center">
+                  <h6 class="mb-0" data-i18n="chat_support">Chat Support</h6>
+                  <button class="btn btn-sm text-white" id="close-chat-button">
+                     <i class="bi bi-x-lg"></i>
+                  </button>
+               </div>
+            </div>
+            <div id="chat-messages" class="flex-grow-1 p-3 overflow-auto"></div>
+            <div class="p-3 border-top">
+               <form id="chat-form">
+                  <div class="input-group">
+                     <input type="text" id="chat-input" class="form-control" placeholder="Type your message..." data-i18n-placeholder="type_message">
+                     <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-send"></i>
+                     </button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      
+      <script src="vender/jquery/jquery.min.js"></script>
+      <script src="vender/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="js/lang/en.js"></script>
+      <script src="js/language-switcher.js"></script>
+      <script src="js/ai-search/search-engine.js"></script>
+      <script src="js/ai-search/chat-support.js"></script>
+      <script src="js/ai-search/voice-search.js"></script>
+      <script src="js/ai-search/ai-search-integration.js"></script>
+      <script src="js/platform-detection.js"></script>
+      <script src="js/performance-optimizations.js"></script>
+      <script src="js/sw-register.js"></script>
+      <script>
+         // Close chat button functionality
+         document.getElementById('close-chat-button').addEventListener('click', function() {
+            document.getElementById('chat-support-container').classList.add('d-none');
+         });
+      </script>
+   </body>
+</html>
