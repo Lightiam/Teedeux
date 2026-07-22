@@ -8,6 +8,7 @@ import { JetBrainsMono_500Medium } from '@expo-google-fonts/jetbrains-mono';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -51,10 +52,12 @@ export default function RootLayout() {
 
   return (
     <SafeAreaProvider>
+      <StatusBar style="dark" />
       <Stack
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: colors.background },
+          animation: 'slide_from_right',
         }}
       >
         <Stack.Screen name="index" options={{ headerShown: false }} />
@@ -66,7 +69,7 @@ export default function RootLayout() {
         <Stack.Screen name="payment" options={{ headerShown: false }} />
         <Stack.Screen
           name="order-confirmation"
-          options={{ headerShown: false }}
+          options={{ headerShown: false, animation: 'fade' }}
         />
         <Stack.Screen name="order/[id]" options={{ headerShown: false }} />
         <Stack.Screen name="shopper" options={{ headerShown: false }} />
@@ -74,3 +77,4 @@ export default function RootLayout() {
     </SafeAreaProvider>
   );
 }
+
