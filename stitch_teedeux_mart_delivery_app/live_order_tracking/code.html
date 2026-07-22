@@ -163,10 +163,11 @@
 </header>
 <!-- God's Eye Map View -->
 <main class="flex-1 relative overflow-hidden bg-savanna-sand">
-<!-- Interactive Map Background -->
-<div class="absolute inset-0 w-full h-full overflow-hidden opacity-90" data-location="Accra, Ghana" style="">
-<!-- Simulated Map Elements -->
-<div class="absolute inset-0 grayscale contrast-75 brightness-105 pointer-events-none" data-alt="A clean, minimalist high-angle satellite view of an African suburban grid with sun-washed earth tones and soft green canopy. The map is slightly desaturated to emphasize high-contrast UI elements. Streets are clearly defined but subtle, creating a professional and calm background for logistics tracking." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD9sxCsJs9eOj64WCrcdNT33Rc2Ejo-OJ3LWP3AMEfNujH5RB0sejlkVedgdkS2BLOj6bcCAqUdPbAm6cRZJgRnvYZvQAGAF448GFNOy82fy4HmjFTHmZxKgdacAqzSTDL7_iP0A0mDYU9uJkBOyQy1BDu9862D6EXEJkZoyMm9E_tsJ_PcXxM9-QN3Vt1X735RpVkoCohXknbjJEVJLuSRTWlcoM41O0r6DQ-AHnaFV82sijcCpTb3sA')"></div>
+<!-- Interactive Map Background — actual Google Map ("God's Eye" satellite view) -->
+<div class="absolute inset-0 w-full h-full overflow-hidden" data-location="North Legon, Accra, Ghana">
+<!-- Real Google Map: keyless satellite/aerial embed centered on the delivery area. -->
+<!-- For production, swap to the Google Maps Embed API (maps/embed/v1) with an API key for finer control. -->
+<iframe title="Live delivery map — North Legon, Accra, Ghana" class="absolute inset-0 h-full w-full border-0" src="https://maps.google.com/maps?q=5.6505,-0.1870&amp;z=15&amp;t=k&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen=""></iframe>
 <!-- SVG Route Visualization -->
 <svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="xMidYMid slice" viewbox="0 0 800 600">
 <!-- Path from Store to Home -->
