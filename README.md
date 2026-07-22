@@ -6,11 +6,19 @@
 
 | Path | What |
 |------|------|
-| [`mobile/`](./mobile) | **Production Expo app (iOS / Android / Web)** — full customer + shopper flows |
-| [`web/`](./web) | Next.js vendor portal, hybrid checkout reference, Prisma schema |
+| [`html/`](./html) | **HTML5 PWA** — mobile + desktop optimized static app (no build step) |
+| [`mobile/`](./mobile) | Expo React Native app (iOS / Android / Web) |
+| [`web/`](./web) | Next.js vendor portal + Prisma schema |
 | [`stitch_teedeux_mart_delivery_app/`](./stitch_teedeux_mart_delivery_app) | Stitch UI mockups + Teedeux Vitality design system |
 
-## Mobile (primary)
+## HTML5 (fastest to open)
+
+```bash
+cd html && python3 -m http.server 8080
+# http://localhost:8080
+```
+
+## Mobile (Expo)
 
 ```bash
 cd mobile
@@ -20,7 +28,7 @@ npx expo start
 
 Demo logins: `ada@teedeux.com` (customer) or `shopper@teedeux.com` (shopper) — any password 4+ characters.
 
-See [`mobile/README.md`](./mobile/README.md) for EAS production builds and the full route map.
+See [`html/README.md`](./html/README.md) and [`mobile/README.md`](./mobile/README.md).
 
 ## Dual fulfillment
 
