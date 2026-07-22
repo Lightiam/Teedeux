@@ -30,10 +30,12 @@ Version: 1.0
 
   // OTP Countdown
   function countdown() {
+      var timerEl = document.getElementById("timer");
+      if (!timerEl) return;
       var timeleft = 60;
       var countdownTimer = setInterval(function() {
           timeleft--;
-          document.getElementById("timer").textContent = timeleft;
+          timerEl.textContent = timeleft;
           if (timeleft <= 0) {
               clearInterval(countdownTimer);
               setTimeout(countdown, 1000);

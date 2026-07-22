@@ -1,5 +1,5 @@
 // Service Worker for Teedeux
-const CACHE_NAME = 'teedeux-cache-v1';
+const CACHE_NAME = 'teedeux-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',

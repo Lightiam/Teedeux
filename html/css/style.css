@@ -51,8 +51,8 @@ Version: 1.0
 
 :root {
     --primary: #9c3f00;
-    --danger: #6a40f4;
-    --danger-hover:#593dff;
+    --danger: #c45a1a;
+    --danger-hover:#9c3f00;
     --warning: #ff8d27;
     --info: #95d9df;
     --muted: #e9ecef;
@@ -60,7 +60,7 @@ Version: 1.0
 }
 
 /* Body */
-}
+
 /* Scroll Bar */
 html ::-webkit-resizer {
 }
@@ -101,7 +101,7 @@ a {
     padding: 6px 1rem;
 }
 .shop-category,.popular-products,.coupons,.cold-drinks,.top-picks,.big-img,.small-img,.hero-slider {
-    display: none;
+    display: block;
 }
 .intro-logo {
     height: 80px;
@@ -122,7 +122,8 @@ div#addaddress .ratio::before {
 }
 /* Colors */
 .bg-primary{
-    background-image: linear-gradient(43deg, #573cff 0%, #C850C0 80%, #FFCC70 100%);
+    background-color: #9c3f00 !important;
+    background-image: linear-gradient(120deg, #7a3000 0%, #9c3f00 55%, #c45a1a 100%);
 }
 .text-danger{
 }
@@ -950,4 +951,25 @@ div#addaddress .ratio::before {
 #voice-search-indicator {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+
+/* Teedeux mobile header polish */
+.homepage-navbar .link-dark {
+    color: #fff !important;
+    background: rgba(0,0,0,0.18);
+    border-radius: 12px;
+    padding: 0.35rem 0.65rem !important;
+    border: 0 !important;
+}
+.homepage-navbar .form-select {
+    color: #fff !important;
+}
+.homepage-navbar .form-select option {
+    color: #3E2723;
+}
+.card-img-top {
+    object-fit: cover;
+    min-height: 120px;
+    background: #f3eee6;
 }
