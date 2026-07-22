@@ -2,8 +2,9 @@
   "name": "Teedeux — African Groceries",
   "short_name": "Teedeux",
   "description": "African groceries with same-day local delivery and nationwide shipping.",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#fcf9f8",
@@ -12,10 +13,16 @@
   "categories": ["food", "shopping", "lifestyle"],
   "icons": [
     {
-      "src": "./icons/icon.svg",
+      "src": "/icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
     }
   ]
 }
