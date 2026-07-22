@@ -1,0 +1,3 @@
+# Netlify redirects for the Teedeux HTML5 PWA (publish dir = html/)
+# Fallback so any path serves the app shell.
+/*    /index.html   200
