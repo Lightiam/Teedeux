@@ -1,60 +1,60 @@
 # Teedeux Web
 
-Next.js (App Router) frontend and schema for **Teedeux** — a dual-fulfillment African grocery platform for the US market:
-
-1. **Local same-day delivery** — perishables from neighborhood stores (Instacart-style shoppers)
-2. **Nationwide shipping** — dry specialty goods via carrier labels (Shippo / EasyPost)
-
-Design tokens follow the **Teedeux Vitality** system in `/stitch_teedeux_mart_delivery_app/teedeux_vitality/DESIGN.md`.
+Next.js app for **Teedeux** — African grocery marketplace (AfroConnect-inspired UX) with dual fulfillment and **RBAC admin**.
 
 ## Stack
 
-- Next.js App Router · TypeScript · Tailwind CSS
-- Lucide icons · CVA / shadcn-style primitives
-- Prisma ORM · PostgreSQL
-- Mock shipping rate/label APIs (ready for Shippo/EasyPost)
-- Stripe Connect hooks planned for split payouts
+- Next.js App Router · TypeScript · Tailwind · Lucide
+- Prisma ORM · PostgreSQL (optional — in-memory demo without `DATABASE_URL`)
+- Auth: bcryptjs + jose JWT cookies
+- Roles: `SUPER_ADMIN` · `ADMIN` · `VENDOR` · `SHOPPER` · `CUSTOMER`
 
-## Key routes
+## Super Admin
 
-| Route | Role |
-|-------|------|
-| `/` | Marketing home + store/product preview |
-| `/checkout` | Hybrid cart: Local Same-Day vs Nationwide Shipped |
-| `/vendor/orders` | Vendor fulfillment + Print Shipping Label + inventory editor |
-| `/shopper/order/[id]` | In-store picking checklist + substitution flow |
-| `POST /api/shipping/rate` | Mock carrier rate shopping |
-| `POST /api/shipping/label` | Mock label purchase |
+Seed / memory bootstrap always elevates:
 
-## Getting started
+- Email: `teedeux.dev@gmail.com`
+- Password: `ChangeMeImmediately123!`
+
+Root Super Admin cannot be deleted or downgraded.
+
+## Run
 
 ```bash
 cd web
-cp .env.example .env
+cp .env.example .env   # optional DATABASE_URL
 npm install
+npm run db:generate
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
-
-### Database (optional for UI demo)
-
-UI pages use in-memory mock data. To wire Prisma:
+With Postgres:
 
 ```bash
-# Set DATABASE_URL in .env
-npm run db:generate
 npm run db:push
+npm run db:seed
 ```
 
-Schema: `prisma/schema.prisma` — `User`, `Store`, `Product`, `Order`, `OrderItem`, `Delivery`, `SubstitutionRequest`, `RecipeBundle`.
+## Admin
 
-## Dual-fulfillment model
+| Route | Purpose |
+|-------|---------|
+| `/login` | Sign in |
+| `/admin` | Command center |
+| `/admin/users` | User table, add user, edit role, suspend |
+| `GET/POST /api/admin/users` | List / create |
+| `PATCH /api/admin/users/[id]/role` | Update role |
+| `DELETE /api/admin/users/[id]` | Soft-deactivate + audit log |
 
-```
-Customer cart
-├── LOCAL_DELIVERY  → shopper pick + same-day dropoff
-└── NATIONWIDE_SHIPPING → vendor prints label → USPS/UPS/FedEx
-```
+## Marketplace demos
 
-Products use `temperatureClass` (`FRESH` | `FROZEN` | `DRY`) plus `shippable` / `localAvailable` flags to route items automatically.
+| Route | Purpose |
+|-------|---------|
+| `/` | AfroConnect-style storefront home |
+| `/checkout` | Hybrid cart checkout |
+| `/vendor/orders` | Vendor fulfillment |
+| `/shopper/order/[id]` | Shopper picking |
+
+## Prisma schema
+
+See `prisma/schema.prisma` — User RBAC, Store (`HYBRID`), Product, Order (local vs nationwide), AuditLog.

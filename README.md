@@ -6,10 +6,19 @@
 
 | Path | What |
 |------|------|
-| [`html/`](./html) | **HTML5 PWA** — mobile + desktop optimized static app (no build step) |
-| [`mobile/`](./mobile) | Expo React Native app (iOS / Android / Web) |
-| [`web/`](./web) | Next.js vendor portal + Prisma schema |
-| [`stitch_teedeux_mart_delivery_app/`](./stitch_teedeux_mart_delivery_app) | Stitch UI mockups + Teedeux Vitality design system |
+| [`html/`](./html) | **HTML5 PWA** — mobile + desktop (Netlify) |
+| [`web/`](./web) | Next.js marketplace + **RBAC admin** (AfroConnect-inspired) |
+| [`mobile/`](./mobile) | Expo React Native app |
+| [`stitch_teedeux_mart_delivery_app/`](./stitch_teedeux_mart_delivery_app) | Stitch mockups + Vitality design system |
+
+### Admin (web)
+
+```bash
+cd web && npm install && npm run dev
+# http://localhost:3000/login → /admin/users
+```
+
+Super Admin: `teedeux.dev@gmail.com` / `ChangeMeImmediately123!`
 
 ## HTML5 (fastest to open)
 
