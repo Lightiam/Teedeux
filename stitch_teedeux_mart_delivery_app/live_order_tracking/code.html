@@ -163,41 +163,11 @@
 </header>
 <!-- God's Eye Map View -->
 <main class="flex-1 relative overflow-hidden bg-savanna-sand">
-<!-- Interactive Map Background — actual Google Map ("God's Eye" satellite view) -->
+<!-- Interactive Map — actual Google Map with the live driving route drawn along real streets -->
 <div class="absolute inset-0 w-full h-full overflow-hidden" data-location="North Legon, Accra, Ghana">
-<!-- Real Google Map: keyless satellite/aerial embed centered on the delivery area. -->
-<!-- For production, swap to the Google Maps Embed API (maps/embed/v1) with an API key for finer control. -->
-<iframe title="Live delivery map — North Legon, Accra, Ghana" class="absolute inset-0 h-full w-full border-0" src="https://maps.google.com/maps?q=5.6505,-0.1870&amp;z=15&amp;t=k&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen=""></iframe>
-<!-- SVG Route Visualization -->
-<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="xMidYMid slice" viewbox="0 0 800 600">
-<!-- Path from Store to Home -->
-<path class="opacity-30" d="M 50 450 Q 150 400 300 350 T 600 200" fill="none" stroke="#E36414" stroke-linecap="round" stroke-width="6"></path>
-<path class="route-dash" d="M 50 450 Q 150 400 300 350 T 600 200" fill="none" stroke="#E36414" stroke-linecap="round" stroke-width="6"></path>
-<!-- Store Marker -->
-<g transform="translate(50, 450)">
-<circle fill="#1E3F1B" r="12"></circle>
-<text class="font-label-sm text-lush-leaf fill-current" text-anchor="middle" y="30">Mama Jones Market</text>
-<foreignobject height="24" width="24" x="-12" y="-12">
-<span class="material-symbols-outlined text-white text-[16px] flex items-center justify-center h-full">storefront</span>
-</foreignobject>
-</g>
-<!-- Customer Home Marker -->
-<g transform="translate(600, 200)">
-<circle class="marker-pulse" fill="#9c3f00" r="12"></circle>
-<text class="font-label-sm text-primary fill-current" text-anchor="middle" y="-25">Home</text>
-<foreignobject height="24" width="24" x="-12" y="-12">
-<span class="material-symbols-outlined text-white text-[16px] flex items-center justify-center h-full">home</span>
-</foreignobject>
-</g>
-<!-- Moving Scooter Icon -->
-<g class="scooter-path">
-<circle class="shadow-lg" fill="#E36414" r="16"></circle>
-<foreignobject height="24" width="24" x="-12" y="-12">
-<span class="material-symbols-outlined text-white flex items-center justify-center h-full" style="font-variation-settings: 'FILL' 1;">moped</span>
-</foreignobject>
-</g>
-</svg>
-</div>
+<!-- Real Google Map (keyless directions embed): draws the turn-by-turn route from the store to the customer along real roads. -->
+<!-- For a live, geo-anchored driver marker, swap to the Google Maps JavaScript API with an API key. -->
+<iframe title="Live delivery route — Mama Jones Market to North Legon, Accra" class="absolute inset-0 h-full w-full border-0" src="https://maps.google.com/maps?saddr=5.5600,-0.2050&amp;daddr=5.6505,-0.1870&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen=""></iframe>
 <!-- Floating Status Overlay -->
 <div class="absolute bottom-gutter left-margin-mobile right-margin-mobile md:left-auto md:right-margin-desktop md:w-[400px] z-20">
 <div class="glass-panel border border-white/50 rounded-xl shadow-[0_8px_32px_rgba(156,63,0,0.12)] p-stack-lg flex flex-col gap-stack-lg">
