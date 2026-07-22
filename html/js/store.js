@@ -11,7 +11,7 @@
   var Teedeux = (global.Teedeux = global.Teedeux || {});
   var catalog = Teedeux.catalog || {};
 
-  var KEY = 'teedeux-html-v1';
+  var KEY = 'teedeux-html-v3';
 
   var LOCAL_DELIVERY_FEE_CENTS = 499;
   var SERVICE_FEE_RATE = 0.05;
@@ -43,8 +43,15 @@
 
     return {
       auth: {
-        user: null,
-        hasOnboarded: false,
+        user: {
+          id: 'user_demo',
+          name: 'Bola',
+          email: 'bola@teedeux.app',
+          phone: '+1 (404) 555-0182',
+          role: 'CUSTOMER',
+          createdAt: new Date().toISOString(),
+        },
+        hasOnboarded: true,
       },
       cart: {
         items: [],
@@ -200,9 +207,9 @@
   function resolveProduct(productOrId) {
     if (!productOrId) return null;
     if (typeof productOrId === 'string') {
-      return catalog.getProductById
-        ? catalog.getProductById(productOrId)
-        : null;
+      if (catalog.getProductById) return catalog.getProductById(productOrId);
+      if (catalog.getProduct) return catalog.getProduct(productOrId);
+      return null;
     }
     return productOrId;
   }
@@ -696,6 +703,7 @@
       return clone(_state.cart);
     },
     addItem: addItem,
+    addToCart: addItem,
     removeItem: removeItem,
     setQty: setQty,
     clear: clearCart,
