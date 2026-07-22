@@ -1,0 +1,171 @@
+/* 
+   Mobile Optimizations for Teedeux
+   This file contains optimizations specifically for mobile devices
+*/
+
+/* Base mobile optimizations */
+@media (max-width: 767px) {
+    /* Reduce image sizes on mobile */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Adjust font sizes for better readability on small screens */
+    body {
+        font-size: 14px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Optimize buttons for touch */
+    button, .btn, a.btn {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 10px 15px;
+    }
+    
+    /* Improve form elements for touch */
+    input, select, textarea {
+        font-size: 16px; /* Prevents iOS zoom on focus */
+        padding: 10px;
+    }
+    
+    /* Adjust spacing */
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    /* Optimize navigation for mobile */
+    .navbar-nav {
+        margin-top: 10px;
+    }
+    
+    /* Adjust card layouts */
+    .card {
+        margin-bottom: 15px;
+    }
+    
+    /* Optimize product grids */
+    .col-6 {
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+    
+    /* Adjust chat support for mobile */
+    #chat-support-container {
+        width: 90% !important;
+        right: 5% !important;
+        left: 5% !important;
+        bottom: 70px !important;
+    }
+}
+
+/* Specific optimizations for very small devices */
+@media (max-width: 375px) {
+    body {
+        font-size: 13px;
+    }
+    
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* Further reduce padding */
+    .col-6 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    
+    /* Adjust product cards */
+    .product-card .card-body {
+        padding: 10px;
+    }
+}
+
+/* Optimize for tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+    /* Adjust grid for tablets */
+    .col-md-4 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    /* Optimize product cards for tablets */
+    .product-card {
+        margin-bottom: 20px;
+    }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) {
+    /* Improve tap targets */
+    a, button, .btn, input[type="button"], input[type="submit"] {
+        padding: 10px 15px;
+    }
+    
+    /* Remove hover effects that don't work well on touch */
+    a:hover, button:hover, .btn:hover {
+        transition: none;
+    }
+    
+    /* Make dropdown menus easier to use on touch */
+    .dropdown-menu {
+        padding: 10px 0;
+    }
+    
+    .dropdown-item {
+        padding: 10px 20px;
+    }
+}
+
+/* Performance optimizations */
+.img-fluid {
+    will-change: transform;
+}
+
+/* Reduce animation complexity on mobile */
+@media (max-width: 767px) {
+    .animated {
+        animation-duration: 0.5s;
+    }
+    
+    /* Disable certain animations on mobile */
+    .fade-in-slow {
+        animation: none;
+        opacity: 1;
+    }
+}
+
+/* Optimize for iOS devices */
+@supports (-webkit-overflow-scrolling: touch) {
+    /* iOS-specific adjustments */
+    input, textarea {
+        border-radius: 0; /* Prevents iOS from adding its own styling */
+    }
+    
+    /* Fix for iOS momentum scrolling */
+    .scrollable-area {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Optimize for Android devices */
+@supports not (-webkit-overflow-scrolling: touch) {
+    /* Android-specific adjustments */
+    select {
+        background-position: calc(100% - 10px) center;
+    }
+}

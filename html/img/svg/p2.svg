@@ -1,0 +1,44 @@
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" width="33px">
+      <defs>
+        <filter
+          id="svg-phonepe-a"
+          width="104.4%"
+          height="105.3%"
+          x="-2.2%"
+          y="-2.7%"
+          filterUnits="objectBoundingBox">
+          <feOffset dy="2" in="SourceAlpha" result="shadowOffsetOuter1" />
+          <feGaussianBlur
+            in="shadowOffsetOuter1"
+            result="shadowBlurOuter1"
+            stdDeviation="2"
+          />
+          <feColorMatrix
+            in="shadowBlurOuter1"
+            result="shadowMatrixOuter1"
+            values="0 0 0 0 0.86131382 0 0 0 0 0.870479167 0 0 0 0 0.900754929 0 0 0 0.4 0"
+          />
+          <feMerge>
+            <feMergeNode in="shadowMatrixOuter1" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <g
+        fill="none"
+        fillRule="nonzero"
+        filter="url(#svg-phonepe-a)"
+        transform="translate(-43 -261)">
+        <circle
+          cx="15.913"
+          cy="15.878"
+          r="13.193"
+          fill="#5F259F"
+          transform="rotate(-76.714 203.36 117.962)"
+        />
+        <path
+          fill="#FFF"
+          d="M66.92 273.489a.976.976 0 00-.958-.958h-1.769l-4.054-4.644c-.368-.442-.958-.59-1.548-.442l-1.4.442c-.221.074-.295.369-.148.516l4.423 4.201h-6.708c-.22 0-.368.148-.368.369v.737c0 .516.442.958.958.958h1.032v3.538c0 2.654 1.4 4.202 3.76 4.202.736 0 1.326-.074 2.063-.369v2.359c0 .663.516 1.18 1.18 1.18h1.031a.476.476 0 00.442-.443v-10.54h1.696c.22 0 .368-.148.368-.369v-.737zm-4.717 6.339c-.442.221-1.032.295-1.474.295-1.18 0-1.77-.59-1.77-1.917v-3.538h3.244v5.16z"
+        />
+      </g>
+    </svg>

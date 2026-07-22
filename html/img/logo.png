@@ -1,0 +1,17 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="90" fill="#006400" />
+  
+  <!-- Inner Circle (plate) -->
+  <circle cx="100" cy="100" r="70" fill="#FFF8E1" stroke="#D2691E" stroke-width="5" />
+  
+  <!-- African continent silhouette -->
+  <path d="M100,50 C120,55 130,70 125,90 C120,110 110,120 100,130 C90,120 80,110 75,90 C70,70 80,55 100,50" fill="#D2691E" />
+  
+  <!-- Food elements -->
+  <circle cx="85" cy="95" r="10" fill="#FFD700" /> <!-- Representing food item -->
+  <circle cx="115" cy="95" r="8" fill="#8B4513" /> <!-- Representing food item -->
+  
+  <!-- Text -->
+  <text x="100" y="170" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#FFF8E1">AfroConnect</text>
+</svg>

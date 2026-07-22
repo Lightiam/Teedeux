@@ -1,57 +1,44 @@
-# Teedeux — Netlify static deploy (HTML5 PWA)
-# https://docs.netlify.com/configure-builds/file-based-configuration/
+# Teedeux — Netlify deploy
+# Publishes the rebranded AfroConnect storefront in html/
 
 [build]
   publish = "html"
-  # No compile step — html/ is ready to serve
-  command = "echo 'Teedeux HTML5 static site — skipping build'"
+  command = "echo 'Teedeux storefront (rebranded AfroConnect) — static publish'"
 
 [build.environment]
   NODE_VERSION = "22"
 
-# Pretty / deep links always load the app shell (hash router handles screens)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+# Multi-page HTML — do NOT force SPA fallback to index.html
+# (would break listing.html, store-grid.html, checkout.html, etc.)
 
-# Security + caching headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "geolocation=(self), payment=(self)"
 
 [[headers]]
-  for = "/index.html"
+  for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
-
-[[headers]]
-  for = "/sw.js"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    Service-Worker-Allowed = "/"
-
-[[headers]]
-  for = "/manifest.webmanifest"
-  [headers.values]
-    Cache-Control = "public, max-age=0, must-revalidate"
-    Content-Type = "application/manifest+json"
 
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=604800"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=604800"
 
 [[headers]]
-  for = "/icons/*"
+  for = "/img/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/vender/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
