@@ -2,39 +2,30 @@
 
 **African groceries in the US — local same-day delivery + nationwide shipping.**
 
-Teedeux is a hybrid grocery platform tailored for African specialty foods:
+## Apps
 
-- **Local hyperlocal delivery** for fresh produce and meats (plantains, scotch bonnets, cassava leaves)
-- **Nationwide shipping** for dry specialty ingredients (egusi, stockfish, yam flour, spices)
-
-## Repository layout
-
-| Path | Contents |
-|------|----------|
-| [`web/`](./web) | Next.js app — schema, checkout, vendor portal, shopper picking UI |
+| Path | What |
+|------|------|
+| [`mobile/`](./mobile) | **Production Expo app (iOS / Android / Web)** — full customer + shopper flows |
+| [`web/`](./web) | Next.js vendor portal, hybrid checkout reference, Prisma schema |
 | [`stitch_teedeux_mart_delivery_app/`](./stitch_teedeux_mart_delivery_app) | Stitch UI mockups + Teedeux Vitality design system |
 
-## Quick start
+## Mobile (primary)
 
 ```bash
-cd web
-cp .env.example .env
+cd mobile
 npm install
-npm run dev
+npx expo start
 ```
 
-Demo surfaces:
+Demo logins: `ada@teedeux.com` (customer) or `shopper@teedeux.com` (shopper) — any password 4+ characters.
 
-- Customer hybrid checkout → `/checkout`
-- Vendor shipping & fulfillment → `/vendor/orders`
-- Shopper in-store picking → `/shopper/order/TDX-10490`
+See [`mobile/README.md`](./mobile/README.md) for EAS production builds and the full route map.
 
-See [`web/README.md`](./web/README.md) for architecture details.
+## Dual fulfillment
 
-## Product phases
-
-**Phase 1 (MVP scaffold in this repo)**  
-Local store listing mindset, inventory model, customer + vendor + shopper UIs, mock third-party delivery / shipping APIs.
-
-**Phase 2**  
-Live Shippo/EasyPost labels, weighted items, dish-to-ingredient bundles, Stripe Connect payouts.
+```
+Customer cart
+├── LOCAL_DELIVERY     → shopper pick + same-day dropoff
+└── NATIONWIDE_SHIPPING → vendor label → USPS / UPS / FedEx
+```
