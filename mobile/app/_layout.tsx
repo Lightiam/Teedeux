@@ -20,7 +20,7 @@ export {
 } from 'expo-router';
 
 export const unstable_settings = {
-  initialRouteName: '(auth)',
+  initialRouteName: 'index',
 };
 
 SplashScreen.preventAutoHideAsync();
@@ -57,9 +57,19 @@ export default function RootLayout() {
           contentStyle: { backgroundColor: colors.background },
         }}
       >
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="store/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="checkout" options={{ headerShown: false }} />
+        <Stack.Screen name="address" options={{ headerShown: false }} />
+        <Stack.Screen name="payment" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="order-confirmation"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="order/[id]" options={{ headerShown: false }} />
+        <Stack.Screen name="shopper" options={{ headerShown: false }} />
       </Stack>
     </SafeAreaProvider>
   );
