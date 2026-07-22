@@ -13,5 +13,5 @@
   <circle cx="115" cy="95" r="8" fill="#8B4513" /> <!-- Representing food item -->
   
   <!-- Text -->
-  <text x="100" y="170" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#FFF8E1">AfroConnect</text>
+  <text x="100" y="170" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#FFF8E1">Teedeux</text>
 </svg>
