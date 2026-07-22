@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Teedeux">
+  <rect width="512" height="512" rx="96" fill="#9c3f00"/>
+  <path fill="#ffdbcc" d="M128 160h256v48H296v176h-80V208H128z"/>
+  <circle cx="368" cy="368" r="48" fill="#3b6934"/>
+</svg>
