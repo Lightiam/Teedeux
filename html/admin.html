@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <title>Teedeux Super Admin · Products</title>
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/admin.css?v=7" />
+</head>
+<body>
+  <div id="login-view" class="shell login-shell" hidden>
+    <form id="login-form" class="login-card" autocomplete="on">
+      <p class="brand">Teedeux</p>
+      <h1>Super Admin</h1>
+      <p class="lede">Site owner access to update African grocery products on the live storefront.</p>
+      <label>Email<input id="email" name="email" type="email" required value="teedeux.dev@gmail.com" /></label>
+      <label>Password<input id="password" name="password" type="password" required value="ChangeMeImmediately123!" /></label>
+      <p id="login-error" class="error" hidden></p>
+      <button type="submit">Sign in to product admin</button>
+      <p class="hint"><a href="/#/home">← Back to shop</a> · <a href="/monitor.html">Monitor</a></p>
+    </form>
+  </div>
+
+  <div id="admin-view" class="shell" hidden>
+    <header class="top">
+      <div>
+        <p class="brand">Teedeux</p>
+        <h1>Product admin</h1>
+        <p class="lede" id="session-meta">Super Admin</p>
+      </div>
+      <div class="top-actions">
+        <a class="ghost" href="/#/home">Shop</a>
+        <a class="ghost" href="/monitor.html">Monitor</a>
+        <button type="button" class="ghost" id="logout-btn">Log out</button>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <input id="search" type="search" placeholder="Search products…" />
+      <select id="filter-category">
+        <option value="">All categories</option>
+      </select>
+      <button type="button" class="primary" id="new-btn">+ New product</button>
+      <button type="button" class="ghost" id="export-btn">Export JSON</button>
+      <label class="ghost file-btn">Import JSON<input type="file" id="import-file" accept="application/json,.json" hidden /></label>
+      <button type="button" class="danger" id="reset-btn">Reset to defaults</button>
+    </section>
+
+    <div class="layout">
+      <section class="list-panel">
+        <div class="list-head">
+          <strong id="count-label">0 products</strong>
+          <span class="muted">Edits save to this browser and update the shop immediately</span>
+        </div>
+        <div id="product-list" class="product-list"></div>
+      </section>
+
+      <section class="form-panel" id="editor">
+        <h2 id="editor-title">Edit product</h2>
+        <form id="product-form">
+          <input type="hidden" id="f-id" />
+          <label>Name<input id="f-name" required maxlength="80" /></label>
+          <div class="row">
+            <label>Size / pack<input id="f-size" maxlength="40" placeholder="2 lb bag" /></label>
+            <label>Category
+              <select id="f-category" required></select>
+            </label>
+          </div>
+          <div class="row">
+            <label>Price (USD)<input id="f-price" type="number" min="0" step="0.01" required /></label>
+            <label>Compare-at (optional)<input id="f-compare" type="number" min="0" step="0.01" /></label>
+          </div>
+          <div class="row">
+            <label>Badge<input id="f-badge" maxlength="24" placeholder="Fresh, New, BEST SALE" /></label>
+            <label class="check"><input id="f-ship" type="checkbox" /> Ship nationwide</label>
+          </div>
+          <label>Image URL<input id="f-image" placeholder="/img/products/jollof-rice.jpg" /></label>
+          <label>Description<textarea id="f-desc" rows="3" maxlength="400"></textarea></label>
+          <div class="form-actions">
+            <button type="submit" class="primary">Save product</button>
+            <button type="button" class="danger" id="delete-btn">Delete</button>
+          </div>
+          <p id="form-msg" class="msg" hidden></p>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script src="/js/catalog.js?v=7"></script>
+  <script src="/js/admin.js?v=7"></script>
+</body>
+</html>

@@ -7,9 +7,9 @@
   <meta name="description" content="Teedeux — African groceries, delivery and pickup." />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Teedeux" />
-  <link rel="manifest" href="/manifest.webmanifest?v=6" />
+  <link rel="manifest" href="/manifest.webmanifest?v=7" />
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/css/styles.css?v=6" />
+  <link rel="stylesheet" href="/css/styles.css?v=7" />
   <title>Teedeux — African Groceries</title>
   <style>
     html,body{margin:0;background:#f6f1ea;font-family:system-ui,sans-serif}
@@ -20,12 +20,13 @@
 <body>
   <a class="sr-only" href="#main">Skip to content</a>
   <a class="monitor-link" href="/monitor.html" title="Environment monitoring">Monitor</a>
+  <a class="admin-link" href="/admin.html" title="Super Admin · update products">Admin</a>
   <div id="app">
     <main id="main" class="app-main" tabindex="-1">
       <div id="boot-fallback">
         <h1>Teedeux</h1>
         <p>Loading African groceries…</p>
-        <p><a href="/?reset=1">Reset cache</a> · <a href="/monitor.html">Open monitor</a></p>
+        <p><a href="/?reset=1">Reset cache</a> · <a href="/monitor.html">Open monitor</a> · <a href="/admin.html">Super Admin</a></p>
       </div>
     </main>
     <nav class="app-nav" id="app-nav" aria-label="Primary">
@@ -58,7 +59,7 @@
 
   <script>
     (function () {
-      var APP_BUILD = '6';
+      var APP_BUILD = '7';
       var params = new URLSearchParams(location.search);
       var needReset = params.get('reset') === '1' || localStorage.getItem('teedeux-build') !== APP_BUILD;
       function done() {
@@ -79,14 +80,14 @@
         .then(done);
     })();
   </script>
-  <script src="/js/catalog.js?v=6" defer></script>
-  <script src="/js/backend.js?v=6" defer></script>
-  <script src="/js/store.js?v=6" defer></script>
-  <script src="/js/app.js?v=6" defer></script>
+  <script src="/js/catalog.js?v=7" defer></script>
+  <script src="/js/backend.js?v=7" defer></script>
+  <script src="/js/store.js?v=7" defer></script>
+  <script src="/js/app.js?v=7" defer></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js?v=6', { scope: '/' }).catch(function () {});
+        navigator.serviceWorker.register('/sw.js?v=7', { scope: '/' }).catch(function () {});
       });
     }
   </script>

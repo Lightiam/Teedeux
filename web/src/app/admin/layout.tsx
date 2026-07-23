@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { LayoutDashboard, LogOut, Users } from "lucide-react";
-import { getSessionUser } from "@/lib/auth";
+import { LayoutDashboard, LogOut, Package, Users } from "lucide-react";
+import { getSessionUser, clearSessionCookie } from "@/lib/auth";
 import { isAdminRole } from "@/lib/rbac";
-import { clearSessionCookie } from "@/lib/auth";
 
 export default async function AdminLayout({
   children,
@@ -12,7 +11,7 @@ export default async function AdminLayout({
 }) {
   const user = await getSessionUser();
   if (!user || !isAdminRole(user.role)) {
-    redirect("/login?next=/admin/users&error=unauthorized");
+    redirect("/login?next=/admin/products&error=unauthorized");
   }
 
   return (
@@ -30,6 +29,13 @@ export default async function AdminLayout({
               >
                 <LayoutDashboard className="h-4 w-4" />
                 Overview
+              </Link>
+              <Link
+                href="/admin/products"
+                className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
+              >
+                <Package className="h-4 w-4" />
+                Products
               </Link>
               <Link
                 href="/admin/users"

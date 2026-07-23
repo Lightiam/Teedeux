@@ -28,31 +28,48 @@ python3 -m http.server 8080
 # open http://localhost:8080
 ```
 
+## Super Admin · Products
+
+Site owner product editor:
+
+- Open **`/admin.html`**
+- Or tap the orange **Admin** chip / Profile → **Super Admin · Products**
+- Login: `teedeux.dev@gmail.com` / `ChangeMeImmediately123!`
+- Create, edit, delete products; export/import JSON; reset defaults
+- Changes save in the browser and update the shop catalog immediately
+
 ## Demo
 
 | Role | Email | Password |
 |------|-------|----------|
+| Super Admin | `teedeux.dev@gmail.com` | `ChangeMeImmediately123!` |
 | Customer | `ada@teedeux.com` | any 4+ chars |
 | Shopper | `shopper@teedeux.com` | any 4+ chars |
 
 ## Features
 
 - Semantic HTML5 + mobile-first CSS (safe areas, tap targets, reduced motion)
-- Hash-routed SPA: auth, home, stores, hybrid cart/checkout, tracking, shopper pick
+- Hash-routed SPA: home, aisles, listing, cart, checkout, orders, tracking, favorites
 - Dual fulfillment UI (local same-day vs nationwide shipped)
-- `localStorage` cart/auth/orders persistence
+- `localStorage` cart/auth/orders + admin product overrides
 - Installable PWA (`manifest.webmanifest` + service worker)
-- Teedeux Vitality design tokens (Hanken Grotesk / JetBrains Mono)
+- Environment monitor at `/monitor.html`
+- Super Admin product CMS at `/admin.html`
 
 ## Structure
 
 ```
 html/
   index.html              App shell
+  admin.html              Super Admin product manager
+  monitor.html            Environment monitor
   css/styles.css          Design system + layouts
-  js/catalog.js           Stores, products, bundles
-  js/store.js             State + localStorage
+  css/admin.css           Admin console styles
+  js/catalog.js           African food catalog + product CRUD
+  js/backend.js           Commerce backend (localStorage)
+  js/store.js             Helpers
   js/app.js               Router + views
+  js/admin.js             Super Admin UI logic
   manifest.webmanifest
   sw.js
   _redirects / _headers   Netlify SPA + caching

@@ -457,7 +457,9 @@
       topbar('Profile', '#/home') +
       '<div class="block"><div class="choice selected"><div class="radio">✓</div><div><strong>Teedeux Shopper</strong><span>African groceries · Delivery & pickup</span></div></div>' +
       '<button type="button" class="btn-primary" data-go="#/orders">My Orders</button>' +
-      '<button type="button" class="btn-primary" style="background:#1c1c1c" data-go-url="/monitor.html">Open Monitor</button></div>';
+      '<button type="button" class="btn-primary" style="background:#1c1c1c" data-go-url="/monitor.html">Open Monitor</button>' +
+      '<button type="button" class="btn-primary" style="background:#ff5a1f" data-go-url="/admin.html">Super Admin · Products</button>' +
+      '<p style="margin:10px 0 0;color:var(--muted);font-size:12px">Site owner link — update catalog products (login required).</p></div>';
   }
 
   function viewProduct(id) {

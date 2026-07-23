@@ -15,10 +15,21 @@
 
 ```bash
 cd web && npm install && npm run dev
-# http://localhost:3000/login → /admin/users
+# http://localhost:3000/login → /admin/products
 ```
 
 Super Admin: `teedeux.dev@gmail.com` / `ChangeMeImmediately123!`
+
+### Super Admin products (live Netlify shop)
+
+Owner product editor on the static site:
+
+- **Link:** `/admin.html` (also from Profile → Super Admin · Products, Monitor, or the orange **Admin** chip)
+- Same Super Admin credentials as above
+- Create / edit / delete products; export & import JSON; reset to defaults
+- Updates apply immediately to the shop catalog in that browser
+
+Next.js mirror: `/admin/products` (session-gated RBAC API at `/api/admin/products`).
 
 ## HTML5 (fastest to open)
 

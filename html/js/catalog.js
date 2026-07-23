@@ -117,7 +117,9 @@
     );
   }
 
-  var PRODUCTS = [
+  var PRODUCT_STORE_KEY = 'teedeux-products-v1';
+
+  var BASE_PRODUCTS = [
     item({
       id: 'jollof-rice',
       name: 'Jollof Rice',
@@ -505,6 +507,158 @@
     return '$' + (n / 100).toFixed(2);
   }
 
+  function cloneProduct(p) {
+    return JSON.parse(JSON.stringify(p));
+  }
+
+  var PRODUCTS = [];
+
+  function seedProducts() {
+    PRODUCTS.length = 0;
+    BASE_PRODUCTS.forEach(function (p) {
+      PRODUCTS.push(cloneProduct(p));
+    });
+  }
+
+  function persistProducts() {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(PRODUCT_STORE_KEY, JSON.stringify(PRODUCTS));
+      }
+    } catch (e) {}
+  }
+
+  function loadLiveProducts() {
+    seedProducts();
+    try {
+      if (typeof localStorage === 'undefined') return;
+      var raw = localStorage.getItem(PRODUCT_STORE_KEY);
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed) || !parsed.length) return;
+      PRODUCTS.length = 0;
+      parsed.forEach(function (row) {
+        if (!row || !row.id || !row.name) return;
+        PRODUCTS.push(
+          item({
+            id: String(row.id),
+            name: String(row.name),
+            size: String(row.size || ''),
+            category: String(row.category || 'Staples'),
+            priceCents: Number(row.priceCents) || 0,
+            compareAtCents: row.compareAtCents ? Number(row.compareAtCents) : undefined,
+            unitPrice: row.unitPrice || '',
+            imageUrl: String(row.imageUrl || '/img/products/jollof-rice.jpg'),
+            badge: row.badge || undefined,
+            description: String(row.description || ''),
+            nutrition: row.nutrition || n(0, '0g', '0g', '0g', '0mg'),
+            shipNationwide: !!row.shippable || !!row.shipNationwide,
+          })
+        );
+      });
+    } catch (e) {
+      seedProducts();
+    }
+  }
+
+  loadLiveProducts();
+
+  function slugify(name) {
+    return String(name || 'product')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '')
+      .slice(0, 48) || 'product';
+  }
+
+  function upsertProduct(input) {
+    var data = input || {};
+    var id = String(data.id || '').trim() || slugify(data.name) + '-' + Date.now().toString(36).slice(-4);
+    var existingIdx = -1;
+    for (var i = 0; i < PRODUCTS.length; i++) {
+      if (PRODUCTS[i].id === id) {
+        existingIdx = i;
+        break;
+      }
+    }
+    var prev = existingIdx >= 0 ? PRODUCTS[existingIdx] : null;
+    var next = item({
+      id: id,
+      name: String(data.name || (prev && prev.name) || 'Untitled product').trim(),
+      size: String(data.size != null ? data.size : (prev && prev.size) || ''),
+      category: String(data.category || (prev && prev.category) || 'Staples'),
+      priceCents: Number(data.priceCents != null ? data.priceCents : (prev && prev.priceCents) || 0),
+      compareAtCents:
+        data.compareAtCents != null
+          ? Number(data.compareAtCents) || undefined
+          : prev && prev.compareAtCents,
+      unitPrice: data.unitPrice != null ? data.unitPrice : (prev && prev.unitPrice) || '',
+      imageUrl: String(
+        data.imageUrl || (prev && prev.imageUrl) || '/img/products/jollof-rice.jpg'
+      ),
+      badge: data.badge != null ? data.badge || undefined : prev && prev.badge,
+      description: String(
+        data.description != null ? data.description : (prev && prev.description) || ''
+      ),
+      nutrition: (data.nutrition || (prev && prev.nutrition) || n(0, '0g', '0g', '0g', '0mg')),
+      shipNationwide: data.shipNationwide != null ? !!data.shipNationwide : !!(prev && prev.shippable),
+    });
+    if (existingIdx >= 0) PRODUCTS[existingIdx] = next;
+    else PRODUCTS.unshift(next);
+    persistProducts();
+    return next;
+  }
+
+  function deleteProduct(id) {
+    var before = PRODUCTS.length;
+    PRODUCTS = PRODUCTS.filter(function (p) {
+      return p.id !== id;
+    });
+    if (PRODUCTS.length === before) return false;
+    persistProducts();
+    return true;
+  }
+
+  function resetProducts() {
+    try {
+      if (typeof localStorage !== 'undefined') localStorage.removeItem(PRODUCT_STORE_KEY);
+    } catch (e) {}
+    seedProducts();
+    return PRODUCTS.slice();
+  }
+
+  function exportProducts() {
+    return JSON.stringify(PRODUCTS, null, 2);
+  }
+
+  function importProducts(json) {
+    var parsed = typeof json === 'string' ? JSON.parse(json) : json;
+    if (!Array.isArray(parsed) || !parsed.length) throw new Error('Invalid product list');
+    PRODUCTS.length = 0;
+    parsed.forEach(function (row) {
+      if (!row || !row.id || !row.name) return;
+      PRODUCTS.push(
+        item({
+          id: String(row.id),
+          name: String(row.name),
+          size: String(row.size || ''),
+          category: String(row.category || 'Staples'),
+          priceCents: Number(row.priceCents) || 0,
+          compareAtCents: row.compareAtCents ? Number(row.compareAtCents) : undefined,
+          unitPrice: row.unitPrice || '',
+          imageUrl: String(row.imageUrl || '/img/products/jollof-rice.jpg'),
+          badge: row.badge || undefined,
+          description: String(row.description || ''),
+          nutrition: row.nutrition || n(0, '0g', '0g', '0g', '0mg'),
+          shipNationwide: !!row.shippable || !!row.shipNationwide,
+        })
+      );
+    });
+    if (!PRODUCTS.length) throw new Error('No valid products in import');
+    persistProducts();
+    return PRODUCTS.slice();
+  }
+
   function getStore(id) {
     return SHOP;
   }
@@ -541,10 +695,14 @@
     AISLES: AISLES,
     SHOP: SHOP,
     STORES: STORES,
-    PRODUCTS: PRODUCTS,
+    get PRODUCTS() {
+      return PRODUCTS;
+    },
+    BASE_PRODUCTS: BASE_PRODUCTS,
     DEMO_ADDRESS: DEMO_ADDRESS,
     DEMO_PAYMENT: DEMO_PAYMENT,
     PROMO: PROMO,
+    PRODUCT_STORE_KEY: PRODUCT_STORE_KEY,
     formatCents: formatCents,
     getStore: getStore,
     getProduct: getProduct,
@@ -552,5 +710,11 @@
     productsForStore: productsForStore,
     productsForAisle: productsForAisle,
     relatedProducts: relatedProducts,
+    upsertProduct: upsertProduct,
+    deleteProduct: deleteProduct,
+    resetProducts: resetProducts,
+    exportProducts: exportProducts,
+    importProducts: importProducts,
+    reloadProducts: loadLiveProducts,
   };
 })(typeof window !== 'undefined' ? window : globalThis);
