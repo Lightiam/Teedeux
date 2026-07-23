@@ -15,10 +15,23 @@
 
 ```bash
 cd web && npm install && npm run dev
-# http://localhost:3000/login → /admin/users
+# http://localhost:3000/login → /admin/products
 ```
 
-Super Admin: `teedeux.dev@gmail.com` / `ChangeMeImmediately123!`
+Super Admin:  
+**Username:** `teedeux.dev@gmail.com`  
+**Password:** `ChangeMeImmediately123!`
+
+### Super Admin products (live Netlify shop)
+
+Owner product editor — **you** control the catalog; saves publish to the live shop:
+
+- **Link:** `/admin.html` (also Profile → Super Admin · Products, or the orange **Admin** chip)
+- **Username:** `teedeux.dev@gmail.com`
+- **Password:** `ChangeMeImmediately123!`
+- After **Save & publish**, the shop reloads the updated catalog for shoppers (`/api/products`)
+
+Next.js mirror: `/admin/products` (same username/password via `/login`).
 
 ## HTML5 (fastest to open)
 

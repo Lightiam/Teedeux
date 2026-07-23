@@ -457,7 +457,9 @@
       topbar('Profile', '#/home') +
       '<div class="block"><div class="choice selected"><div class="radio">✓</div><div><strong>Teedeux Shopper</strong><span>African groceries · Delivery & pickup</span></div></div>' +
       '<button type="button" class="btn-primary" data-go="#/orders">My Orders</button>' +
-      '<button type="button" class="btn-primary" style="background:#1c1c1c" data-go-url="/monitor.html">Open Monitor</button></div>';
+      '<button type="button" class="btn-primary" style="background:#1c1c1c" data-go-url="/monitor.html">Open Monitor</button>' +
+      '<button type="button" class="btn-primary" style="background:#ff5a1f" data-go-url="/admin.html">Super Admin · Products</button>' +
+      '<p style="margin:10px 0 0;color:var(--muted);font-size:12px">Site owner link — update catalog products (login required).</p></div>';
   }
 
   function viewProduct(id) {
@@ -638,10 +640,31 @@
     bind();
     if (!location.hash || location.hash === '#' || location.hash === '#/') location.replace('#/home');
     window.addEventListener('hashchange', render);
+    window.addEventListener('teedeux-catalog-changed', function () {
+      render();
+    });
+    window.addEventListener('storage', function (e) {
+      if (!e) return;
+      if (e.key === C.PRODUCT_STORE_KEY || e.key === 'teedeux-products-rev') {
+        C.reloadProducts();
+        render();
+      }
+    });
+    window.addEventListener('focus', function () {
+      C.hydrateFromServer().then(function (updated) {
+        if (updated) render();
+        else {
+          C.reloadProducts();
+          render();
+        }
+      });
+    });
     B.subscribe(function () {
       setNav(route().name === 'cart' ? 'cart' : route().name === 'orders' ? 'orders' : route().name === 'favorites' ? 'favorites' : route().name === 'profile' ? 'profile' : 'home');
     });
-    render();
+    C.hydrateFromServer().finally(function () {
+      render();
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

@@ -1,6 +1,6 @@
 /* Teedeux HTML5 service worker — network-first so deploys always open */
-const CACHE = 'teedeux-html-v6';
-const ASSETS = ['/', '/index.html', '/css/styles.css', '/js/catalog.js', '/js/backend.js', '/js/store.js', '/js/app.js', '/manifest.webmanifest', '/icons/icon.svg', '/monitor.html'];
+const CACHE = 'teedeux-html-v8';
+const ASSETS = ['/', '/index.html', '/css/styles.css', '/css/admin.css', '/js/catalog.js', '/js/backend.js', '/js/store.js', '/js/app.js', '/js/admin.js', '/manifest.webmanifest', '/icons/icon.svg', '/monitor.html', '/admin.html'];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();

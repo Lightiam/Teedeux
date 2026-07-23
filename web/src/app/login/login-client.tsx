@@ -9,7 +9,7 @@ import { SUPER_ADMIN_EMAIL } from "@/lib/rbac";
 export default function LoginClient() {
   const router = useRouter();
   const params = useSearchParams();
-  const next = params.get("next") || "/admin/users";
+  const next = params.get("next") || "/admin/products";
   const unauthorized = params.get("error") === "unauthorized";
 
   const [email, setEmail] = useState(SUPER_ADMIN_EMAIL);

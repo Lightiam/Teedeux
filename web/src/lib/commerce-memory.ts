@@ -78,7 +78,7 @@ const CATEGORIES = [
   { id: "Drinks", name: "Drinks", label: "Zobo Leaves & Coffee", imageUrl: "/img/products/zobo-leaves.jpg" },
 ];
 
-const PRODUCTS: Product[] = [
+const BASE_PRODUCTS: Product[] = [
   { id: "jollof-rice", name: "Jollof Rice", size: "32 oz tray", category: "Staples", priceCents: 899, badge: "BEST SALE", imageUrl: "/img/products/jollof-rice.jpg", description: "Party-style West African jollof rice." },
   { id: "ripe-plantains", name: "Ripe Plantains", size: "3 ct", category: "Produce", priceCents: 349, compareAtCents: 449, badge: "10% OFF", imageUrl: "/img/products/ripe-plantains.jpg", description: "Sweet ripe plantains for dodo." },
   { id: "pounded-yam-flour", name: "Pounded Yam Flour", size: "2 lb bag", category: "Staples", priceCents: 1299, imageUrl: "/img/products/pounded-yam-flour.jpg", description: "Smooth pounded yam flour." },
@@ -92,6 +92,18 @@ const PRODUCTS: Product[] = [
   { id: "chin-chin", name: "Chin Chin", size: "10 oz", category: "Snacks", priceCents: 549, compareAtCents: 649, badge: "10% OFF", imageUrl: "/img/products/chin-chin.jpg", description: "Crunchy chin chin." },
   { id: "zobo-leaves", name: "Zobo (Hibiscus) Leaves", size: "8 oz", category: "Drinks", priceCents: 649, imageUrl: "/img/products/zobo-leaves.jpg", description: "Dried hibiscus for zobo." },
 ];
+
+let PRODUCTS: Product[] = BASE_PRODUCTS.map((p) => ({ ...p }));
+
+function slugify(name: string) {
+  return (
+    String(name || "product")
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-|-$/g, "")
+      .slice(0, 48) || "product"
+  );
+}
 
 type State = {
   cart: { items: CartLine[]; promoCode: string | null };
@@ -204,6 +216,50 @@ export function listProducts(opts: { category?: string; q?: string } = {}) {
     list = list.filter((p) => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
   }
   return list;
+}
+
+export function getProduct(id: string) {
+  return PRODUCTS.find((p) => p.id === id) || null;
+}
+
+export function upsertProduct(input: Partial<Product> & { name?: string; priceCents?: number }) {
+  const id =
+    String(input.id || "").trim() ||
+    `${slugify(input.name || "product")}-${Date.now().toString(36).slice(-4)}`;
+  const existingIdx = PRODUCTS.findIndex((p) => p.id === id);
+  const prev = existingIdx >= 0 ? PRODUCTS[existingIdx] : null;
+  const next: Product = {
+    id,
+    name: String(input.name || prev?.name || "Untitled product").trim(),
+    size: String(input.size ?? prev?.size ?? ""),
+    category: String(input.category || prev?.category || "Staples"),
+    priceCents: Number(input.priceCents ?? prev?.priceCents ?? 0),
+    compareAtCents:
+      input.compareAtCents !== undefined
+        ? Number(input.compareAtCents) || undefined
+        : prev?.compareAtCents,
+    badge: input.badge !== undefined ? input.badge || undefined : prev?.badge,
+    imageUrl: String(input.imageUrl || prev?.imageUrl || "/img/products/jollof-rice.jpg"),
+    description: String(input.description ?? prev?.description ?? ""),
+  };
+  if (existingIdx >= 0) PRODUCTS[existingIdx] = next;
+  else PRODUCTS.unshift(next);
+  pushEvent("product.upsert", { productId: next.id, name: next.name });
+  return next;
+}
+
+export function deleteProduct(id: string) {
+  const before = PRODUCTS.length;
+  PRODUCTS = PRODUCTS.filter((p) => p.id !== id);
+  if (PRODUCTS.length === before) return false;
+  pushEvent("product.delete", { productId: id });
+  return true;
+}
+
+export function resetProducts() {
+  PRODUCTS = BASE_PRODUCTS.map((p) => ({ ...p }));
+  pushEvent("product.reset", { count: PRODUCTS.length });
+  return PRODUCTS.slice();
 }
 
 export function getCart() {

@@ -34,12 +34,20 @@ export default async function AdminOverviewPage() {
         </div>
       </div>
 
-      <Link
-        href="/admin/users"
-        className="inline-flex rounded-xl bg-primary px-5 py-3 font-semibold text-on-primary shadow-warm"
-      >
-        Open user management
-      </Link>
+      <div className="flex flex-wrap gap-3">
+        <Link
+          href="/admin/products"
+          className="inline-flex rounded-xl bg-primary px-5 py-3 font-semibold text-on-primary shadow-warm"
+        >
+          Manage products
+        </Link>
+        <Link
+          href="/admin/users"
+          className="inline-flex rounded-xl border border-outline-variant px-5 py-3 font-semibold hover:bg-surface-container"
+        >
+          Open user management
+        </Link>
+      </div>
     </div>
   );
 }
