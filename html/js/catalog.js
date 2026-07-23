@@ -17,52 +17,81 @@
     { id: 'Drinks', label: 'Drinks & Pantry' },
   ];
 
-  var STORES = [
+
+  // Food aisles — labeled as African foods (not third-party market brands)
+  var AISLES = [
     {
-      id: 'store_mama_jones',
-      name: 'Mama Jones African Market',
-      shortName: 'Mama Jones',
-      logoUrl: '/img/stores/mama-jones.jpg',
-      lastVisited: 'Last visited today',
-      estimatedDeliveryMins: 45,
-      estimatedPickupMins: 20,
-      address: { line1: '920 Memorial Dr SE', city: 'Atlanta', state: 'GA', postalCode: '30316' },
-      fulfillment: ['Delivery', 'Pickup'],
+      id: 'Staples',
+      name: 'Pounded Yam, Fufu & Gari',
+      shortName: 'Staples',
+      subtitle: 'Swallow bases & grains',
+      logoUrl: '/img/products/pounded-yam-flour.jpg',
+      examples: 'Pounded yam · Fufu · White gari · Attiéké',
     },
     {
-      id: 'store_lagos_pantry',
-      name: 'Lagos Pantry',
-      shortName: 'Lagos Pantry',
-      logoUrl: '/img/stores/lagos-pantry.jpg',
-      lastVisited: 'Last visited yesterday',
-      estimatedDeliveryMins: 55,
-      estimatedPickupMins: 25,
-      address: { line1: '6100 Richmond Ave', city: 'Houston', state: 'TX', postalCode: '77057' },
-      fulfillment: ['Delivery', 'Pickup'],
+      id: 'Spices',
+      name: 'Egusi, Suya & Berbere',
+      shortName: 'Spices',
+      subtitle: 'Spices & seasonings',
+      logoUrl: '/img/products/egusi-seeds.jpg',
+      examples: 'Egusi · Suya spice · Jollof spice · Ogbono',
     },
     {
-      id: 'store_habesha',
-      name: 'Habesha Spices & Market',
-      shortName: 'Habesha',
-      logoUrl: '/img/stores/habesha.jpg',
-      lastVisited: 'Last visited 3 days ago',
-      estimatedDeliveryMins: 60,
-      estimatedPickupMins: 30,
-      address: { line1: '1800 Columbia Pike', city: 'Arlington', state: 'VA', postalCode: '22204' },
-      fulfillment: ['Delivery', 'Pickup'],
+      id: 'Oils',
+      name: 'Red Palm Oil & Pastes',
+      shortName: 'Oils',
+      subtitle: 'Oils, pastes & stew bases',
+      logoUrl: '/img/products/red-palm-oil.jpg',
+      examples: 'Red palm oil · Groundnut paste · Tomato stew base',
     },
     {
-      id: 'store_accra',
-      name: 'Accra Market NYC',
-      shortName: 'Accra Market',
-      logoUrl: '/img/stores/accra-market.jpg',
-      lastVisited: 'Last visited last week',
-      estimatedDeliveryMins: 50,
-      estimatedPickupMins: 22,
-      address: { line1: '125th St', city: 'New York', state: 'NY', postalCode: '10027' },
-      fulfillment: ['Delivery', 'Pickup'],
+      id: 'Produce',
+      name: 'Plantains, Peppers & Greens',
+      shortName: 'Produce',
+      subtitle: 'Fresh produce',
+      logoUrl: '/img/products/ripe-plantains.jpg',
+      examples: 'Ripe plantains · Scotch bonnet · Ugu · Okro',
+    },
+    {
+      id: 'Protein',
+      name: 'Stockfish, Goat & Crayfish',
+      shortName: 'Protein',
+      subtitle: 'Meat & seafood',
+      logoUrl: '/img/products/stockfish.jpg',
+      examples: 'Stockfish · Goat meat · Dried crayfish · Smoked catfish',
+    },
+    {
+      id: 'Snacks',
+      name: 'Plantain Chips & Chin Chin',
+      shortName: 'Snacks',
+      subtitle: 'Snacks & bakery',
+      logoUrl: '/img/products/plantain-chips.jpg',
+      examples: 'Plantain chips · Chin chin · Agege bread',
+    },
+    {
+      id: 'Drinks',
+      name: 'Zobo Leaves & Coffee',
+      shortName: 'Drinks',
+      subtitle: 'Drinks & pantry',
+      logoUrl: '/img/products/zobo-leaves.jpg',
+      examples: 'Zobo (hibiscus) · Ethiopian coffee',
     },
   ];
+
+  // Single Teedeux shop (brand) — not a copied market name
+  var SHOP = {
+    id: 'teedeux',
+    name: 'Teedeux',
+    shortName: 'Teedeux',
+    logoUrl: '/icons/icon.svg',
+    estimatedDeliveryMins: 45,
+    estimatedPickupMins: 20,
+    address: { line1: '', city: 'Nationwide', state: 'US', postalCode: '' },
+  };
+
+  // Back-compat alias used by older store.js helpers
+  var STORES = [SHOP];
+
 
   function n(cals, fat, carb, protein, sodium) {
     return {
@@ -97,7 +126,6 @@
       priceCents: 899,
       unitPrice: '$0.28 /oz',
       imageUrl: '/img/products/jollof-rice.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       badge: 'New',
       description:
         'Party-style West African jollof rice simmered with tomatoes, peppers, and aromatic spices. Ready to heat and serve.',
@@ -111,7 +139,6 @@
       priceCents: 349,
       unitPrice: '$1.16 /ea',
       imageUrl: '/img/products/ripe-plantains.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       badge: 'Fresh',
       description: 'Sweet ripe plantains — perfect for frying into dodo or baking.',
       nutrition: n(180, '0.5g', '47g', '2g', '5mg'),
@@ -124,7 +151,6 @@
       priceCents: 1299,
       unitPrice: '$0.41 /oz',
       imageUrl: '/img/products/pounded-yam-flour.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Smooth pounded yam flour for classic Nigerian swallow. Ships nationwide.',
       nutrition: n(150, '0g', '36g', '1g', '0mg'),
       shipNationwide: true,
@@ -137,7 +163,6 @@
       priceCents: 999,
       unitPrice: '$0.62 /oz',
       imageUrl: '/img/products/egusi-seeds.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       description: 'Ground-ready egusi (melon) seeds for rich Nigerian and Ghanaian soups.',
       nutrition: n(160, '13g', '4g', '8g', '5mg'),
       shipNationwide: true,
@@ -150,7 +175,6 @@
       priceCents: 1499,
       unitPrice: '$0.44 /fl oz',
       imageUrl: '/img/products/red-palm-oil.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_habesha', 'store_accra'],
       badge: 'Pantry staple',
       description: 'Unrefined red palm oil with deep color and authentic flavor for stews and soups.',
       nutrition: n(120, '14g', '0g', '0g', '0mg'),
@@ -164,7 +188,6 @@
       priceCents: 1899,
       unitPrice: '$2.37 /oz',
       imageUrl: '/img/products/stockfish.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Premium dried stockfish — essential for Nigerian soups and stews.',
       nutrition: n(90, '1g', '0g', '20g', '180mg'),
       shipNationwide: true,
@@ -177,7 +200,6 @@
       priceCents: 699,
       unitPrice: '$1.75 /oz',
       imageUrl: '/img/products/suya-spice.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       badge: 'Popular',
       description: 'Smoky peanut-chili suya spice for grilling meat and roasted snacks.',
       nutrition: n(25, '1g', '3g', '1g', '210mg'),
@@ -191,7 +213,6 @@
       priceCents: 449,
       unitPrice: '$0.56 /oz',
       imageUrl: '/img/products/scotch-bonnet.jpg',
-      storeIds: ['store_mama_jones', 'store_accra'],
       description: 'Fresh hot scotch bonnet peppers for pepper sauces, stews, and marinades.',
       nutrition: n(20, '0g', '4g', '1g', '2mg'),
     }),
@@ -203,7 +224,6 @@
       priceCents: 799,
       unitPrice: '$0.25 /oz',
       imageUrl: '/img/products/gari-white.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       description: 'Fine white cassava gari for eba, soaking, or light snacks.',
       nutrition: n(160, '0g', '38g', '1g', '5mg'),
       shipNationwide: true,
@@ -216,7 +236,6 @@
       priceCents: 599,
       unitPrice: '$0.19 /oz',
       imageUrl: '/img/products/black-eyed-peas.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_habesha', 'store_accra'],
       description: 'Dry black-eyed peas for beans porridge, akara, and moi moi.',
       nutrition: n(140, '0.5g', '25g', '9g', '10mg'),
       shipNationwide: true,
@@ -229,7 +248,6 @@
       priceCents: 1099,
       unitPrice: '$0.46 /oz',
       imageUrl: '/img/products/fufu-flour.jpg',
-      storeIds: ['store_mama_jones', 'store_accra'],
       description: 'Plantain & cassava fufu flour — quick smooth swallow.',
       nutrition: n(140, '0g', '34g', '1g', '0mg'),
       shipNationwide: true,
@@ -242,7 +260,6 @@
       priceCents: 1299,
       unitPrice: '$1.62 /oz',
       imageUrl: '/img/products/dried-crayfish.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Sun-dried crayfish for authentic depth in soups and sauces.',
       nutrition: n(80, '1g', '0g', '17g', '320mg'),
       shipNationwide: true,
@@ -255,7 +272,6 @@
       priceCents: 399,
       unitPrice: '$0.67 /oz',
       imageUrl: '/img/products/plantain-chips.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       badge: 'Snack',
       description: 'Crispy lightly salted plantain chips — a West African classic.',
       nutrition: n(150, '7g', '20g', '1g', '90mg'),
@@ -269,7 +285,6 @@
       priceCents: 899,
       unitPrice: '$1.12 /oz',
       imageUrl: '/img/products/ogbono-seeds.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Ground ogbono (bush mango) seeds for draw soups.',
       nutrition: n(130, '10g', '6g', '4g', '5mg'),
       shipNationwide: true,
@@ -282,7 +297,6 @@
       priceCents: 1199,
       unitPrice: '$0.37 /oz',
       imageUrl: '/img/products/injera-mix.jpg',
-      storeIds: ['store_habesha'],
       description: 'Teff blend for soft Ethiopian injera at home.',
       nutrition: n(120, '1g', '24g', '4g', '5mg'),
       shipNationwide: true,
@@ -295,7 +309,6 @@
       priceCents: 749,
       unitPrice: '$1.87 /oz',
       imageUrl: '/img/products/berbere-spice.jpg',
-      storeIds: ['store_habesha', 'store_mama_jones'],
       description: 'Warm Ethiopian berbere chili blend for stews and roasted vegetables.',
       nutrition: n(15, '0.5g', '2g', '1g', '180mg'),
       shipNationwide: true,
@@ -308,7 +321,6 @@
       priceCents: 2499,
       unitPrice: '$0.78 /oz',
       imageUrl: '/img/products/nyama-goat.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       description: 'Fresh-cut goat meat for pepper soup, stews, and suya-style grilling.',
       nutrition: n(140, '3g', '0g', '27g', '70mg'),
     }),
@@ -320,7 +332,6 @@
       priceCents: 549,
       unitPrice: '$0.46 /oz',
       imageUrl: '/img/products/ugu-leaves.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Fluted pumpkin (ugu) leaves — leafy green for soups and stews.',
       nutrition: n(25, '0g', '4g', '2g', '15mg'),
     }),
@@ -332,7 +343,6 @@
       priceCents: 799,
       unitPrice: '$0.50 /oz',
       imageUrl: '/img/products/groundnut-paste.jpg',
-      storeIds: ['store_mama_jones', 'store_accra', 'store_habesha'],
       description: 'Smooth roasted groundnut paste for peanut stew (maafe) and sauces.',
       nutrition: n(190, '16g', '6g', '8g', '5mg'),
       shipNationwide: true,
@@ -345,7 +355,6 @@
       priceCents: 599,
       unitPrice: '$2.00 /oz',
       imageUrl: '/img/products/jollof-spice.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       badge: 'New',
       description: 'Balanced jollof seasoning — paprika, thyme, curry, and bouillon notes.',
       nutrition: n(10, '0g', '2g', '0g', '240mg'),
@@ -359,7 +368,6 @@
       priceCents: 499,
       unitPrice: '$4.99 /ea',
       imageUrl: '/img/products/agege-bread.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Soft Nigerian Agege-style bread — great with stew or tea.',
       nutrition: n(140, '2g', '26g', '4g', '220mg'),
     }),
@@ -371,7 +379,6 @@
       priceCents: 649,
       unitPrice: '$0.81 /oz',
       imageUrl: '/img/products/zobo-leaves.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       description: 'Dried hibiscus petals for zobo / sobolo drinks.',
       nutrition: n(5, '0g', '1g', '0g', '0mg'),
       shipNationwide: true,
@@ -384,7 +391,6 @@
       priceCents: 899,
       unitPrice: '$0.28 /oz',
       imageUrl: '/img/products/cassava-flour.jpg',
-      storeIds: ['store_mama_jones', 'store_accra'],
       description: 'Fine cassava flour for baking, pap, and gluten-free cooking.',
       nutrition: n(130, '0g', '31g', '1g', '0mg'),
       shipNationwide: true,
@@ -397,7 +403,6 @@
       priceCents: 799,
       unitPrice: '$0.33 /oz',
       imageUrl: '/img/products/tomato-stew-base.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Concentrated African tomato-pepper stew base — start any jollof or stew.',
       nutrition: n(45, '2g', '6g', '1g', '290mg'),
       shipNationwide: true,
@@ -410,7 +415,6 @@
       priceCents: 649,
       unitPrice: '$2.16 /oz',
       imageUrl: '/img/products/pepper-soup-spice.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Aromatic pepper-soup spice mix with uda, uziza, and chili.',
       nutrition: n(10, '0g', '2g', '0g', '95mg'),
       shipNationwide: true,
@@ -423,7 +427,6 @@
       priceCents: 549,
       unitPrice: '$0.55 /oz',
       imageUrl: '/img/products/chin-chin.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry', 'store_accra'],
       description: 'Crunchy fried chin chin snack — lightly sweet and addictive.',
       nutrition: n(160, '8g', '20g', '2g', '85mg'),
       shipNationwide: true,
@@ -436,7 +439,6 @@
       priceCents: 1399,
       unitPrice: '$1.17 /oz',
       imageUrl: '/img/products/african-coffee.jpg',
-      storeIds: ['store_habesha'],
       description: 'Single-origin Ethiopian coffee beans with floral citrus notes.',
       nutrition: n(2, '0g', '0g', '0g', '0mg'),
       shipNationwide: true,
@@ -449,7 +451,6 @@
       priceCents: 399,
       unitPrice: '$0.25 /oz',
       imageUrl: '/img/products/okro.jpg',
-      storeIds: ['store_mama_jones', 'store_accra'],
       description: 'Fresh okro for draw soups and stews.',
       nutrition: n(30, '0g', '7g', '2g', '5mg'),
     }),
@@ -461,7 +462,6 @@
       priceCents: 1699,
       unitPrice: '$1.70 /oz',
       imageUrl: '/img/products/smoked-catfish.jpg',
-      storeIds: ['store_mama_jones', 'store_lagos_pantry'],
       description: 'Whole smoked catfish for soups and pepper sauces.',
       nutrition: n(110, '3g', '0g', '20g', '410mg'),
       shipNationwide: true,
@@ -474,7 +474,6 @@
       priceCents: 749,
       unitPrice: '$0.54 /oz',
       imageUrl: '/img/products/attieke.jpg',
-      storeIds: ['store_accra', 'store_mama_jones'],
       description: 'Ivorian fermented cassava couscous (attiéké) — steam and serve.',
       nutrition: n(150, '0g', '36g', '1g', '10mg'),
       shipNationwide: true,
@@ -507,8 +506,7 @@
   }
 
   function getStore(id) {
-    for (var i = 0; i < STORES.length; i++) if (STORES[i].id === id) return STORES[i];
-    return STORES[0];
+    return SHOP;
   }
 
   function getProduct(id) {
@@ -521,8 +519,13 @@
   }
 
   function productsForStore(storeId) {
+    return PRODUCTS.slice();
+  }
+
+  function productsForAisle(aisleId) {
+    if (!aisleId) return PRODUCTS.slice();
     return PRODUCTS.filter(function (p) {
-      return !storeId || (p.storeIds && p.storeIds.indexOf(storeId) !== -1);
+      return p.category === aisleId;
     });
   }
 
@@ -535,6 +538,8 @@
 
   Teedeux.catalog = {
     CATEGORIES: CATEGORIES,
+    AISLES: AISLES,
+    SHOP: SHOP,
     STORES: STORES,
     PRODUCTS: PRODUCTS,
     DEMO_ADDRESS: DEMO_ADDRESS,
@@ -545,6 +550,7 @@
     getProduct: getProduct,
     getProductById: getProductById,
     productsForStore: productsForStore,
+    productsForAisle: productsForAisle,
     relatedProducts: relatedProducts,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

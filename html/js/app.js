@@ -1,5 +1,5 @@
 /**
- * Teedeux SPA — Wegmans-style grocery UI.
+ * Teedeux SPA — grocery UI for African food items.
  * No onboarding / splash. Default route: account → shop.
  */
 (function () {
@@ -68,8 +68,105 @@
     });
   }
 
-  function currentStore() {
-    return C.getStore(S.session.selectedStoreId);
+  function currentShop() {
+    return C.SHOP || (C.STORES && C.STORES[0]) || { name: 'Teedeux', shortName: 'Teedeux', logoUrl: '/icons/icon.svg', estimatedDeliveryMins: 45, estimatedPickupMins: 20 };
+  }
+
+  function viewAccount() {
+    setNav('account');
+    var aisles = (C.AISLES || []).map(function (aisle) {
+      return (
+        '<div class="store-card">' +
+        '<img src="' +
+        esc(aisle.logoUrl) +
+        '" alt="' +
+        esc(aisle.name) +
+        '" />' +
+        '<div>' +
+        '<p class="store-card__name">' +
+        esc(aisle.name) +
+        '</p>' +
+        '<p class="store-card__meta">' +
+        esc(aisle.examples || aisle.subtitle || '') +
+        '</p>' +
+        '<div class="store-card__actions">' +
+        '<button type="button" class="pill-btn primary" data-go="#/explore/' +
+        encodeURIComponent(aisle.id) +
+        '">Shop</button>' +
+        '<button type="button" class="pill-btn" data-go="#/shop">Delivery</button>' +
+        '</div></div></div>'
+      );
+    }).join('');
+
+    main.innerHTML =
+      '<section class="account-screen">' +
+      '<div class="account-hero">' +
+      '<h1>Teedeux</h1>' +
+      '<a href="#/shop">African groceries</a>' +
+      '</div>' +
+      '<div class="account-actions">' +
+      '<button type="button" class="account-action" data-go="#/items"><span class="account-action__icon blue">↻</span><strong>Re-order</strong></button>' +
+      '<button type="button" class="account-action" data-go="#/coupons"><span class="account-action__icon green">$</span><strong>Sales</strong></button>' +
+      '<button type="button" class="account-action" data-go="#/items"><span class="account-action__icon yellow">☰</span><strong>Shopping list</strong></button>' +
+      '</div>' +
+      '<p class="section-label">African foods</p>' +
+      aisles +
+      '</section>';
+  }
+
+  function viewShop(query) {
+    setNav('shop');
+    var shop = currentShop();
+    var products = C.PRODUCTS.slice();
+    if (query) {
+      var q = query.toLowerCase();
+      products = products.filter(function (p) {
+        return (
+          p.name.toLowerCase().indexOf(q) !== -1 ||
+          p.category.toLowerCase().indexOf(q) !== -1
+        );
+      });
+    }
+    var arrivals = products.slice(0, 10);
+    var pantry = products.filter(function (p) {
+      return p.shipNationwide;
+    }).slice(0, 10);
+    var fresh = products.filter(function (p) {
+      return p.category === 'Produce' || p.category === 'Protein';
+    }).slice(0, 10);
+    var count = qtyInCart();
+
+    main.innerHTML =
+      '<header class="shop-header">' +
+      '<div class="shop-header__row">' +
+      '<img class="shop-logo" src="' +
+      esc(shop.logoUrl) +
+      '" alt="Teedeux" />' +
+      '<button type="button" class="shop-store-btn" data-go="#/account"><span>Teedeux</span> ▾</button>' +
+      '<button type="button" class="cart-fab" data-go="#/items" aria-label="Your Items">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 7h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8L4 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>' +
+      (count ? '<span class="cart-fab__count">' + count + '</span>' : '') +
+      '</button></div>' +
+      '<form class="search-bar" id="search-form">' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>' +
+      '<input type="search" name="q" placeholder="Search plantain, egusi, palm oil…" value="' +
+      esc(query || '') +
+      '" aria-label="Search" />' +
+      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M7 7v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7"/><path d="M9 7V5h6v2"/></svg>' +
+      '</form></header>' +
+      '<a class="promo-banner" href="#/coupons">' +
+      '<div class="promo-banner__copy"><strong>' +
+      esc(C.PROMO.title) +
+      '</strong><span>' +
+      esc(C.PROMO.subtitle) +
+      '</span></div>' +
+      '<img src="' +
+      esc(C.PROMO.imageUrl) +
+      '" alt="" />' +
+      '</a>' +
+      rail('New arrivals', arrivals) +
+      rail('Pantry staples', pantry) +
+      rail('Fresh & protein', fresh);
   }
 
   function addProduct(id, qty) {
@@ -126,107 +223,6 @@
     );
   }
 
-  function viewAccount() {
-    setNav('account');
-    var stores = C.STORES.map(function (st) {
-      return (
-        '<div class="store-card">' +
-        '<img src="' +
-        esc(st.logoUrl) +
-        '" alt="' +
-        esc(st.name) +
-        '" />' +
-        '<div>' +
-        '<p class="store-card__name">' +
-        esc(st.name) +
-        '</p>' +
-        '<p class="store-card__meta">' +
-        esc(st.lastVisited) +
-        '</p>' +
-        '<div class="store-card__actions">' +
-        '<button type="button" class="pill-btn primary" data-open-store="' +
-        esc(st.id) +
-        '" data-mode="Delivery">Delivery</button>' +
-        '<button type="button" class="pill-btn" data-open-store="' +
-        esc(st.id) +
-        '" data-mode="Pickup">Pickup</button>' +
-        '</div></div></div>'
-      );
-    }).join('');
-
-    main.innerHTML =
-      '<section class="account-screen">' +
-      '<div class="account-hero">' +
-      '<h1>Bola</h1>' +
-      '<a href="#/account">View account</a>' +
-      '</div>' +
-      '<div class="account-actions">' +
-      '<button type="button" class="account-action" data-go="#/items"><span class="account-action__icon blue">↻</span><strong>Re-order</strong></button>' +
-      '<button type="button" class="account-action" data-go="#/coupons"><span class="account-action__icon green">$</span><strong>Sales</strong></button>' +
-      '<button type="button" class="account-action" data-go="#/items"><span class="account-action__icon yellow">☰</span><strong>Shopping list</strong></button>' +
-      '</div>' +
-      '<p class="section-label">Your stores</p>' +
-      stores +
-      '</section>';
-  }
-
-  function viewShop(query) {
-    setNav('shop');
-    var store = currentStore();
-    var products = C.productsForStore(store.id);
-    if (query) {
-      var q = query.toLowerCase();
-      products = products.filter(function (p) {
-        return (
-          p.name.toLowerCase().indexOf(q) !== -1 ||
-          p.category.toLowerCase().indexOf(q) !== -1
-        );
-      });
-    }
-    var arrivals = products.slice(0, 10);
-    var pantry = products.filter(function (p) {
-      return p.shipNationwide;
-    }).slice(0, 10);
-    var fresh = products.filter(function (p) {
-      return p.category === 'Produce' || p.category === 'Protein';
-    }).slice(0, 10);
-    var count = qtyInCart();
-
-    main.innerHTML =
-      '<header class="shop-header">' +
-      '<div class="shop-header__row">' +
-      '<img class="shop-logo" src="' +
-      esc(store.logoUrl) +
-      '" alt="" />' +
-      '<button type="button" class="shop-store-btn" data-go="#/account"><span>' +
-      esc(store.shortName || store.name) +
-      '</span> ▾</button>' +
-      '<button type="button" class="cart-fab" data-go="#/items" aria-label="Your Items">' +
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M4 7h16l-1.2 12.2a2 2 0 0 1-2 1.8H7.2a2 2 0 0 1-2-1.8L4 7z"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>' +
-      (count ? '<span class="cart-fab__count">' + count + '</span>' : '') +
-      '</button></div>' +
-      '<form class="search-bar" id="search-form">' +
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>' +
-      '<input type="search" name="q" placeholder="Search African food items" value="' +
-      esc(query || '') +
-      '" aria-label="Search" />' +
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M7 7v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V7"/><path d="M9 7V5h6v2"/></svg>' +
-      '</form></header>' +
-      '<a class="promo-banner" href="#/coupons">' +
-      '<div class="promo-banner__copy"><strong>' +
-      esc(C.PROMO.title) +
-      '</strong><span>' +
-      esc(C.PROMO.subtitle) +
-      '</span></div>' +
-      '<img src="' +
-      esc(C.PROMO.imageUrl) +
-      '" alt="" />' +
-      '</a>' +
-      rail('New arrivals', arrivals) +
-      rail('Pantry staples', pantry) +
-      rail('Fresh & protein', fresh);
-  }
-
   function rail(title, list) {
     if (!list.length) return '';
     return (
@@ -243,7 +239,7 @@
 
   function viewItems() {
     setNav('items');
-    var store = currentStore();
+    var store = currentShop();
     var cartIds = (S.cart.items || []).map(function (i) {
       return i.productId;
     });
@@ -283,17 +279,26 @@
 
   function viewExplore(cat) {
     setNav('explore');
-    var store = currentStore();
-    var products = C.productsForStore(store.id);
+    var products = C.PRODUCTS.slice();
+    var aisleLabel = cat;
     if (cat) {
+      var aisle = (C.AISLES || []).filter(function (a) {
+        return a.id === cat;
+      })[0];
+      var category = (C.CATEGORIES || []).filter(function (c) {
+        return c.id === cat;
+      })[0];
+      aisleLabel = (aisle && aisle.name) || (category && category.label) || cat;
       products = products.filter(function (p) {
         return p.category === cat;
       });
       main.innerHTML =
-        '<div class="page-pad"><button type="button" class="pill-btn" data-go="#/explore">← Categories</button>' +
+        '<div class="page-pad"><button type="button" class="pill-btn" data-go="#/account">← African foods</button>' +
         '<h1 style="margin-top:14px">' +
-        esc(cat) +
-        '</h1></div>' +
+        esc(aisleLabel) +
+        '</h1><p style="margin:0 0 12px;color:var(--muted);font-size:13px">' +
+        esc((aisle && aisle.examples) || '') +
+        '</p></div>' +
         '<div class="product-grid">' +
         products
           .map(function (p) {
@@ -305,20 +310,24 @@
     }
     main.innerHTML =
       '<div class="page-pad"><h1>Explore</h1><div class="cat-list">' +
-      C.CATEGORIES.map(function (c) {
-        var count = products.filter(function (p) {
-          return p.category === c.id;
-        }).length;
-        return (
-          '<button type="button" class="cat-row" data-go="#/explore/' +
-          encodeURIComponent(c.id) +
-          '"><span>' +
-          esc(c.label) +
-          '</span><span style="color:var(--muted);font-weight:600">' +
-          count +
-          ' ›</span></button>'
-        );
-      }).join('') +
+      (C.AISLES || C.CATEGORIES)
+        .map(function (c) {
+          var id = c.id;
+          var label = c.name || c.label;
+          var count = products.filter(function (p) {
+            return p.category === id;
+          }).length;
+          return (
+            '<button type="button" class="cat-row" data-go="#/explore/' +
+            encodeURIComponent(id) +
+            '"><span>' +
+            esc(label) +
+            '</span><span style="color:var(--muted);font-weight:600">' +
+            count +
+            ' ›</span></button>'
+          );
+        })
+        .join('') +
       '</div></div>';
   }
 
@@ -326,7 +335,7 @@
     setNav('coupons');
     main.innerHTML =
       '<div class="page-pad"><h1>Coupons</h1>' +
-      '<div class="coupon-card"><strong>Save $3 on Red Palm Oil</strong><span>On 1 L bottles · Mama Jones</span></div>' +
+      '<div class="coupon-card"><strong>Save $3 on Red Palm Oil</strong><span>On 1 L bottles</span></div>' +
       '<div class="coupon-card"><strong>$1 off Plantain Chips</strong><span>Any 6 oz bag</span></div>' +
       '<div class="coupon-card"><strong>Buy 2 Egusi, save $2</strong><span>16 oz packs</span></div>' +
       '<div class="coupon-card"><strong>Free delivery over $45</strong><span>Local same-day orders</span></div>' +
