@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teedeux Monitor</title>
+  <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+  <style>
+    :root { --bg:#0f1419; --panel:#1a222c; --ink:#eef3f8; --muted:#9aa7b5; --ok:#3dd68c; --warn:#ffb020; --bad:#ff5a5a; --line:#2a3542; --accent:#ff5a1f; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background:var(--bg); color:var(--ink); }
+    header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 20px; border-bottom:1px solid var(--line); position:sticky; top:0; background:rgba(15,20,25,.92); backdrop-filter:blur(8px); }
+    header h1 { margin:0; font-size:16px; letter-spacing:.04em; }
+    header a { color:var(--accent); text-decoration:none; font-weight:700; }
+    .wrap { display:grid; grid-template-columns: 280px 1fr 1fr; gap:14px; padding:14px; min-height: calc(100vh - 58px); }
+    @media (max-width: 1000px) { .wrap { grid-template-columns: 1fr; } }
+    .panel { background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:14px; overflow:auto; max-height: calc(100vh - 90px); }
+    .panel h2 { margin:0 0 12px; font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+    .stat { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dashed var(--line); font-size:13px; }
+    .stat strong { color:#fff; }
+    .pill { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; background:#122018; color:var(--ok); font-size:12px; font-weight:700; }
+    .pill::before { content:''; width:8px; height:8px; border-radius:50%; background:currentColor; }
+    .evt, .ord { padding:10px 0; border-bottom:1px solid var(--line); font-size:12px; }
+    .evt .t, .ord .t { color:var(--muted); font-size:11px; }
+    .evt .type { color:var(--accent); font-weight:700; }
+    button.refresh { border:0; background:var(--accent); color:#fff; font-weight:800; border-radius:10px; padding:8px 12px; cursor:pointer; }
+    .empty { color:var(--muted); font-size:12px; padding:8px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TEDEUX · ENVIRONMENT MONITOR</h1>
+    <div style="display:flex;gap:10px;align-items:center">
+      <span class="pill" id="health">checking</span>
+      <button class="refresh" id="refresh">Refresh</button>
+      <a href="/#/home">← Shop</a>
+    </div>
+  </header>
+  <div class="wrap">
+    <section class="panel">
+      <h2>Live stats</h2>
+      <div id="stats"></div>
+    </section>
+    <section class="panel">
+      <h2>Recent orders</h2>
+      <div id="orders"></div>
+    </section>
+    <section class="panel">
+      <h2>Event stream</h2>
+      <div id="events"></div>
+    </section>
+  </div>
+  <script src="/js/catalog.js?v=6"></script>
+  <script src="/js/backend.js?v=6"></script>
+  <script>
+    function money(c){ return '$' + ((c||0)/100).toFixed(2); }
+    function render() {
+      var B = window.Teedeux && window.Teedeux.backend;
+      var elHealth = document.getElementById('health');
+      var elStats = document.getElementById('stats');
+      var elOrders = document.getElementById('orders');
+      var elEvents = document.getElementById('events');
+      if (!B) {
+        elHealth.textContent = 'backend offline';
+        elHealth.style.color = 'var(--bad)';
+        return;
+      }
+      var m = B.getMonitor();
+      elHealth.textContent = m.healthy ? 'healthy · ' + m.build : 'degraded';
+      elHealth.style.color = m.healthy ? 'var(--ok)' : 'var(--bad)';
+      var s = m.stats;
+      elStats.innerHTML = [
+        ['Products', s.products],
+        ['Categories', s.categories],
+        ['Cart items', s.cartItems],
+        ['Cart total', money(s.cartTotalCents)],
+        ['Orders', s.orders],
+        ['Processing', s.processing],
+        ['Delivered', s.delivered],
+        ['Canceled', s.canceled],
+        ['Coupons claimed', s.couponsClaimed],
+        ['Favorites', s.favorites],
+        ['Last check', new Date(m.at).toLocaleString()],
+      ].map(function(row){
+        return '<div class="stat"><span>'+row[0]+'</span><strong>'+row[1]+'</strong></div>';
+      }).join('');
+
+      elOrders.innerHTML = (m.recentOrders||[]).map(function(o){
+        return '<div class="ord"><div class="t">'+new Date(o.createdAt).toLocaleString()+'</div><div><strong>'+o.orderNumber+'</strong> · '+o.tab+' · '+money(o.totals.totalCents)+'</div><div class="t">'+(o.items||[]).map(function(i){return i.name+' ×'+i.quantity;}).join(', ')+'</div></div>';
+      }).join('') || '<div class="empty">No orders yet — place one in the shop.</div>';
+
+      elEvents.innerHTML = (m.events||[]).map(function(e){
+        return '<div class="evt"><div class="t">'+new Date(e.at).toLocaleString()+'</div><div><span class="type">'+e.type+'</span> '+JSON.stringify(e.detail)+'</div></div>';
+      }).join('') || '<div class="empty">No events yet.</div>';
+    }
+    document.getElementById('refresh').onclick = render;
+    window.addEventListener('teedeux-monitor', render);
+    window.addEventListener('storage', render);
+    setInterval(render, 2000);
+    render();
+  </script>
+</body>
+</html>
