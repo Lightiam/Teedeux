@@ -168,4 +168,43 @@ button, .file-btn {
 .form-actions { display: flex; gap: 8px; margin-top: 8px; }
 .msg { margin: 8px 0 0; font-size: 13px; color: var(--ok); }
 .msg.error { color: var(--danger); }
-.form-panel form { display: grid; gap: 10px; }
+.creds-card {
+  background: #1a1210;
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin: 4px 0 2px;
+}
+.creds-title {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.creds-card p {
+  margin: 6px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 13px;
+  color: var(--muted);
+}
+.creds-card span { min-width: 72px; font-weight: 600; }
+.creds-card code {
+  color: var(--ink);
+  font-size: 13px;
+  word-break: break-all;
+  background: #120c0a;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+.after-save { margin: 10px 0 0; }
+.inline-link {
+  display: inline-flex !important;
+  text-decoration: none;
+  padding: 10px 14px;
+}
+button:disabled { opacity: 0.65; cursor: wait; }

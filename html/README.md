@@ -30,18 +30,17 @@ python3 -m http.server 8080
 
 ## Super Admin · Products
 
-Site owner product editor:
+Site owner controls the catalog. Saves publish to the live shop.
 
 - Open **`/admin.html`**
-- Or tap the orange **Admin** chip / Profile → **Super Admin · Products**
-- Login: `teedeux.dev@gmail.com` / `ChangeMeImmediately123!`
-- Create, edit, delete products; export/import JSON; reset defaults
-- Changes save in the browser and update the shop catalog immediately
+- **Username:** `teedeux.dev@gmail.com`
+- **Password:** `ChangeMeImmediately123!`
+- Tap **Save & publish to shop** → shoppers see the update (via `/api/products` on Netlify)
 
 ## Demo
 
-| Role | Email | Password |
-|------|-------|----------|
+| Role | Username | Password |
+|------|----------|----------|
 | Super Admin | `teedeux.dev@gmail.com` | `ChangeMeImmediately123!` |
 | Customer | `ada@teedeux.com` | any 4+ chars |
 | Shopper | `shopper@teedeux.com` | any 4+ chars |

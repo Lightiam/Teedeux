@@ -640,10 +640,31 @@
     bind();
     if (!location.hash || location.hash === '#' || location.hash === '#/') location.replace('#/home');
     window.addEventListener('hashchange', render);
+    window.addEventListener('teedeux-catalog-changed', function () {
+      render();
+    });
+    window.addEventListener('storage', function (e) {
+      if (!e) return;
+      if (e.key === C.PRODUCT_STORE_KEY || e.key === 'teedeux-products-rev') {
+        C.reloadProducts();
+        render();
+      }
+    });
+    window.addEventListener('focus', function () {
+      C.hydrateFromServer().then(function (updated) {
+        if (updated) render();
+        else {
+          C.reloadProducts();
+          render();
+        }
+      });
+    });
     B.subscribe(function () {
       setNav(route().name === 'cart' ? 'cart' : route().name === 'orders' ? 'orders' : route().name === 'favorites' ? 'favorites' : route().name === 'profile' ? 'profile' : 'home');
     });
-    render();
+    C.hydrateFromServer().finally(function () {
+      render();
+    });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

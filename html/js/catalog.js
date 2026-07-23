@@ -118,6 +118,8 @@
   }
 
   var PRODUCT_STORE_KEY = 'teedeux-products-v1';
+  var PRODUCT_REV_KEY = 'teedeux-products-rev';
+  var PRODUCTS_API = '/api/products';
 
   var BASE_PRODUCTS = [
     item({
@@ -520,12 +522,57 @@
     });
   }
 
-  function persistProducts() {
+  function notifyCatalogChanged(reason) {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(PRODUCT_REV_KEY, String(Date.now()));
+      }
+    } catch (e) {}
+    try {
+      if (typeof global.dispatchEvent === 'function') {
+        global.dispatchEvent(
+          new CustomEvent('teedeux-catalog-changed', {
+            detail: { reason: reason || 'update', count: PRODUCTS.length },
+          })
+        );
+      }
+    } catch (e) {}
+  }
+
+  function rowToProduct(row) {
+    return item({
+      id: String(row.id),
+      name: String(row.name),
+      size: String(row.size || ''),
+      category: String(row.category || 'Staples'),
+      priceCents: Number(row.priceCents) || 0,
+      compareAtCents: row.compareAtCents ? Number(row.compareAtCents) : undefined,
+      unitPrice: row.unitPrice || '',
+      imageUrl: String(row.imageUrl || '/img/products/jollof-rice.jpg'),
+      badge: row.badge || undefined,
+      description: String(row.description || ''),
+      nutrition: row.nutrition || n(0, '0g', '0g', '0g', '0mg'),
+      shipNationwide: !!row.shippable || !!row.shipNationwide,
+    });
+  }
+
+  function applyProductRows(parsed) {
+    if (!Array.isArray(parsed) || !parsed.length) return false;
+    PRODUCTS.length = 0;
+    parsed.forEach(function (row) {
+      if (!row || !row.id || !row.name) return;
+      PRODUCTS.push(rowToProduct(row));
+    });
+    return PRODUCTS.length > 0;
+  }
+
+  function persistProducts(reason) {
     try {
       if (typeof localStorage !== 'undefined') {
         localStorage.setItem(PRODUCT_STORE_KEY, JSON.stringify(PRODUCTS));
       }
     } catch (e) {}
+    notifyCatalogChanged(reason || 'persist');
   }
 
   function loadLiveProducts() {
@@ -535,33 +582,107 @@
       var raw = localStorage.getItem(PRODUCT_STORE_KEY);
       if (!raw) return;
       var parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed) || !parsed.length) return;
-      PRODUCTS.length = 0;
-      parsed.forEach(function (row) {
-        if (!row || !row.id || !row.name) return;
-        PRODUCTS.push(
-          item({
-            id: String(row.id),
-            name: String(row.name),
-            size: String(row.size || ''),
-            category: String(row.category || 'Staples'),
-            priceCents: Number(row.priceCents) || 0,
-            compareAtCents: row.compareAtCents ? Number(row.compareAtCents) : undefined,
-            unitPrice: row.unitPrice || '',
-            imageUrl: String(row.imageUrl || '/img/products/jollof-rice.jpg'),
-            badge: row.badge || undefined,
-            description: String(row.description || ''),
-            nutrition: row.nutrition || n(0, '0g', '0g', '0g', '0mg'),
-            shipNationwide: !!row.shippable || !!row.shipNationwide,
-          })
-        );
-      });
+      if (!applyProductRows(parsed)) seedProducts();
     } catch (e) {
       seedProducts();
     }
   }
 
   loadLiveProducts();
+
+  function hydrateFromServer() {
+    if (typeof fetch !== 'function') return Promise.resolve(false);
+    return fetch(PRODUCTS_API + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(function (res) {
+        if (!res.ok) return null;
+        return res.json();
+      })
+      .then(function (data) {
+        if (!data || !Array.isArray(data.products) || !data.products.length) return false;
+        if (!applyProductRows(data.products)) return false;
+        try {
+          if (typeof localStorage !== 'undefined') {
+            localStorage.setItem(PRODUCT_STORE_KEY, JSON.stringify(PRODUCTS));
+          }
+        } catch (e) {}
+        notifyCatalogChanged('server');
+        return true;
+      })
+      .catch(function () {
+        return false;
+      });
+  }
+
+  function publishToServer(credentials) {
+    var creds = credentials || {};
+    persistProducts('local-save');
+    if (typeof fetch !== 'function') {
+      return Promise.resolve({ ok: true, localOnly: true });
+    }
+    return fetch(PRODUCTS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: creds.email || creds.username,
+        username: creds.username || creds.email,
+        password: creds.password,
+        action: 'save',
+        products: PRODUCTS,
+      }),
+    })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          return { httpOk: res.ok, status: res.status, data: data };
+        });
+      })
+      .then(function (out) {
+        if (!out.httpOk || !out.data || !out.data.ok) {
+          return {
+            ok: false,
+            localOnly: true,
+            error: (out.data && out.data.error) || 'Could not publish to live catalog API',
+          };
+        }
+        notifyCatalogChanged('published');
+        return { ok: true, updatedAt: out.data.updatedAt, count: PRODUCTS.length };
+      })
+      .catch(function () {
+        return {
+          ok: false,
+          localOnly: true,
+          error: 'Live API unavailable — saved on this device only',
+        };
+      });
+  }
+
+  function resetOnServer(credentials) {
+    var creds = credentials || {};
+    if (typeof fetch !== 'function') return Promise.resolve({ ok: true, localOnly: true });
+    return fetch(PRODUCTS_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: creds.email || creds.username,
+        username: creds.username || creds.email,
+        password: creds.password,
+        action: 'reset',
+      }),
+    })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          return { httpOk: res.ok, data: data };
+        });
+      })
+      .then(function (out) {
+        if (!out.httpOk || !out.data || !out.data.ok) {
+          return { ok: false, error: (out.data && out.data.error) || 'Reset failed on server' };
+        }
+        return { ok: true };
+      })
+      .catch(function () {
+        return { ok: false, error: 'Live API unavailable' };
+      });
+  }
 
   function slugify(name) {
     return String(name || 'product')
@@ -605,17 +726,21 @@
     });
     if (existingIdx >= 0) PRODUCTS[existingIdx] = next;
     else PRODUCTS.unshift(next);
-    persistProducts();
+    persistProducts('upsert');
     return next;
   }
 
   function deleteProduct(id) {
     var before = PRODUCTS.length;
-    PRODUCTS = PRODUCTS.filter(function (p) {
+    var next = PRODUCTS.filter(function (p) {
       return p.id !== id;
     });
-    if (PRODUCTS.length === before) return false;
-    persistProducts();
+    if (next.length === before) return false;
+    PRODUCTS.length = 0;
+    next.forEach(function (p) {
+      PRODUCTS.push(p);
+    });
+    persistProducts('delete');
     return true;
   }
 
@@ -624,6 +749,7 @@
       if (typeof localStorage !== 'undefined') localStorage.removeItem(PRODUCT_STORE_KEY);
     } catch (e) {}
     seedProducts();
+    notifyCatalogChanged('reset');
     return PRODUCTS.slice();
   }
 
@@ -634,28 +760,8 @@
   function importProducts(json) {
     var parsed = typeof json === 'string' ? JSON.parse(json) : json;
     if (!Array.isArray(parsed) || !parsed.length) throw new Error('Invalid product list');
-    PRODUCTS.length = 0;
-    parsed.forEach(function (row) {
-      if (!row || !row.id || !row.name) return;
-      PRODUCTS.push(
-        item({
-          id: String(row.id),
-          name: String(row.name),
-          size: String(row.size || ''),
-          category: String(row.category || 'Staples'),
-          priceCents: Number(row.priceCents) || 0,
-          compareAtCents: row.compareAtCents ? Number(row.compareAtCents) : undefined,
-          unitPrice: row.unitPrice || '',
-          imageUrl: String(row.imageUrl || '/img/products/jollof-rice.jpg'),
-          badge: row.badge || undefined,
-          description: String(row.description || ''),
-          nutrition: row.nutrition || n(0, '0g', '0g', '0g', '0mg'),
-          shipNationwide: !!row.shippable || !!row.shipNationwide,
-        })
-      );
-    });
-    if (!PRODUCTS.length) throw new Error('No valid products in import');
-    persistProducts();
+    if (!applyProductRows(parsed)) throw new Error('No valid products in import');
+    persistProducts('import');
     return PRODUCTS.slice();
   }
 
@@ -703,6 +809,7 @@
     DEMO_PAYMENT: DEMO_PAYMENT,
     PROMO: PROMO,
     PRODUCT_STORE_KEY: PRODUCT_STORE_KEY,
+    PRODUCTS_API: PRODUCTS_API,
     formatCents: formatCents,
     getStore: getStore,
     getProduct: getProduct,
@@ -716,5 +823,8 @@
     exportProducts: exportProducts,
     importProducts: importProducts,
     reloadProducts: loadLiveProducts,
+    hydrateFromServer: hydrateFromServer,
+    publishToServer: publishToServer,
+    resetOnServer: resetOnServer,
   };
 })(typeof window !== 'undefined' ? window : globalThis);

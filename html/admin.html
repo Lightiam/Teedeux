@@ -6,18 +6,25 @@
   <meta name="robots" content="noindex,nofollow" />
   <title>Teedeux Super Admin · Products</title>
   <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/css/admin.css?v=7" />
+  <link rel="stylesheet" href="/css/admin.css?v=8" />
 </head>
 <body>
   <div id="login-view" class="shell login-shell" hidden>
     <form id="login-form" class="login-card" autocomplete="on">
       <p class="brand">Teedeux</p>
       <h1>Super Admin</h1>
-      <p class="lede">Site owner access to update African grocery products on the live storefront.</p>
-      <label>Email<input id="email" name="email" type="email" required value="teedeux.dev@gmail.com" /></label>
-      <label>Password<input id="password" name="password" type="password" required value="ChangeMeImmediately123!" /></label>
+      <p class="lede">Site-owner product control. Edits you save go live on the shop for shoppers.</p>
+
+      <div class="creds-card" aria-label="Full Super Admin login">
+        <p class="creds-title">Full login</p>
+        <p><span>Username</span> <code id="shown-user">teedeux.dev@gmail.com</code></p>
+        <p><span>Password</span> <code id="shown-pass">ChangeMeImmediately123!</code></p>
+      </div>
+
+      <label>Username (email)<input id="email" name="username" type="email" required autocomplete="username" value="teedeux.dev@gmail.com" /></label>
+      <label>Password<input id="password" name="password" type="password" required autocomplete="current-password" value="ChangeMeImmediately123!" /></label>
       <p id="login-error" class="error" hidden></p>
-      <button type="submit">Sign in to product admin</button>
+      <button type="submit">Sign in &amp; manage products</button>
       <p class="hint"><a href="/#/home">← Back to shop</a> · <a href="/monitor.html">Monitor</a></p>
     </form>
   </div>
@@ -30,7 +37,7 @@
         <p class="lede" id="session-meta">Super Admin</p>
       </div>
       <div class="top-actions">
-        <a class="ghost" href="/#/home">Shop</a>
+        <a class="ghost" id="view-shop-btn" href="/#/home">View shop</a>
         <a class="ghost" href="/monitor.html">Monitor</a>
         <button type="button" class="ghost" id="logout-btn">Log out</button>
       </div>
@@ -51,7 +58,7 @@
       <section class="list-panel">
         <div class="list-head">
           <strong id="count-label">0 products</strong>
-          <span class="muted">Edits save to this browser and update the shop immediately</span>
+          <span class="muted">Save publishes to the live shop — shoppers see your update right away</span>
         </div>
         <div id="product-list" class="product-list"></div>
       </section>
@@ -78,16 +85,19 @@
           <label>Image URL<input id="f-image" placeholder="/img/products/jollof-rice.jpg" /></label>
           <label>Description<textarea id="f-desc" rows="3" maxlength="400"></textarea></label>
           <div class="form-actions">
-            <button type="submit" class="primary">Save product</button>
+            <button type="submit" class="primary" id="save-btn">Save &amp; publish to shop</button>
             <button type="button" class="danger" id="delete-btn">Delete</button>
           </div>
           <p id="form-msg" class="msg" hidden></p>
+          <p class="after-save" id="after-save" hidden>
+            <a class="primary inline-link" href="/#/home">Open shop to see your update →</a>
+          </p>
         </form>
       </section>
     </div>
   </div>
 
-  <script src="/js/catalog.js?v=7"></script>
-  <script src="/js/admin.js?v=7"></script>
+  <script src="/js/catalog.js?v=8"></script>
+  <script src="/js/admin.js?v=8"></script>
 </body>
 </html>

@@ -18,18 +18,20 @@ cd web && npm install && npm run dev
 # http://localhost:3000/login → /admin/products
 ```
 
-Super Admin: `teedeux.dev@gmail.com` / `ChangeMeImmediately123!`
+Super Admin:  
+**Username:** `teedeux.dev@gmail.com`  
+**Password:** `ChangeMeImmediately123!`
 
 ### Super Admin products (live Netlify shop)
 
-Owner product editor on the static site:
+Owner product editor — **you** control the catalog; saves publish to the live shop:
 
-- **Link:** `/admin.html` (also from Profile → Super Admin · Products, Monitor, or the orange **Admin** chip)
-- Same Super Admin credentials as above
-- Create / edit / delete products; export & import JSON; reset to defaults
-- Updates apply immediately to the shop catalog in that browser
+- **Link:** `/admin.html` (also Profile → Super Admin · Products, or the orange **Admin** chip)
+- **Username:** `teedeux.dev@gmail.com`
+- **Password:** `ChangeMeImmediately123!`
+- After **Save & publish**, the shop reloads the updated catalog for shoppers (`/api/products`)
 
-Next.js mirror: `/admin/products` (session-gated RBAC API at `/api/admin/products`).
+Next.js mirror: `/admin/products` (same username/password via `/login`).
 
 ## HTML5 (fastest to open)
 

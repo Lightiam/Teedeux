@@ -1,17 +1,22 @@
 /**
- * Teedeux Super Admin — product CRUD for the site owner.
- * Credentials match web Super Admin seed.
+ * Teedeux Super Admin — owner-controlled product CRUD.
+ * Saves publish to /api/products so the live shop reflects changes.
+ *
+ * Full login:
+ *   Username: teedeux.dev@gmail.com
+ *   Password: ChangeMeImmediately123!
  */
 (function () {
   'use strict';
 
   var SESSION_KEY = 'teedeux-super-admin-session';
-  var OWNER_EMAIL = 'teedeux.dev@gmail.com';
+  var OWNER_USERNAME = 'teedeux.dev@gmail.com';
   var OWNER_PASSWORD = 'ChangeMeImmediately123!';
 
   var loginView = document.getElementById('login-view');
   var adminView = document.getElementById('admin-view');
   var selectedId = null;
+  var saving = false;
 
   function catalog() {
     return window.Teedeux && window.Teedeux.catalog;
@@ -32,18 +37,20 @@
       var raw = sessionStorage.getItem(SESSION_KEY);
       if (!raw) return null;
       var s = JSON.parse(raw);
-      if (!s || s.email !== OWNER_EMAIL || s.role !== 'SUPER_ADMIN') return null;
+      if (!s || s.email !== OWNER_USERNAME || s.role !== 'SUPER_ADMIN' || !s.password) return null;
       return s;
     } catch (e) {
       return null;
     }
   }
 
-  function setSession(email) {
+  function setSession(email, password) {
     sessionStorage.setItem(
       SESSION_KEY,
       JSON.stringify({
         email: email,
+        username: email,
+        password: password,
         role: 'SUPER_ADMIN',
         name: 'Teedeux Super Admin',
         at: new Date().toISOString(),
@@ -53,6 +60,11 @@
 
   function clearSession() {
     sessionStorage.removeItem(SESSION_KEY);
+  }
+
+  function creds() {
+    var s = getSession();
+    return s ? { email: s.email, username: s.email, password: s.password } : null;
   }
 
   function show(view) {
@@ -92,6 +104,14 @@
     });
   }
 
+  function escapeHtml(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
   function renderList() {
     var list = filteredProducts();
     document.getElementById('count-label').textContent = list.length + ' products';
@@ -127,14 +147,6 @@
       .join('');
   }
 
-  function escapeHtml(s) {
-    return String(s || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
   function loadIntoForm(p) {
     selectedId = p ? p.id : null;
     document.getElementById('editor-title').textContent = p ? 'Edit product' : 'New product';
@@ -149,6 +161,7 @@
     document.getElementById('f-image').value = p ? p.imageUrl || '' : '/img/products/jollof-rice.jpg';
     document.getElementById('f-desc').value = p ? p.description || '' : '';
     document.getElementById('form-msg').hidden = true;
+    document.getElementById('after-save').hidden = true;
     document.getElementById('delete-btn').hidden = !p;
     renderList();
   }
@@ -158,17 +171,52 @@
     el.hidden = false;
     el.textContent = msg;
     el.className = 'msg' + (isError ? ' error' : '');
+    document.getElementById('after-save').hidden = !!isError;
+  }
+
+  function setBusy(on) {
+    saving = !!on;
+    var btn = document.getElementById('save-btn');
+    if (btn) {
+      btn.disabled = saving;
+      btn.textContent = saving ? 'Publishing…' : 'Save & publish to shop';
+    }
+  }
+
+  function publishThen(doneMsg) {
+    var C = catalog();
+    var auth = creds();
+    if (!C || !auth) return Promise.resolve();
+    setBusy(true);
+    return C.publishToServer(auth).then(function (result) {
+      setBusy(false);
+      if (result.ok && !result.localOnly) {
+        flash(doneMsg + ' Live shop updated for all shoppers.');
+      } else if (result.localOnly) {
+        flash(
+          doneMsg +
+            ' Saved on this device' +
+            (result.error ? ' (' + result.error + ')' : '') +
+            '. Deployed Netlify sites sync via /api/products.',
+          false
+        );
+      } else {
+        flash(result.error || 'Publish failed', true);
+      }
+      document.getElementById('view-shop-btn').href = '/#/home?catalog=' + Date.now();
+    });
   }
 
   function bootAdmin() {
     var session = getSession();
     document.getElementById('session-meta').textContent =
-      'SUPER_ADMIN · ' + session.email + ' · product updates apply to this browser’s shop';
+      'Signed in as ' + session.username + ' (Super Admin) · your saves control the live catalog';
     fillCategorySelects();
-    var first = catalog().PRODUCTS[0];
-    loadIntoForm(first || null);
-    if (!first) loadIntoForm(null);
-    show('admin');
+    var C = catalog();
+    C.hydrateFromServer().finally(function () {
+      loadIntoForm(C.PRODUCTS[0] || null);
+      show('admin');
+    });
   }
 
   document.getElementById('login-form').addEventListener('submit', function (e) {
@@ -176,13 +224,14 @@
     var email = (document.getElementById('email').value || '').trim().toLowerCase();
     var password = document.getElementById('password').value || '';
     var err = document.getElementById('login-error');
-    if (email !== OWNER_EMAIL || password !== OWNER_PASSWORD) {
+    if (email !== OWNER_USERNAME || password !== OWNER_PASSWORD) {
       err.hidden = false;
-      err.textContent = 'Invalid Super Admin credentials.';
+      err.textContent =
+        'Invalid login. Username: ' + OWNER_USERNAME + ' · Password: ' + OWNER_PASSWORD;
       return;
     }
     err.hidden = true;
-    setSession(email);
+    setSession(email, password);
     bootAdmin();
   });
 
@@ -208,6 +257,7 @@
 
   document.getElementById('product-form').addEventListener('submit', function (e) {
     e.preventDefault();
+    if (saving) return;
     var C = catalog();
     if (!C) return;
     var compareRaw = document.getElementById('f-compare').value;
@@ -224,16 +274,16 @@
       description: document.getElementById('f-desc').value,
     });
     loadIntoForm(saved);
-    flash('Saved "' + saved.name + '". Shop catalog updated.');
+    publishThen('Saved "' + saved.name + '".');
   });
 
   document.getElementById('delete-btn').addEventListener('click', function () {
     var id = document.getElementById('f-id').value;
-    if (!id) return;
-    if (!confirm('Delete this product from the live catalog on this browser?')) return;
+    if (!id || saving) return;
+    if (!confirm('Delete this product from the live shop catalog?')) return;
     catalog().deleteProduct(id);
     loadIntoForm(catalog().PRODUCTS[0] || null);
-    flash('Product deleted.');
+    publishThen('Product deleted.');
   });
 
   document.getElementById('export-btn').addEventListener('click', function () {
@@ -253,7 +303,7 @@
       try {
         catalog().importProducts(String(reader.result || ''));
         loadIntoForm(catalog().PRODUCTS[0] || null);
-        flash('Imported ' + catalog().PRODUCTS.length + ' products.');
+        publishThen('Imported ' + catalog().PRODUCTS.length + ' products.');
       } catch (err) {
         flash(err.message || 'Import failed', true);
       }
@@ -263,10 +313,21 @@
   });
 
   document.getElementById('reset-btn').addEventListener('click', function () {
+    if (saving) return;
     if (!confirm('Reset all products to the default Teedeux African grocery catalog?')) return;
+    var auth = creds();
     catalog().resetProducts();
-    loadIntoForm(catalog().PRODUCTS[0] || null);
-    flash('Catalog reset to defaults.');
+    catalog()
+      .resetOnServer(auth)
+      .then(function () {
+        return catalog().publishToServer(auth);
+      })
+      .then(function (result) {
+        loadIntoForm(catalog().PRODUCTS[0] || null);
+        if (result && result.ok) flash('Catalog reset and published to the live shop.');
+        else flash('Catalog reset on this device.');
+        document.getElementById('after-save').hidden = false;
+      });
   });
 
   if (!catalog()) {

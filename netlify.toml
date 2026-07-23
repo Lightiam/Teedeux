@@ -1,11 +1,23 @@
-# Teedeux — Netlify static deploy (HTML5 PWA)
+# Teedeux — Netlify static deploy (HTML5 PWA) + Super Admin products API
 
 [build]
   publish = "html"
   command = "echo 'Teedeux HTML5 static site — skipping build'"
+  functions = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Owner-controlled catalog API (must be above SPA fallback)
+[[redirects]]
+  from = "/api/products"
+  to = "/.netlify/functions/products"
+  status = 200
+  force = true
 
 # Soft SPA fallback (static files still win; do not use force=true)
 [[redirects]]
@@ -22,6 +34,11 @@
 
 [[headers]]
   for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/admin.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
@@ -46,6 +63,11 @@
   for = "/js/*"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Cache-Control = "no-store"
 
 [[headers]]
   for = "/icons/*"
